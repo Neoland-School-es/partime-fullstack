@@ -1,0 +1,278 @@
+@import url("./root.css");
+
+#page-forms-javascript {
+    main {
+        .contenedor_divisor {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            form {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* ==================================================
+================ BANNER CABECERA ================
+================================================== */
+
+.header_banner {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    span {
+        background-color: rgba(0, 0, 0, .5);
+        font-size: 5rem;
+        color: var(--color-white);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+
+/* ==================================================
+================== MENU NAVEGACION ==================
+================================================== */
+
+.navigation_bar {
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5em 1em;
+    outline: 2px solid var(--color-black);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    h1:hover {
+        text-decoration: underline;
+    }
+
+    .container_menu {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        position: relative;
+    }
+}
+
+.dark .navigation_bar {
+    background-color: var(--color-dark);
+    outline: 2px solid var(--color-light);
+}
+
+/* ==================================================
+================ CONTENEDORES Y DIVISORES PRINCIPALES ================
+================================================== */
+
+@media (min-width: 768px) {
+    .presentation_section {
+        padding: 3em;
+    }
+}
+
+.presentation_section>header h2 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: var(--font-bold);
+    margin-bottom: 1em;
+}
+
+/* ================================================== */
+.divider_container {
+    background-color: var(--color-white);
+    display: grid;
+    gap: 1em;
+
+    .main_content {
+        order: 1;
+    }
+
+    .side_menu {
+        order: 0;
+    }
+}
+
+.dark .divider_container {
+    background-color: var(--color-black);
+}
+
+@media (max-width: 768px) {
+    .divider_container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) {
+    .divider_container {
+        grid-template-columns: 2fr 1fr;
+
+        .main_content {
+            order: 0;
+        }
+
+        .side_menu {
+            order: 1;
+        }
+    }
+}
+
+/* ==================================================
+================ CONTENIDO PRINCIPAL ================
+================================================== */
+
+.grid-albums {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.main_content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    >header h2 {
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    article {
+        padding: 1em;
+    }
+
+    .grid-clases {
+        background-color: var(--color-light);
+        border-radius: .5em;
+        display: flex;
+        flex-direction: column;
+        outline: .2em solid var(--color-black);
+        gap: .5em;
+
+        h3 {
+            font-weight: var(--font-bold);
+        }
+
+        code {
+            color: darkblue;
+            font-size: 1.2em;
+        }
+    }
+}
+
+.dark .main_content {
+    .grid-clases {
+        background-color: var(--color-dark);
+        outline-color: var(--color-light);
+    }
+
+    code {
+        color: greenyellow;
+    }
+}
+
+@media (min-width: 769px) {
+    .main_content {
+        >section {
+            padding: 1em;
+        }
+    }
+}
+
+/* ==================================================
+================ MENU LATERAL ================
+================================================== */
+
+.side_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0 1em;
+
+    nav {
+        background-color: var(--color-light);
+        border-radius: .5em;
+        outline: 2px solid var(--color-black);
+        position: sticky;
+        top: 4em;
+        height: 50vh;
+        overflow-y: scroll;
+
+        >header {
+            position: sticky;
+            top: 0;
+            background-color: var(--color-secondary);
+
+            h2 {
+                color: var(--color-black);
+                font-size: var(--text-large);
+                font-weight: var(--font-bold);
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+
+        .menu_links {
+            a {
+                padding: .5em 1em;
+                display: block;
+                font-weight: var(--font-bold);
+                outline: 2px solid var(--color-black);
+            }
+
+            a:hover {
+                background-color: var(--color-white);
+                color: var(--color-black);
+            }
+        }
+    }
+}
+
+.dark .side_menu {
+    nav {
+        background-color: var(--color-dark);
+        outline-color: var(--color-white);
+
+        a {
+            outline-color: var(--color-white);
+        }
+    }
+}
+
+/* ==================================================
+================ PIE PAGINA ================
+================================================== */
+
+.footer_container {
+    background-color: var(--color-light);
+    outline: 2px solid var(--color-black);
+    padding: 5em;
+}
+
+.dark .footer_container {
+    background-color: var(--color-dark);
+    outline: 2px solid var(--color-white);
+}

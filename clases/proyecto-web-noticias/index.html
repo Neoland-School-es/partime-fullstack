@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una al Dia Ejemplo</title>
+
+    <meta name="author" content="Pablo Diaz">
+    <meta name="description" content="Esta es una pagina web clon de la web unaaldia.com">
+    <meta name="keyword" content="software, tecnologia, html, noticias, blog,">
+
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <header class="banner_cabecera">
+        <figure class="logo_titulo">
+            <img src="./assets/images/cabecera2-1.png" alt="">
+        </figure>
+    </header>
+
+    <section class="contenedor_principal">
+        <main class="contenido_principal">
+            <header>
+                <h2>Un fallo de seguridad en Facebook permite ver fotos privadas de otros usuarios</h2>
+                <span>16 febrero, 2019 Por Alberto Segura 2 comentarios</span>
+            </header>
+
+            <p>Un investigador ha reportado recientemente un fallo de seguridad en Facebook que permitía visualizar las
+                fotos privadas de otros usuarios.</p>
+
+            <img src="./assets/images/facebook-messenger.webp" alt="">
+
+            <p>
+                La vulnerabilidad se descubrió en portal.facebook.com, la web de Facebook para su dispositivo ‘Portal’,
+                que está diseñado principalmente para realizar videollamadas.</p>
+
+            <p><strong>En la web de Portal disponemos de una pequeña ventana de chat para soporte, en la que podemos
+                    realizar
+                    consultas a un bot</strong>. Además de texto, es posible incluir imágenes y archivos en el chat,
+                introduciendo
+                esta funcionalidad la vulnerabilidad. Aunque inicialmente este fallo fue descubierto en este chat de
+                soporte, según el investigador, el chat de Facebook también era vulnerable.</p>
+
+            <p>El problema se encontraba en que al subir un fichero o una foto, este recibe un identificador numérico
+                de igual forma que ocurre con el resto de fotos subidas a Facebook. Después de realizar la subida de la
+                foto, se realiza una nueva petición que envía un nuevo mensaje de tipo foto al chat. Si se sustituye en
+                dicho mensaje el identificador de la foto por el identificador de cualquier otra foto, al enviar el
+                mensaje y visualizarlo veremos automáticamente la foto correspondiente al identificador modificado.
+            </p>
+
+            <img src="./assets/images/magen1.webp" alt="imagen de messengger facebook" title="titulo imagen">
+
+            <p>Aunque la explotación de esta vulnerabilidad está limitada debido a que es necesario indicar el
+                identificador de la foto que queremos ver, un atacante podría realizar un ataque de fuerza bruta para
+                obtener fotos privadas de otros usuarios debido al uso de identificadores numéricos.</p>
+
+
+            <form action="" class="formulario_contacto">
+                <div>
+                    <label for="">comentario</label>
+                    <textarea name="" id=""></textarea>
+                </div>
+
+                <div>
+                    <label for="">nombre</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label for="">email</label>
+                    <input type="email">
+                </div>
+
+                <div>
+                    <input type="checkbox" name="" id="">
+                    <label for="">Recibir un correo electrónico con los siguientes comentarios a esta entrada.</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" name="" id="">
+                    <label for="">Recibir un correo electrónico con cada nueva entrada.</label>
+                </div>
+
+                <button class="btn">enviar datos</button>
+            </form>
+        </main>
+
+        <aside class="contenido_lateral">
+            <section>
+                <header>
+                    <h2>buscar</h2>
+                </header>
+                <form action="#">
+                    <input type="search" name="" id="" placeholder="search the site" class="input_buscar">
+                </form>
+            </section>
+
+            <section>
+                <header>
+                    <h2>siguenos</h2>
+                </header>
+                <a href="#" target="_blank">
+
+                    <figure>
+                        <img src="./assets/images/BACKGROUND-CABECERA-1.png" alt="">
+                    </figure>
+                </a>
+            </section>
+
+            <section>
+                <header>
+                    <h2>videos</h2>
+                </header>
+                <div>
+                    <iframe src="https://www.youtube.com/embed/wmuWVGN8mBE?si=XR9NctTjPCRUgEw6"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+        </aside>
+    </section>
+
+    <footer class="pie_pagina">
+        <section class="info_detalles">
+            <section>
+                <h2>UAD</h2>
+                <p>UAD nació a raíz de un inocente comentario en un canal IRC hace 24 años. A través de los archivos, un
+                    lector curioso puede ver cómo ha cambiado (o no) la seguridad de la información desde entonces.</p>
+            </section>
+
+            <section>
+                <h2>Aviso Legal</h2>
+                <ul class="info_detalles_list">
+                    <li>Aviso Legal</li>
+                    <li>Términos y Condiciones</li>
+                    <li>Política de Privacidad</li>
+                    <li>Política de Cookies</li>
+                </ul>
+            </section>
+
+            <section>
+                <figure>
+                    <img src="./assets/images/footer_img1.webp" alt="">
+                </figure>
+                <figure>
+                    <img src="./assets/images/footer_img2.webp" alt="">
+                </figure>
+            </section>
+        </section>
+
+        <hr>
+
+        <section class="info_copyright">
+            <p>Copyright © 2025 · Hispasec Sistemas, S.L. Todos los derechos reservados</p>
+        </section>
+    </footer>
+</body>
+
+</html>

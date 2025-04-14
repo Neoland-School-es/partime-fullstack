@@ -1,0 +1,481 @@
+<!--
+==================================================
+------------ POSICIONAMIENTO EN CSS --------------
+==================================================
+
+Descripción:
+El posicionamiento en CSS permite controlar cómo se ubican los elementos en la página.
+Cada elemento tiene un flujo de diseño natural, pero con CSS podemos modificarlo usando la propiedad "position".
+
+Propiedades de posicionamiento:
+
+1. static (Estático - valor por defecto de todos los elementos):
+- Es el valor predeterminado de todos los elementos.
+- Sigue el flujo normal del documento, no permite ajustes con "top", "right", "bottom" o "left".
+
+2. relative (Relativo):
+- Posiciona el elemento en relación con su posición original en el flujo normal.
+- Conservara sus medidas y espacio reservado.
+- Se puede mover usando "top", "right", "bottom" y "left" sin afectar a otros elementos.
+
+3. absolute (Absoluto):
+- Elimina el elemento del flujo normal del documento.
+- Se posiciona en relación con su primer ancestro con "position: relative", o con el <html> si no hay ancestros con "position" establecida.
+- Puede superponerse a otros elementos.
+- Ejemplo común: Menús desplegables o elementos flotantes.
+- el elemento pierde sus medidas.
+
+4. fixed (Fijo):
+- Similar a "absolute", pero siempre permanece en la misma posición incluso al hacer scroll.
+- Se posiciona en relación con la ventana del navegador (viewport).
+- Útil para barras de navegación fijas, botones flotantes o avisos emergentes.
+
+5. sticky (Pegajoso):
+- Combinación de "relative" y "fixed".
+- Se comporta como "relative" hasta que el usuario hace scroll y se alcanza un umbral definido con "top", "left", etc.
+- Al llegar a ese punto, se comporta como "fixed".
+- Ejemplo común: Menús de navegación que permanecen visibles al hacer scroll.
+
+PROPIEDADES RELACIONADAS: 
+* top, right, bottom, left:
+- Controlan la distancia de un elemento respecto a su referencia de posicionamiento.
+- Solo funcionan con "relative", "absolute", "fixed" y "sticky".
+
+* z-index:
+- Define la superposición de elementos en el eje Z (profundidad).
+- Los valores más altos se colocan por encima de los valores más bajos.
+- Elementos con "position: static" no pueden usar "z-index".
+
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posicionamiento HTML5</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            background-color: crimson;
+            outline: 5px solid darkred;
+        }
+        nav {
+            background-color: lightblue;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            height: 50px;
+        }
+        
+        .title-sticky {
+            position: sticky;
+            top: 50px;
+            background-color: red;
+        }
+
+        main {
+            width: 60%;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            gap: 10px;
+
+            article {
+                background-color: #333;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>menu de navegacion</h2>
+    </nav>
+    <main>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 1</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 2</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 3</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 4</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+        <article>
+            <header class="title-sticky">
+                <h2>hola 5</h2>
+            </header>
+
+            <section>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo eum, aliquid excepturi incidunt ipsam,
+                    asperiores nam autem labore aliquam dolores voluptatem quae? Laborum cum veniam ipsa cupiditate
+                    deleniti neque totam.</p>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

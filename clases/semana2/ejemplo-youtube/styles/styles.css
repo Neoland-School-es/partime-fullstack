@@ -1,0 +1,192 @@
+:root {
+    --negro: #000;
+    --blanco: #fff;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body.dark {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+
+/* ==================================================
+ ===================== CABECERA =====================
+ ================================================== */
+.cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--botonXS) var(--botonMD);
+}
+
+.cabecera>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cabecera .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cabecera .icono-menu-cerrar {
+    display: none;
+}
+
+.cabecera #boton-perfil {
+    position: relative;
+}
+
+.cabecera #boton-perfil #venta-modal-perfil {
+    background-color: #333;
+    border: 2px solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 300px;
+    width: 250px;
+    position: absolute;
+    right: 10px;
+    overflow-y: auto;
+}
+
+/* ==================================================
+CONTENEDOR DIVISOR DE .menu-lateral-izquierdo Y .contenido-principal
+================================================== */
+
+.contenedor-divisor {
+    display: flex;
+    height: calc(100vh - 3rem);
+    position: relative;
+}
+
+/* ==================================================
+============== MENU LATERAL IZQUIERDO ==============
+================================================== */
+
+#MenuInputCheckbox {
+    display: none;
+}
+
+.menu-lateral-izquierdo {
+    position: absolute;
+    background-color: red;
+    width: 10em;
+    left: -12em;
+    transition: 2s;
+}
+
+#MenuInputCheckbox:checked~.menu-lateral-izquierdo {
+    left: 0;
+}
+
+.menu-lateral-izquierdo nav {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.menu-lateral-izquierdo nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.menu-lateral-izquierdo nav ul li:hover {
+    background-color: grey;
+}
+
+.menu-lateral-izquierdo nav ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#MenuInputCheckbox:checked~.menu-lateral-izquierdo nav ul li a {
+    /* flex-direction: row; */
+    gap: 1rem;
+}
+
+.menu-lateral-izquierdo .extra-links {
+    /* display: none; */
+}
+
+#MenuInputCheckbox:checked~.menu-lateral-izquierdo .extra-links {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================================================
+================ CONTENIDO PRINCIPAL ================
+================================================== */
+
+.contenido-principal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+.tarjeta-video>figure {
+    height: 15rem;
+}
+
+.tarjeta-video>figure img {
+    width: 100%;
+    height: 100%;
+}
+
+.tarjeta-video section {
+    display: flex;
+    align-items: center;
+    padding: .5rem 0;
+    gap: 1rem;
+}
+
+.tarjeta-video section figure {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.tarjeta-video section img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ==================================================
+==================== MEDIA QUERY ====================
+================================================== */
+
+@media (max-width: 700px) {
+
+    /* ==================================================
+    ===================== CABECERA =====================
+    ================================================== */
+    #MenuInputCheckbox:checked~.menu-lateral-izquierdo {
+        display: flex;
+    }
+
+    /* ==================================================
+    ================ CONTENIDO PRINCIPAL ================
+    ================================================== */
+    .contenido-principal {
+        grid-template-columns: 1fr;
+    }
+
+    /* ==================================================
+    ============== MENU LATERAL IZQUIERDO ==============
+    ================================================== */
+    .menu-lateral-izquierdo {
+        /* display: none; */
+    }
+}
