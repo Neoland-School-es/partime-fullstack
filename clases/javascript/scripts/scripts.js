@@ -77,18 +77,38 @@ function controlarMenuModalOpciones() {
 }
 
 function controlarModoOscuro() {
-    if (document.body.classList.contains('dark')) {
+    const modoOscuroCookie = document.cookie.split("; ").find(row => row.startsWith("modoOscuro="))?.split("=")[1];
+
+    if (modoOscuroCookie === "true" || (!modoOscuroCookie && document.body.classList.contains('dark'))) {
         document.body.classList.remove('dark');
+        document.cookie = "modoOscuro=false; expires=Tue, 30 Apr 2025 12:00:00 UTC; path=/";
 
         document.querySelector('#BtnModoOscuro span').textContent = 'modo oscuro';
         document.querySelector('#BtnModoOscuro img').src = `${rutaAssets}moon.svg`;
     } else {
         document.body.classList.add('dark');
+        document.cookie = "modoOscuro=true; expires=Tue, 30 Apr 2025 12:00:00 UTC; path=/";
 
         document.querySelector('#BtnModoOscuro span').textContent = 'modo claro';
         document.querySelector('#BtnModoOscuro img').src = `${rutaAssets}sun.svg`;
     }
 }
+
+function aplicarModoOscuroInicial() {
+    const modoOscuroCookie = document.cookie.split("; ").find(row => row.startsWith("modoOscuro="))?.split("=")[1];
+
+    if (modoOscuroCookie === "true") {
+        document.body.classList.add('dark');
+        document.querySelector('#BtnModoOscuro span').textContent = 'modo claro';
+        document.querySelector('#BtnModoOscuro img').src = `${rutaAssets}sun.svg`;
+    } else {
+        document.body.classList.remove('dark');
+        document.querySelector('#BtnModoOscuro span').textContent = 'modo oscuro';
+        document.querySelector('#BtnModoOscuro img').src = `${rutaAssets}moon.svg`;
+    }
+}
+
+aplicarModoOscuroInicial();
 
 /*  ===== FUNCIONES PAGINA INICIO (index.html) ===== */
 
