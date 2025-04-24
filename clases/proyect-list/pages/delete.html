@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="./../scripts/scripts.js"></script>
+</head>
+
+<body class="bg-primary my-5">
+    <main class="bg-light container rounded p-4">
+        <!-- Modal para Confirmar Eliminación -->
+        <div id="deleteTaskPage">
+            <form class="modal-body p-4">
+                <h5 class="modal-title mb-3" id="deleteTaskModalLabel">Eliminar Tarea</h5>
+                <p>¿Estás seguro de que deseas eliminar esta tarea?</p>
+                <p id="TareaElegida"></p>
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

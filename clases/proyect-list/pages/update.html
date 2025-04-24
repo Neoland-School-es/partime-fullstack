@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="./../scripts/scripts.js"></script>
+</head>
+
+<body class="bg-primary my-5">
+    <main class="bg-light container rounded p-4">
+        <div id="editTaskPage">
+            <form class="modal-body">
+                <header class="modal-header">
+                    <h5 class="modal-title" id="editTaskModalLabel">Editar Tarea</h5>
+                </header>
+                <div class="mb-3 mt-3">
+                    <label for="editTaskText" class="form-label">Descripción de la tarea</label>
+                    <input type="text" class="form-control" id="editTaskText" name="editTaskText"
+                        placeholder="Editar tarea..." required>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Actualizar</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

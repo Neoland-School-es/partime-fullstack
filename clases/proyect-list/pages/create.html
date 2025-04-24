@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="./../scripts/scripts.js"></script>
+</head>
+
+<body class="bg-primary my-5">
+    <main class="bg-light container rounded p-4">
+        <div id="addTaskPage">
+            <form>
+                <header>
+                    <h5 id="addTaskModalLabel">Nueva Tarea</h5>
+                </header>
+                <div class="mb-3 mt-3">
+                    <label for="taskText" class="form-label">Descripción de la tarea</label>
+                    <input type="text" class="form-control" id="taskText" name="taskText" placeholder="Ej. Comprar café"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Guardar</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

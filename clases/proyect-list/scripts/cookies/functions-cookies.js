@@ -1,11 +1,7 @@
-// CRUD de Cookies para programadores juniors
-
-// Mostrar todas las cookies actuales en la consola
 export function mostrarCookies() {
     console.log("Cookies actuales:", document.cookie);
 }
 
-// Leer el valor de una cookie por su nombre
 export function leerCookie(nombre) {
     const nombreConIgual = nombre + "=";
     const partes = document.cookie.split(";");
@@ -22,7 +18,6 @@ export function leerCookie(nombre) {
     return null; // Si no se encuentra la cookie
 }
 
-// Crear una cookie nueva o actualizarla si ya existe
 export function crearCookie(nombre, valor, dias) {
     let textoExpiracion = "";
 
@@ -37,12 +32,10 @@ export function crearCookie(nombre, valor, dias) {
     document.cookie = cookieFinal;
 }
 
-// Eliminar una cookie existente por su nombre
 export function eliminarCookie(nombre) {
     document.cookie = nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-// Mostrar una cookie específica por su nombre
 export function mostrarUnaCookie(nombre) {
     const valor = leerCookie(nombre);
 
@@ -53,7 +46,6 @@ export function mostrarUnaCookie(nombre) {
     }
 }
 
-// Actualizar el valor y los días de expiración de una cookie
 export function actualizarCookie(nombre, nuevoValor, nuevosDias) {
     const valorActual = leerCookie(nombre);
 

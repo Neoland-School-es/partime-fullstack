@@ -1,0 +1,27 @@
+---
+config:
+  layout: fixed
+---
+flowchart TD
+    A["Inicio de la Aplicacion"] --> B["Funcion main: Inicia la aplicación y carga los datos"]
+    B --> C["leerDatoLS o datosTareasBBDD: Carga datos desde localStorage o valores por defecto"]
+    C --> D["crearDatoLS: Guarda los datos en localStorage"]
+    D --> E["mostrarTareas: Renderiza las tareas en el contenedor HTML"]
+    E --> F["leerDatoLS: Lee las tareas almacenadas en localStorage"] & T@{ label: "Renderizar lista en <ul>: Las tareas se añaden a la lista con la clase 'list-group'</ul>" }
+    F --> G["mostrarLista: Crea y muestra las tareas dinámicamente en el HTML"]
+    G --> H["configurarEventos: Configura eventos de botones de editar, eliminar, etc."]
+    H --> I["Formulario Crear Tarea - #addTaskModal: Formulario con el ID #addTaskModal para agregar una nueva tarea"] & L["Boton Editar - #editTaskModal: Botón que abre el modal de edición de tarea"] & O["Boton Eliminar - #deleteTaskModal: Botón que abre el modal de confirmación para eliminar tarea"] & R["Boton Limpiar Datos - #btnClearLS: Botón para limpiar todo el contenido de localStorage"]
+    I --> J["Submit: agregarTarea: Al enviar el formulario, se agrega la tarea"]
+    J --> K["crearDatoLS: Guarda la nueva tarea en localStorage"]
+    K --> E
+    L --> M["Submit: actualizarTarea: Al enviar el formulario de edición, actualiza la tarea"]
+    M --> N["crearDatoLS: Actualiza la tarea en localStorage"]
+    N --> E
+    O --> P["Submit: eliminarTarea: Al enviar el formulario de eliminación, elimina la tarea"]
+    P --> Q["crearDatoLS: Elimina la tarea de localStorage"]
+    Q --> E
+    R --> S["limpiarLocalStorage: Elimina todos los datos almacenados en localStorage"]
+    S --> E
+    T --> U@{ label: "Botones Editar y Eliminar: Botones con las clases 'btn-editar' y 'btn-eliminar' en cada tarea" }
+    T@{ shape: rect}
+    U@{ shape: rect}

@@ -1,0 +1,16 @@
+graph TD
+    Inicio --> ChequearLocalStorage{¿Existen datos en localStorage?}
+    ChequearLocalStorage -->|Sí| CargarDatos
+    ChequearLocalStorage -->|No| InicializarDatos
+    CargarDatos --> MostrarDatos
+    InicializarDatos --> MostrarDatos
+    MostrarDatos --> EsperarAcciones{¿Qué acción desea realizar el usuario?}
+    EsperarAcciones -->|Crear| CrearTarea
+    EsperarAcciones -->|Leer| LeerTarea
+    EsperarAcciones -->|Actualizar| ActualizarTarea
+    EsperarAcciones -->|Eliminar| EliminarTarea
+    CrearTarea --> GuardarLocalStorage
+    LeerTarea --> MostrarTarea
+    ActualizarTarea --> GuardarLocalStorage
+    EliminarTarea --> GuardarLocalStorage
+    GuardarLocalStorage --> MostrarDatos
