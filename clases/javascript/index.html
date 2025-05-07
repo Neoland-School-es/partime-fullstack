@@ -5,6 +5,8 @@
     <!-- Configuración básica del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compatibilidad con navegadores antiguos -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- SEO y accesibilidad -->
     <meta name="description" content="Breve descripción del contenido de la página. Clases de JavaScript.">
@@ -24,8 +26,7 @@
     <link rel="stylesheet" href="./styles/global-styles.css">
     <link rel="stylesheet" href="./styles/styles.css">
 
-    <!-- Compatibilidad con navegadores antiguos -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="module" src="./scripts/scripts.js" defer></script>
 </head>
 
 <body class="my-body-container">
@@ -2212,6 +2213,269 @@ console.log(datos.nombre); // "Ana"
                             </ul>
                         </article>
                     </details>
+
+                    <details id="asincroniaJS" class="my-details">
+                        <summary>
+                            <h3>Programación asincrónica</h3>
+                        </summary>
+                        <article>
+                            <p>
+                                En la programación síncrona, el código se ejecuta línea por línea, y una instrucción
+                                debe terminar antes de pasar a la siguiente.<br />
+                                En JavaScript, no todo el código se ejecuta de inmediato. Algunas
+                                tareas, como leer archivos, conectarse a una API o esperar la respuesta del servidor,
+                                pueden tardar.<br />
+                                Para que el programa no se congele mientras espera, usamos programación asincrónica.
+                            </p>
+
+                            <h4>Programación síncrona</h4>
+                            <pre><code>
+// Código síncrono
+console.log("1. Inicio");
+console.log("2. Procesando");
+console.log("3. Fin");
+</code></pre>
+
+                            <h4>Programación asincrónica</h4>
+                            <p>
+                                En la programación <strong>asincrónica</strong>, algunas instrucciones no se ejecutan de
+                                inmediato, sino que se programan para más tarde, sin bloquear el resto del código.
+                            </p>
+                            <pre><code>
+// Código asincrónico
+console.log("1. Inicio");
+setTimeout( () => { console.log("2. Esto se ejecuta después") }, 2000);
+console.log("3. Fin inmediato");
+</code></pre>
+
+                            <p>
+                                Aunque <code>setTimeout</code> aparece antes, se ejecuta después, porque el navegador lo
+                                pone en espera. Esta es la base de la asincronía.
+                            </p>
+                        </article>
+                    </details>
+
+                    <details id="promesasJS" class="my-details">
+                        <summary>
+                            <h3>Promesas en JavaScript</h3>
+                        </summary>
+
+                        <article>
+                            <p>
+                                Una <strong>promesa</strong> en JavaScript es un objeto que representa la terminación (o
+                                el fracaso) de una operación asincrónica.<br />
+                                Una promesa es un valor que estará disponible en el futuro.<br />
+                                Puede tener tres estados:
+                            </p>
+
+                            <ul>
+                                <li><code>pending</code> (pendiente): cuando se está ejecutando.</li>
+                                <li><code>fulfilled</code> (cumplida): cuando se completa con éxito.</li>
+                                <li><code>rejected</code> (rechazada): cuando ocurre un error.</li>
+                            </ul>
+
+                            <h4>Sintaxis básica</h4>
+                            <pre><code>
+let miPromesa = new Promise(function (resolve, reject) {
+    let exito = true;
+
+    if (exito) {
+        resolve("¡Operación exitosa!");
+    } else {
+        reject("Algo salió mal.");
+    }
+});
+
+miPromesa
+    .then(function (resultado) {
+        console.log("Éxito:", resultado);
+    })
+    .catch(function (error) {
+        console.error("Error:", error);
+    });
+</code></pre>
+
+                            <h4>Simular una espera con <code>setTimeout</code></h4>
+                            <pre><code>
+let promesaTiempo = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+        resolve("¡Listo después de 2 segundos!");
+    }, 2000);
+});
+
+console.log("Esperando...");
+
+promesaTiempo.then(function (mensaje) {
+    console.log(mensaje);
+});
+</code></pre>
+
+                            <h4>usar promesas:</h4>
+                            <ul>
+                                <li>Evitan los <strong>callbacks anidados</strong> (el llamado "callback hell").</li>
+                                <li>Organizan mejor el flujo del código asincrónico.</li>
+                                <li>Son compatibles con otras funciones modernas como <code>fetch</code> y
+                                    <code>async/await</code>.
+                                </li>
+                            </ul>
+
+                            <h4>Conclusión</h4>
+                            <p>
+                                Las promesas son la base del manejo moderno de código asincrónico. Permiten ejecutar
+                                acciones cuando algo se completa (o falla), sin detener el resto del programa.
+                            </p>
+                        </article>
+                    </details>
+
+                    <details id="fetchJS" class="my-details">
+                        <summary>
+                            <h3>peticiones HTTP con fetch</h3>
+                        </summary>
+                        <article>
+                            <p>
+                                La función <code>fetch()</code> permite hacer solicitudes HTTP desde JavaScript de forma
+                                sencilla y asincrónica, útil para consumir APIs.
+                            </p>
+
+                            <h4>1. ¿Qué hace <code>fetch()</code>?</h4>
+                            <ul>
+                                <li>Envía una petición HTTP a una URL.</li>
+                                <li>Devuelve una <strong>promesa</strong> con la respuesta del servidor.</li>
+                                <li>La respuesta debe convertirse a formato usable (por ejemplo, JSON).</li>
+                            </ul>
+
+                            <h4>2. Sintaxis básica</h4>
+                            <pre><code>
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(function (respuesta) {
+        return respuesta.json();
+    })
+    .then(function (datos) {
+        console.log("Título del post:", datos.title);
+    })
+    .catch(function (error) {
+        console.error("Error al obtener los datos:", error);
+    });
+</code></pre>
+
+                            <h4>Explicación paso a paso</h4>
+                            <ol>
+                                <li><code>fetch(url)</code> inicia una petición y devuelve una promesa.</li>
+                                <li><code>respuesta.json()</code> convierte el cuerpo de la respuesta en un objetoc JavaScript.</li>
+                                <li>El segundo <code>.then()</code> recibe los datos listos para usar.</li>
+                                <li><code>.catch()</code> captura errores como falta de conexión o URL incorrecta.</li>
+                            </ol>
+
+                            <h4>¿Qué pasa si la respuesta no es exitosa?</h4>
+                            <p>El método <code>fetch()</code> no lanza un error por una respuesta 404 o 500, por lo que
+                                es necesario comprobar el estado:</p>
+                            <pre><code>
+fetch("https://jsonplaceholder.typicode.com/posts/12345")
+.then(function (respuesta) {
+    if (!respuesta.ok) {
+        throw new Error("Error HTTP: " + respuesta.status);
+    }
+    return respuesta.json();
+})
+.then(function (datos) {
+    console.log("Datos:", datos);
+})
+.catch(function (error) {
+    console.error("Fallo en la solicitud:", error.message);
+});
+</code></pre>
+
+                            <h4>¿Qué se puede hacer con fetch?</h4>
+                            <ul>
+                                <li>Obtener datos de APIs públicas o privadas.</li>
+                                <li>Enviar formularios a un servidor.</li>
+                                <li>Cargar archivos, imágenes o datos de usuarios.</li>
+                                <li>Conectarse con bases de datos a través de una API.</li>
+                            </ul>
+
+                            <h4>Conclusión</h4>
+                            <p>
+                                <code>fetch()</code> es la herramienta principal para trabajar con datos externos en la
+                                web. Es simple de usar y se integra muy bien con promesas y <code>async/await</code>.
+                            </p>
+                        </article>
+                    </details>
+
+                    <details id="asyncAwaitJS" class="my-details">
+                        <summary>
+                            <h3>Async / Await</h3>
+                        </summary>
+                        <article>
+                            <p>
+                                <code>async</code> y <code>await</code> son palabras clave que permiten trabajar con
+                                promesas de una forma más ordenada y legible.
+                            </p>
+
+                            <h4><code>async</code></h4>
+                            <ul>
+                                <li>Convierte una función en asincrónica.</li>
+                                <li>Una función <code>async</code> siempre devuelve una promesa.</li>
+                            </ul>
+
+                            <h4><code>await</code></h4>
+                            <ul>
+                                <li>Pausa la ejecución de la función hasta que la promesa se resuelva.</li>
+                                <li>Solo se puede usar dentro de funciones <code>async</code>.</li>
+                            </ul>
+
+                            <h4>3. Ejemplo práctico con <code>fetch</code></h4>
+                            <pre><code>
+async function obtenerPost() {
+    try {
+        const respuesta = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        
+        if (!respuesta.ok) {
+            throw new Error("Error HTTP: " + respuesta.status);
+        }
+
+        const datos = await respuesta.json();
+        console.log("Título:", datos.title);
+    } catch (error) {
+        console.error("Error al obtener el post:", error.message);
+    }
+}
+
+obtenerPost();
+</code></pre>
+
+                            <h4>ventajas</h4>
+                            <ul>
+                                <li>El código es más fácil de leer y mantener.</li>
+                                <li>Se evitan las cadenas largas de <code>.then()</code>.</li>
+                                <li>El uso de <code>try/catch</code> hace que el manejo de errores sea más limpio.</li>
+                            </ul>
+
+                            <h4>Hacer varias peticiones</h4>
+                            <pre><code>
+async function obtenerVarios() {
+    try {
+        const res1 = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const res2 = await fetch("https://jsonplaceholder.typicode.com/posts/2");
+
+        const post1 = await res1.json();
+        const post2 = await res2.json();
+
+        console.log("Post 1:", post1.title);
+        console.log("Post 2:", post2.title);
+    } catch (error) {
+        console.error("Error en una de las peticiones:", error.message);
+    }
+}
+obtenerVarios();
+</code></pre>
+
+                            <h4>Conclusión</h4>
+                            <p>
+                                La combinación de <code>async</code> y <code>await</code> permite escribir código
+                                asincrónico que parece sincrónico, mejorando la claridad del flujo de ejecución.
+                            </p>
+                        </article>
+                    </details>
                 </section>
             </main>
 
@@ -2257,8 +2521,6 @@ console.log(datos.nombre); // "Ana"
     <footer class="footer_container">
         <p>curso de javascript para la clase de neoland</p>
     </footer>
-
-    <script src="./scripts/scripts.js"></script>
 </body>
 
 </html>

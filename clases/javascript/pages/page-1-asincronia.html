@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+</head>
+
+<body>
+    <h1>Temporizador con setInterval y setTimeout</h1>
+    <p>El temporizador comenzará a contar en 10 segundos. El mensaje aparecerá cuando llegue a cero</p>
+
+    <div id="contador"></div>
+    <div id="mensaje"></div>
+
+    <script>
+        let tiempoRestante = 10;
+        let contadorElement = document.querySelector("#contador");
+        let mensajeElement = document.querySelector("#mensaje");
+
+        function actualizarContador() {
+            contadorElement.textContent = `Tiempo restante: ${tiempoRestante} segundos`;
+        }
+
+        let intervalo = setInterval(function () {
+            tiempoRestante--;
+            actualizarContador();
+
+
+            if (tiempoRestante <= 0) {
+                clearInterval(intervalo);
+
+                setTimeout(function () {
+                    mensajeElement.textContent = "🎉 ¡El tiempo ha terminado!";
+                }, 3000);
+            }
+            mensajeElement.textContent+= ".";
+        }, 1000);
+
+        actualizarContador();
+    </script>
+</body>
+
+</html>

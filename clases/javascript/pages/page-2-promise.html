@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas en JavaScript</title>
+</head>
+
+<body>
+    <h1>Ejemplo de Promesas</h1>
+    <button onclick="manejarCargaDeDatos()">Obtener Datos</button>
+    <p id="resultado"></p>
+
+    <script>
+        function obtenerDatos() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const exito = Math.random() > 0.5;  // 50% de chance de éxito
+                    if (exito) {
+                        resolve("Datos cargados correctamente.");
+                    } else {
+                        reject("Error al obtener los datos.");
+                    }
+                }, 2000);
+            });
+        }
+
+        function manejarCargaDeDatos() {
+            const resultadoElemento = document.getElementById("resultado");
+            resultadoElemento.textContent = "Cargando...";
+
+            obtenerDatos()
+                .then((mensaje) => {
+                    resultadoElemento.textContent = mensaje;  // Si se resuelve
+                })
+                .catch((error) => {
+                    resultadoElemento.textContent = error;  // Si ocurre un error
+                });
+        }
+    </script>
+</body>
+
+</html>

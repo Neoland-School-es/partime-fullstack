@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso de finally en Promesas</title>
+</head>
+
+<body>
+    <h1>Usuarios Registrados</h1>
+    <button onclick="cargarUsuarios()">Obtener Usuarios</button>
+    <p id="estado"></p>
+    <ul id="listaUsuarios"></ul>
+
+    <script>
+        function obtenerUsuarios() {
+            return fetch("https://jsonplaceholder.typicode.comusers")
+                .then(respuesta => {
+
+                    console.log(respuesta)
+                    if (!respuesta.ok) {
+                        throw new Error(`Error ${respuesta.status}: No se pudo obtener los datos`);
+                    }
+                    return respuesta.json();
+                });
+        }
+
+        function procesarUsuarios(usuarios) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (usuarios.length > 0) {
+                        resolve(usuarios.map(usuario => `${usuario.named} - ${usuario.email}`));
+                    } else {
+                        reject("No se encontraron usuarios.");
+                    }
+                }, 3000);
+            });
+        }
+
+        function cargarUsuarios() {
+            const estadoElemento = document.getElementById("estado");
+            const lista = document.getElementById("listaUsuarios");
+
+            estadoElemento.textContent = "Cargando usuarios...";
+            lista.innerHTML = "";
+
+            obtenerUsuarios()
+                .then(usuarios => procesarUsuarios(usuarios))
+                .then(usuariosProcesados => {
+                    lista.innerHTML = "";
+                    usuariosProcesados.forEach(info => {
+                        const item = document.createElement("li");
+                        item.textContent = info;
+                        lista.appendChild(item);
+                    });
+                    estadoElemento.textContent = "Usuarios cargados exitosamente.";
+                })
+                .catch(error => {
+                    estadoElemento.textContent = `Error: ${error}`;
+                    console.error("Error 1:", error);
+                })
+                .finally(() => {
+                    console.log("Proceso finalizado, independientemente del resultado.");
+                });
+        }
+    </script>
+</body>
+
+</html>

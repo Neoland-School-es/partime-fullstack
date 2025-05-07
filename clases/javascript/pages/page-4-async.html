@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas con Fetch</title>
+</head>
+
+<body>
+    <h1>Obtener datos de una API</h1>
+    <button onclick="cargarDatos()">Obtener Usuarios</button>
+    <ul id="listaUsuarios"></ul>
+
+    <script>
+        async function obtenerUsuarios() {
+            const url = "https://jsonplaceholder.typicode.com/users";
+
+            try {
+                const respuesta = await fetch(url);
+
+                console.log(respuesta)
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error ${respuesta.status}: No se pudo obtener los datos`);
+                }
+
+                const respuesJSon = await respuesta.json();
+
+                if (respuesJSon.length < 5) {
+                    throw new Error(`Error ${respuesta.status}: no hay usuarios suficientes`);
+                }
+
+                return respuesJSon;
+            } catch (error) {
+                console.error("Error en la solicitud:", error);
+                return [];
+            }
+        }
+
+        async function cargarDatos() {
+            const lista = document.getElementById("listaUsuarios");
+            lista.innerHTML = "<li>Cargando usuarios...</li>";
+
+            const usuarios = await obtenerUsuarios();
+
+            lista.innerHTML = "";
+            usuarios.forEach(usuario => {
+                const item = document.createElement("li");
+                item.textContent = `${usuario.name} - ${usuario.email}`;
+                lista.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>

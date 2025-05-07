@@ -12,19 +12,19 @@ import { crearDatoLS, leerDatoLS, limpiarLocalStorage } from "./localstorage/fun
 import { cerrarModal } from "./utilities/bootstrap-functions.js";
 
 function renderizarLista(lista = []) {
-    imprimirLista(lista);
+    imprimirLista(lista, renderizarLista);
     iniciarEventosLista(lista);
 }
 
 function iniciarEventosLista(lista = []) {
-    const formCrear = document.querySelector("#addTaskModal form");
+    const formCrear = document.querySelector("#ModalCrear form");
     if (formCrear) {
         formCrear.addEventListener('submit', function (event) {
             event.preventDefault();
             const nuevoItem = document.querySelector("[name='taskText']").value;
             const nuevaLista = agregarTarea(lista, nuevoItem);
             crearDatoLS("lista-tareas", nuevaLista);
-            cerrarModal("#addTaskModal");
+            cerrarModal("#ModalCrear");
             renderizarLista(lista);
         });
     }
