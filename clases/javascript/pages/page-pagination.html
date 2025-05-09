@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CRUD Dragon Ball con Paginación</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        img {
+            width: 80px;
+            vertical-align: middle;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+
+        #paginacion {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Personajes de Dragon Ball</h1>
+
+    <form id="formulario">
+        <input type="text" placeholder="Nombre" id="nombre" required>
+        <input type="url" placeholder="URL de imagen" id="imagen" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <ul id="lista"></ul>
+
+    <div id="paginacion"></div>
+
+    <script type="module">
+        const lista = document.querySelector("#lista");
+        const formulario = document.querySelector("#formulario");
+        const nombreInput = document.querySelector("#nombre");
+        const imagenInput = document.querySelector("#imagen");
+        const paginacion = document.querySelector("#paginacion");
+
+        const PERSONAJES_POR_PAGINA = 3;
+        let paginaActual = 1;
+        let personajes = [];
+
+        function mostrarMensajeListaVacia() {
+            lista.innerHTML = "<li>La lista está vacía.</li>";
+        }
+
+        function crearElementoPersonaje(nombre, imagen) {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${imagen}" alt="${nombre}">
+                <strong>${nombre}</strong>
+                <button class="editar">Editar</button>
+                <button class="borrar">Borrar</button>
+            `;
+
+            li.querySelector(".borrar").addEventListener("click", function () {
+                personajes = personajes.filter(p => !(p.name === nombre && p.image === imagen));
+                mostrarTodosLosPersonajes();
+            });
+
+            // Evento para editar nombre
+            li.querySelector(".editar").addEventListener("click", function () {
+                const nuevoNombre = prompt("Nuevo nombre:", nombre);
+                if (nuevoNombre) {
+                    const personaje = personajes.find(p => p.name === nombre && p.image === imagen);
+                    if (personaje) {
+                        personaje.name = nuevoNombre;
+                        mostrarTodosLosPersonajes();
+                    }
+                }
+            });
+
+            return li;
+        }
+
+        function mostrarTodosLosPersonajes() {
+            lista.innerHTML = "";
+
+            // Cálculo del total de páginas
+            // Ejemplo: si hay 7 personajes y mostramos 3 por página => 7 / 3 = 2.33 => ceil => 3 páginas
+            const totalPaginas = Math.ceil(personajes.length / PERSONAJES_POR_PAGINA);
+
+            // Ajustar la página actual si se pasa del total
+            if (paginaActual > totalPaginas) paginaActual = totalPaginas || 1;
+
+            // Cálculo de los índices de inicio y fin de la página
+            const inicio = (paginaActual - 1) * PERSONAJES_POR_PAGINA;
+            const fin = inicio + PERSONAJES_POR_PAGINA;
+
+            // Filtrar personajes que se deben mostrar en esta página
+            const personajesDePagina = personajes.slice(inicio, fin);
+
+            if (personajesDePagina.length === 0) {
+                mostrarMensajeListaVacia();
+            } else {
+                personajesDePagina.forEach(p => {
+                    const li = crearElementoPersonaje(p.name, p.image);
+                    lista.appendChild(li);
+                });
+            }
+
+            mostrarControlesDePaginacion(totalPaginas);
+        }
+
+        // Muestra los botones para navegar entre páginas
+        function mostrarControlesDePaginacion(totalPaginas) {
+            paginacion.innerHTML = "";
+
+            if (totalPaginas <= 1) return; // No mostrar controles si solo hay una página
+
+            const btnAnterior = document.createElement("button");
+            btnAnterior.textContent = "Anterior";
+            btnAnterior.disabled = paginaActual === 1;
+            btnAnterior.addEventListener("click", () => {
+                paginaActual--;
+                mostrarTodosLosPersonajes();
+            });
+
+            const btnSiguiente = document.createElement("button");
+            btnSiguiente.textContent = "Siguiente";
+            btnSiguiente.disabled = paginaActual === totalPaginas;
+            btnSiguiente.addEventListener("click", () => {
+                paginaActual++;
+                mostrarTodosLosPersonajes();
+            });
+
+            const info = document.createElement("span");
+            info.textContent = ` Página ${paginaActual} de ${totalPaginas} `;
+
+            paginacion.appendChild(btnAnterior);
+            paginacion.appendChild(info);
+            paginacion.appendChild(btnSiguiente);
+        }
+
+        // Agrega un nuevo personaje a la lista
+        function agregarPersonaje(nombre, imagen) {
+            personajes.push({ name: nombre, image: imagen });
+            paginaActual = 1; // Al agregar, volvemos a la primera página
+            mostrarTodosLosPersonajes();
+        }
+
+        // Cargar personajes desde API externa
+        function cargarDesdeAPI() {
+            return fetch("https://dragonball-api.com/api/characters")
+                .then(res => {
+                    if (!res.ok) throw new Error("Error en API");
+                    return res.json();
+                })
+                .then(data => {
+                    personajes = data.items.map(p => ({
+                        name: p.name,
+                        image: p.image,
+                        race: p.race || "Desconocido"
+                    }));
+                    mostrarTodosLosPersonajes();
+                });
+        }
+
+        // Cargar personajes desde archivo local si falla la API
+        function cargarDesdeArchivoLocal() {
+            return fetch("./../data/dbz.json")
+                .then(res => {
+                    if (!res.ok) throw new Error("Archivo local no encontrado");
+                    console.log("respuesta")
+                    console.log(res)
+                    console.log("res.json")
+
+                    console.log(res.json())
+                    return res.json();
+                })
+                .then(data => {
+
+                    console.log(data)
+                    personajes = data;
+                    mostrarTodosLosPersonajes();
+                });
+        }
+
+        function iniciarCargaDePersonajes() {
+            cargarDesdeAPI()
+                .catch(() => {
+                    console.warn("Fallo la API. Intentando archivo local...");
+                    return cargarDesdeArchivoLocal();
+                })
+                .catch(() => {
+                    console.error("No se pudo cargar ningún personaje.");
+                    personajes = [];
+                    mostrarTodosLosPersonajes();
+                });
+        }
+
+        formulario.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = nombreInput.value.trim();
+            const imagen = imagenInput.value.trim();
+
+            if (nombre && imagen) {
+                agregarPersonaje(nombre, imagen);
+                formulario.reset();
+            }
+        });
+
+        iniciarCargaDePersonajes();
+    </script>
+</body>
+
+</html>

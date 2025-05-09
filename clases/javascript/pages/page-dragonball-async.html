@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Dragon Ball</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        img {
+            width: 80px;
+            vertical-align: middle;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+
+        #filtro {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Personajes de Dragon Ball</h1>
+
+    <!-- Filtros por raza -->
+    <div id="filtros">
+        <button data-raza="todos">Todos</button>
+        <button data-raza="Saiyan">Saiyajin</button>
+        <button data-raza="Human">Humano</button>
+        <button data-raza="Namekian">Namekiano</button>
+    </div>
+
+    <!-- Formulario para agregar personajes -->
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="url" id="imagen" placeholder="URL de imagen" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <!-- Formulario de búsqueda -->
+    <input type="text" id="filtro" placeholder="Filtrar personajes por nombre...">
+
+    <!-- Lista de personajes -->
+    <ul id="lista"></ul>
+
+    <!-- Controles de paginación -->
+    <div id="paginacion"></div>
+
+    <script type="module">
+        const lista = document.querySelector("#lista");
+        const formulario = document.querySelector("#formulario");
+        const nombreInput = document.querySelector("#nombre");
+        const imagenInput = document.querySelector("#imagen");
+        
+        const filtroInput = document.querySelector("#filtro");
+        const filtros = document.querySelector("#filtros");
+        const paginacion = document.querySelector("#paginacion");
+
+        const PERSONAJES_POR_PAGINA = 3;
+        let personajes = [];
+        let paginaActual = 1;
+        let razaSeleccionada = "todos";
+
+        // Mostrar personajes en la lista
+        function mostrarPersonajes(filtro = "") {
+            lista.innerHTML = "";
+
+            const filtrados = personajes.filter(p =>
+                p.name.toLowerCase().includes(filtro.toLowerCase()) &&
+                (razaSeleccionada === "todos" || p.race === razaSeleccionada)
+            );
+
+            const totalPaginas = Math.ceil(filtrados.length / PERSONAJES_POR_PAGINA);
+            if (paginaActual > totalPaginas) paginaActual = totalPaginas || 1;
+
+            const inicio = (paginaActual - 1) * PERSONAJES_POR_PAGINA;
+            const pagina = filtrados.slice(inicio, inicio + PERSONAJES_POR_PAGINA);
+
+            if (pagina.length === 0) {
+                lista.innerHTML = "<li>La lista está vacía.</li>";
+            } else {
+                pagina.forEach(p => lista.appendChild(crearItemPersonaje(p)));
+            }
+
+            mostrarPaginacion(totalPaginas);
+        }
+
+        // Crear un <li> con un personaje
+        function crearItemPersonaje({ name, image }) {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${image}" alt="${name}">
+                <strong>${name}</strong>
+                <button class="editar">Editar</button>
+                <button class="borrar">Borrar</button>
+            `;
+
+            li.querySelector(".borrar").addEventListener("click", () => {
+                personajes = personajes.filter(p => !(p.name === name && p.image === image));
+                mostrarPersonajes(filtroInput.value);
+            });
+
+            li.querySelector(".editar").addEventListener("click", () => {
+                const nuevoNombre = prompt("Nuevo nombre:", name);
+                if (nuevoNombre) {
+                    const personaje = personajes.find(p => p.name === name && p.image === image);
+                    if (personaje) {
+                        personaje.name = nuevoNombre;
+                        mostrarPersonajes(filtroInput.value);
+                    }
+                }
+            });
+
+            return li;
+        }
+
+        // Mostrar botones de paginación
+        function mostrarPaginacion(totalPaginas) {
+            paginacion.innerHTML = "";
+            if (totalPaginas <= 1) return;
+
+            const btnAnterior = document.createElement("button");
+            btnAnterior.textContent = "Anterior";
+            btnAnterior.disabled = paginaActual === 1;
+            btnAnterior.addEventListener("click", () => {
+                paginaActual--;
+                mostrarPersonajes(filtroInput.value);
+            });
+
+            const btnSiguiente = document.createElement("button");
+            btnSiguiente.textContent = "Siguiente";
+            btnSiguiente.disabled = paginaActual === totalPaginas;
+            btnSiguiente.addEventListener("click", () => {
+                paginaActual++;
+                mostrarPersonajes(filtroInput.value);
+            });
+
+            const info = document.createElement("span");
+            info.textContent = ` Página ${paginaActual} de ${totalPaginas} `;
+
+            paginacion.appendChild(btnAnterior);
+            paginacion.appendChild(info);
+            paginacion.appendChild(btnSiguiente);
+        }
+
+        // Agregar un nuevo personaje
+        function agregarPersonaje(nombre, imagen) {
+            personajes.push({ name: nombre, image: imagen, race: "Desconocido" });
+            paginaActual = 1;
+            mostrarPersonajes(filtroInput.value);
+        }
+
+        // Cargar personajes desde la API o desde archivo local
+        async function cargarPersonajes() {
+            try {
+                const respuesta = await fetch("https://dragonball-api.com/api/characters");
+                if (!respuesta.ok) throw new Error("Fallo la API");
+
+                const datos = await respuesta.json();
+                personajes = datos.items.slice(0, 10).map(p => ({
+                    name: p.name,
+                    image: p.image,
+                    race: p.race || "Desconocido"
+                }));
+                mostrarPersonajes();
+            } catch (errorApi) {
+                console.warn("Error con la API. Intentando archivo local...", errorApi);
+
+                try {
+                    const respuestaLocal = await fetch("./../data/dbz.json");
+                    if (!respuestaLocal.ok) throw new Error("Archivo local no disponible");
+
+                    personajes = await respuestaLocal.json();
+                    mostrarPersonajes();
+                } catch (errorLocal) {
+                    console.error("No se pudieron cargar personajes desde ningún origen.", errorLocal);
+                    personajes = [];
+                    mostrarPersonajes();
+                }
+            }
+        }
+
+        // Eventos
+        formulario.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = nombreInput.value.trim();
+            const imagen = imagenInput.value.trim();
+            if (nombre && imagen) {
+                agregarPersonaje(nombre, imagen);
+                formulario.reset();
+            }
+        });
+
+        filtroInput.addEventListener("input", function () {
+            paginaActual = 1;
+            mostrarPersonajes(filtroInput.value);
+        });
+
+        filtros.addEventListener("click", function (e) {
+            if (e.target.tagName === "BUTTON") {
+                razaSeleccionada = e.target.dataset.raza;
+                paginaActual = 1;
+                mostrarPersonajes(filtroInput.value);
+            }
+        });
+
+        // Inicio
+        cargarPersonajes();
+    </script>
+</body>
+
+</html>
