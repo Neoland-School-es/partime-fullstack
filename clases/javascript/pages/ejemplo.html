@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo</title>
+</head>
+
+<body>
+    <p>ejemplo</p>
+
+
+    <script>
+        const listaBBDD = [
+            {
+                "nombre": "Diego",
+                "edad": 20
+            },
+            {
+                "nombre": "Anna",
+                "edad": 20
+            },
+        ]
+
+        const funcionalidades = [
+            function saludar() {
+                console.log("saludos!")
+            },
+        ]
+
+        let nuevaLista = listaBBDD.map((elemento) => {
+            for (let index = 0; index < funcionalidades.length; index++) {
+                const funcionX = funcionalidades[index];
+                return { ...elemento, peso: Math.random().toFixed(2), funcionX }
+            }
+        })
+
+        console.log("nuevaLista")
+        console.log(nuevaLista)
+        console.log(nuevaLista[0].nombre)
+        console.log(nuevaLista[0].funcionX())
+
+
+
+    </script>
+</body>
+
+</html>

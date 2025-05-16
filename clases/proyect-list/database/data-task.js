@@ -1,7 +1,7 @@
 export const datosTareasBBDD = [
     {
         id: 1,
-        name: "Tarea 1"
+        name: "Tarea 1 HOLA 14/5"
     },
     {
         id: 2,
