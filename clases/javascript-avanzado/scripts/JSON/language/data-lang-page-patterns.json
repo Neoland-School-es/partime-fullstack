@@ -1,0 +1,39 @@
+{
+    "modulo": "JavaScript Avanzado",
+    "clase": "Patrones de diseño",
+    "descripcion": "Los patrones de diseño son soluciones reutilizables a problemas comunes en el desarrollo de software. Ayudan a escribir código más organizado, mantenible y escalable.",
+    "temas": [
+        {
+            "titulo": "¿Qué es un patrón de diseño?",
+            "contenido": "Es una solución probada a un problema común en el desarrollo de software. No son código específico, sino guías que ayudan a estructurar mejor nuestras aplicaciones."
+        },
+        {
+            "titulo": "Clasificación de los patrones",
+            "contenido": "Existen tres tipos principales: \n- **Creacionales**: controlan la creación de objetos (ej. Singleton, Factory).\n- **Estructurales**: definen cómo se relacionan los objetos (ej. Adapter, Decorator).\n- **De comportamiento**: gestionan la comunicación entre objetos (ej. Observer, Strategy)."
+        },
+        {
+            "titulo": "Singleton",
+            "contenido": "Asegura que una clase tenga solo una instancia y proporciona un punto de acceso global a ella. Útil para controlar recursos compartidos como una configuración o conexión de base de datos."
+        },
+        {
+            "titulo": "Factory",
+            "contenido": "Proporciona una interfaz para crear objetos sin especificar la clase exacta que se va a instanciar. Facilita la creación de objetos similares con lógica compartida."
+        },
+        {
+            "titulo": "Observer",
+            "contenido": "Permite que varios objetos estén suscritos a uno principal. Cuando este cambia, notifica a todos los observadores. Es común en interfaces reactivas y eventos del DOM."
+        },
+        {
+            "titulo": "Strategy",
+            "contenido": "Permite definir un conjunto de algoritmos, encapsularlos y hacerlos intercambiables. El comportamiento del objeto cambia en tiempo de ejecución según la estrategia usada."
+        },
+        {
+            "titulo": "Ventajas de usar patrones",
+            "contenido": "Promueven buenas prácticas de diseño, hacen el código más fácil de entender y modificar, reducen la duplicación y ayudan a resolver problemas recurrentes con soluciones comprobadas."
+        },
+        {
+            "titulo": "¿Cuándo no usarlos?",
+            "contenido": "No todos los problemas requieren un patrón. Usarlos innecesariamente puede complicar el código. Es mejor aplicarlos cuando se identifican necesidades claras que coinciden con el patrón."
+        }
+    ]
+}

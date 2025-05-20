@@ -26,7 +26,10 @@
         <!-- Navbar -->
         <nav
             class="bg-violet-900 text-white flex justify-between items-center px-4 py-3 sticky w-full top-0 z-20 border-b-4 border-b-stone-100">
-            <h1 class="text-lg font-bold">Neoland</h1>
+            <a href="./">
+                <h1 class="text-white text-lg font-bold">Neoland</h1>
+            </a>
+
             <button id="menuBtn" class="btn btn-light md:hidden" aria-label="Abrir o cerrar menú">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +39,8 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="p-10">
-            <main class="bg-stone-100 p-10 rounded-3xl shadow-2xl">
+        <div class="md:p-10">
+            <main class="bg-stone-100 p-4 md:p-10 shadow-b-md md:rounded-3xl shadow-2xl">
                 <header class="flex">
                     <h2 class="bg-violet-900 text-white p-2 text-2xl font-bold">JavaScript Avanzado</h2>
                 </header>
@@ -45,7 +48,6 @@
                 <section class="contenidoTeoria">
                     <p class="text-base">Contenido principal</p>
                 </section>
-
             </main>
         </div>
 
@@ -58,7 +60,7 @@
         <div id="overlay" class="bg-stone-900/90 fixed inset-0 hidden z-30"></div>
 
         <!-- Sidebar Menu -->
-        <aside id="mobileMenu"
+        <aside id="menuLateral"
             class="fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-40 md:w-1/3">
             <div class="flex flex-col h-full">
                 <div class="p-4 flex bg-violet-400 justify-between items-center border-b">
@@ -67,10 +69,6 @@
                 </div>
 
                 <nav class="flex flex-col p-4 space-y-4">
-                    <a class="btn btn-link text-start" href="./index.html">Inicio</a>
-                    <a class="btn btn-link text-start" href="./pages/page2-class-javascript.html">Clases JavaScript</a>
-                    <a class="btn btn-link text-start" href="./pages/page1-principios-solid.html">Principios SOLID</a>
-                    <a class="btn btn-link text-start" href="./error.html">Pagina de error</a>
                 </nav>
             </div>
         </aside>

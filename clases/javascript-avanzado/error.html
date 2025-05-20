@@ -4,22 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
-    <script type="module" defer src="./scripts/app.js"></script>
+    <title>Error 404 - Página No Encontrada</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./styles/css-bootstrap/bootstrap.min.css">
+    <script type="module" defer src="./scripts/js-bootstrap/bootstrap.min.js"></script>
+
+    <!-- Tailwind -->
+    <script type="module" defer src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
-    <div>
-        <nav>
-            <a href="./index.html">inicio</a>
-            <a href="./pages/page1-principios-solid.html">principios solid</a>
-            <a href="./error.html">error</a>
-        </nav>
+    <div class="bg-violet-400 text-gray-800 min-h-screen flex items-center justify-center  relative">
+        <div class="text-center bg-white p-8 rounded-lg shadow-lg max-w-md">
+            <h1 class="text-4xl font-bold text-violet-900">404</h1>
+            
+            <p class="text-lg font-semibold text-gray-700 mt-4">¡Oops! La página que buscas no existe.</p>
 
-        <main class="contenidoPrincipal">
-            <h1>error</h1>
-            <p>contenido error</p>
-        </main>
+            <p class="text-gray-600 mt-2">Es posible que la dirección esté incorrecta o que la página haya sido
+                eliminada.
+            </p>
+
+            <!-- <img src="./assets/images/error/404.png" alt="Error 404" class="w-48 mx-auto mt-6 rounded-md shadow-md"> -->
+
+            <div class="mt-6">
+                <a href="./index.html" class="btn btn-primary text-lg">Volver al inicio</a>
+            </div>
+        </div>
     </div>
 </body>
 
