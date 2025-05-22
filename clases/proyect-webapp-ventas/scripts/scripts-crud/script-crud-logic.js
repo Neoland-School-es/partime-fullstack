@@ -1,6 +1,3 @@
-import { leerCookie } from "../cookies/functions-cookies.js";
-import { crearDatoLS } from "./../localstorage/functions-localstorage.js";
-
 function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');
     li.className = 'list-group-item d-flex align-items-center';
@@ -71,89 +68,13 @@ function crearItemLista(indice = 0, itemLista = {}) {
     return li;
 }
 
-function activarListenersInline(lista, renderizarListaFn) {
-    const botonesEditar = document.querySelectorAll('.btn-editar-inline');
-    const botonesEliminar = document.querySelectorAll('.btn-eliminar-inline');
-    const botonesCancelarEditar = document.querySelectorAll('.btn-cancelar-edicion');
-    const botonesCancelarEliminar = document.querySelectorAll('.btn-cancelar-eliminacion');
-
-    if (botonesEditar) {
-        for (let i = 0; i < botonesEditar.length; i++) {
-            botonesEditar[i].addEventListener('click', function () {
-                document.querySelector(`.form-editar-inline`).classList.remove('d-none');
-                document.querySelector(`.list-group #item-${i + 1} #itemInfo`).classList.add('d-none');
-            });
-        }
-
-        const formulariosEditar = document.querySelectorAll('.form-editar-inline');
-        for (let i = 0; i < formulariosEditar.length; i++) {
-            formulariosEditar[i].addEventListener('submit', function (event) {
-                event.preventDefault();
-                const id = parseInt(botonesEditar.dataset.id);
-
-                console.log(id)
-
-                const nuevaLista = actualizarTarea(lista, id, nuevoTexto);
-                console.log(nuevaLista)
-                crearDatoLS("lista-tareas", nuevaLista);
-                renderizarListaFn(nuevaLista);
-            });
-        }
-    }
-
-
-    for (let i = 0; i < botonesCancelarEditar.length; i++) {
-        botonesCancelarEditar[i].addEventListener('click', function () {
-            document.querySelector(`.form-editar-inline`).classList.add('d-none');
-            document.querySelector(`.list-group #item-${i + 1} #itemInfo`).classList.remove('d-none');
-        });
-    }
-
-    for (let i = 0; i < botonesEliminar.length; i++) {
-        botonesEliminar[i].addEventListener('click', function () {
-            const li = document.querySelector(`#item-${botonesEliminar[i].dataset.id}`);
-            li.querySelector('.form-eliminar-inline').classList.remove('d-none');
-        });
-    }
-
-    for (let i = 0; i < botonesCancelarEliminar.length; i++) {
-        botonesCancelarEliminar[i].addEventListener('click', function () {
-            const li = document.querySelector(`#item-${botonesCancelarEliminar[i].dataset.id}`);
-            li.querySelector('.form-eliminar-inline').classList.add('d-none');
-        });
-    }
-
-
-
-    // const formulariosEliminar = document.querySelectorAll('.form-eliminar-inline');
-    // for (let i = 0; i < formulariosEliminar.length; i++) {
-    //     formulariosEliminar[i].addEventListener('submit', function (event) {
-    //         event.preventDefault();
-
-    //         const id = parseInt(formulariosEliminar[i].dataset.id);
-    //         const nuevaLista = eliminarTarea(lista, id);
-
-    //         crearDatoLS("lista-tareas", nuevaLista);
-    //         renderizarListaFn(nuevaLista);
-    //     });
-    // }
-}
-
-export function imprimirLista(lista = [], renderizarListaFn = function () { }) {
-    const ul = document.querySelector('#ContenedorLista .list-group');
-    // ul.innerHTML = '';
-    // const displayGrilla = leerCookie(nombre);
-    // if (!displayGrilla) {
-    //     crearCookie(nombre, valor, dias);
-    // }
-
-    // ul.classList = "";
+export function imprimirLista(lista = []) {
+    const contenedorLista = document.querySelector('#ContenedorLista .list-group');
+    contenedorLista.innerHTML = '';
 
     for (let i = 0; i < lista.length; i++) {
-        ul.appendChild(crearItemLista(i, lista[i]));
+        contenedorLista.appendChild(crearItemLista(i, lista[i]));
     }
-
-    activarListenersInline(lista, renderizarListaFn);
 }
 
 // Función para agregar una nueva tarea
@@ -169,6 +90,7 @@ export function agregarTarea(lista = [], name = '') {
     };
 
     lista.push(nuevaTarea);
+
     return lista;
 }
 

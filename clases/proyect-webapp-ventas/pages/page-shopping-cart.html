@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebApp Ventas</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./../styles/style.css">
+
+    <!-- Scripts -->
+    <script type="module" src="./../scripts/scripts.js"></script>
+</head>
+
+<body id="PageShoppingCard">
+    <div class="container-fluid bg-primary">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="./../">
+                        <h1 class="h4 mb-0">NEOLAND WebApp Ventas</h1>
+                        <h2 class="h6 mb-0">Aplicación de Compras y Ventas</h2>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="./../">Inicio</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page-favorites.html">Favoritos</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page-shopping-cart.html">Carrito</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page-create-product.html">Crear Producto</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="col">
+                <div class="row justify-content-center">
+                    <div class="col col-md-8">
+                        <header class="d-flex justify-content-between align-items-center">
+                            <h1>Carrito</h1>
+
+                            <div class="d-flex gap-4">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#ModalLocalStorage">
+                                    Local Storage
+                                </button>
+
+                                <button id="btnClearLS" class="btn btn-warning">Limpiar Datos LS</button>
+
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#ModalCrear">
+                                    + Nueva Tarea rapida
+                                </button>
+                            </div>
+                        </header>
+
+                        <section id="ContenedorLista">
+                            <ul class="list-group">
+                                <!-- Insertan tareas dinámicamente -->
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

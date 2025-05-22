@@ -15,7 +15,7 @@ export function leerCookie(nombre) {
         }
     }
 
-    return null; // Si no se encuentra la cookie
+    return null;
 }
 
 export function crearCookie(nombre, valor, dias) {
