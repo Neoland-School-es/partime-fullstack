@@ -3,9 +3,9 @@ function crearItemLista(indice = 0, itemLista = {}) {
     li.className = 'list-group-item d-flex align-items-center';
     li.id = `item-${indice + 1}`
     li.innerHTML = `
-        <i class="bi bi-${indice + 1}-circle fs-1 bg-primary text-light p-2 rounded-2"></i>
+        <i class="fs-1 bg-primary text-light p-2 rounded-2">${indice + 1}</i>
 
-        <section id="itemInfo" class="w-100 px-4">
+        <section id="itemInfo" class="w-100 ps-4 d-flex justify-content-between">
             <header class="d-flex gap-4">
                 <p>ID Tarea: <span class="fw-bold">${itemLista.id}</span></p>
                 <p>Nombre Tarea: <span class="fw-bold">${itemLista.name}</span></p>
@@ -31,11 +31,11 @@ function crearItemLista(indice = 0, itemLista = {}) {
                         Eliminar Modal ${itemLista.id}
                     </button>
 
-                    <a href="./pages/update.html?id=${itemLista.id}" class="btn btn-sm btn-outline-secondary m-2">
+                    <a href="./pages/page-update-product.html?id=${itemLista.id}" class="btn btn-sm btn-outline-secondary m-2">
                         Editar Página ${itemLista.id}
                     </a>
 
-                    <a href="./pages/delete.html?id=${itemLista.id}" class="btn btn-sm btn-outline-dark">
+                    <a href="./pages/page-remove-product.html?id=${itemLista.id}" class="btn btn-sm btn-outline-dark">
                         Eliminar Página ${itemLista.id}
                     </a>
 

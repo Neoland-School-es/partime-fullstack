@@ -1,3 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
+#carouselDragonBall {
+    height: 50vh;
+
+    img {
+        object-fit: contain;
+    }
+}
