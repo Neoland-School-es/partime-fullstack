@@ -1,10 +1,8 @@
-// Funciones pagina
-import pageHomeMain from './pages-scripts/page-home/page-home-main.js';
-import { pageFavoriteMain } from './pages-scripts/page-favories-main.js';
-import pageShoppingCartMain from './pages-scripts/page-shopping-cart-main.js';
-import { formularioPaginaCrear } from './pages-scripts/page-create-product-main.js';
-import { formularioPaginaEliminar } from './pages-scripts/page-remove-product-main.js';
-import pageUpdatePrductMain from './pages-scripts/page-update-product-main.js';
+// Funciones Pagina
+import pageHomeMain from './pages-scripts/page-home/page-home-main-scripts.js';
+import pageFavoriteMain from './pages-scripts/page-favories/page-favories-main-scripts.js';
+import pageShoppingCartMain from './pages-scripts/page-shopping-cart/page-shopping-cart-main-scripts.js';
+import { paginaFormularioCrearProducto, paginaFormularioEditarProducto, paginaFormularioEliminarProducto } from './pages-scripts/pages-crud/pages-crud-main-scripts.js';
 
 function main() {
     if (document.querySelector('#PageHome')) {
@@ -20,15 +18,15 @@ function main() {
     }
 
     if (document.querySelector('#PageCreateProduct')) {
-        formularioPaginaCrear();
+        paginaFormularioCrearProducto();
     }
 
     if (document.querySelector('#PageUpdateProduct')) {
-        pageUpdatePrductMain();
+        paginaFormularioEditarProducto();
     }
 
     if (document.querySelector('#PageRemoveProduct')) {
-        formularioPaginaEliminar();
+        paginaFormularioEliminarProducto();
     }
 }
 

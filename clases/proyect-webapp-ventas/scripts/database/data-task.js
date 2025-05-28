@@ -1,14 +1,14 @@
-export const datosTareasBBDD = [
+export const DatosLocalesBBDD = [
     {
         id: 1,
-        name: "Tarea 1 HOLA 14/5"
+        name: "Goku",
     },
     {
         id: 2,
-        name: "Tarea 2 default"
+        name: "Vegeta",
     },
     {
         id: 3,
-        name: "Tarea 3"
+        name: "Piccolo",
     }
 ]

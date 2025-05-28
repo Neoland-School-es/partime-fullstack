@@ -19,9 +19,10 @@
 </head>
 
 <body id="PageHome">
-    <div class="container-fluid bg-primary">
-        <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Contenido Principal -->
+    <div class="container-fluid bg-dark">
+        <div class="row gap-5">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
                 <div class="container">
                     <a class="navbar-brand" href="./">
                         <h1 class="h4 mb-0">NEOLAND WebApp Ventas</h1>
@@ -47,26 +48,33 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="./pages/page-create-product.html">Crear Producto</a>
+                                <a class="btn btn-primary" href="./pages/page-create-product.html">Crear Producto</a>
                             </li>
                         </ul>
+
+                        <!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#ModalLocalStorage">
+                            Opciones LocalStorage
+                        </button> -->
                     </div>
                 </div>
             </nav>
 
-            <main class="col">
-                <div class="row">
-                    <section id="carouselDragonBall" class="carousel slide">
+            <main class="col d-flex flex-column gap-5">
+                <section class="row">
+                    <section id="carouselDragonBall" class="carousel slide py-2">
                         <div class="carousel-inner h-100">
                             <div class="carousel-item h-100 active">
-                                <img src="https://dragonball-api.com/characters/goku_normal.webp" class="d-block w-100 h-100">
+                                <img src="https://dragonball-api.com/characters/goku_normal.webp"
+                                    class="d-block w-100 h-100">
                             </div>
                             <div class="carousel-item h-100">
                                 <img src="https://dragonball-api.com/characters/vegeta_normal.webp"
                                     class="d-block w-100 h-100">
                             </div>
                             <div class="carousel-item h-100">
-                                <img src="https://dragonball-api.com/characters/Freezer.webp" class="d-block w-100 h-100">
+                                <img src="https://dragonball-api.com/characters/Freezer.webp"
+                                    class="d-block w-100 h-100">
                             </div>
                         </div>
 
@@ -82,26 +90,15 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </section>
-                </div>
+                </section>
 
-                <div class="row justify-content-center">
-                    <div class="col col-md-8">
-                        <header class="d-flex justify-content-between align-items-center">
-                            <h2>Productos</h2>
+                <section class="row justify-content-center">
+                    <div class="col col-md-8 bg-white p-0">
+                        <header class="bg-danger d-flex justify-content-between align-items-center p-2">
+                            <h2 class="text-white">Stock productos</h2>
 
-                            <div class="d-flex gap-4">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#ModalLocalStorage">
-                                    Local Storage
-                                </button>
-
-                                <button id="btnClearLS" class="btn btn-warning">Limpiar Datos LS</button>
-
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#ModalCrear">
-                                    + Nueva Tarea rapida
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#ModalCrearProducto">Modal Nuevo Producto</button>
                         </header>
 
                         <section id="ContenedorLista">
@@ -110,88 +107,101 @@
                             </ul>
                         </section>
                     </div>
-                </div>
+                </section>
             </main>
+
+            <footer class="bg-danger py-5">
+                <address class="h2 text-white text-center">Pagina de Dragon Ball</address>
+            </footer>
         </div>
     </div>
 
-    <!-- Modal para Crear Tarea -->
-    <div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="ModalCrearLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal Crear -->
+    <div id="ModalCrearProducto" class="modal fade" tabindex="-1" aria-hidden="true"
+        aria-labelledby="ModalCrearProductoLabel">
+        <section class="modal-dialog">
             <form class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalCrearLabel">crear elemento</h5>
+                <header class="modal-header">
+                    <h5 id="ModalCrearProductoLabel" class="modal-title">crear elemento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="CampoProducto" class="form-label">descripción elemento</label>
-                    <input type="text" class="form-control" id="CampoProducto" name="nameProduct"
+                </header>
+
+                <section class="modal-body">
+                    <label for="NombreProducto" class="form-label">descripción elemento</label>
+                    <input type="text" id="NombreProducto" name="nombreProducto" class="form-control"
                         placeholder="ej: nuevo elemento" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                </section>
+
+                <footer class="modal-footer">
                     <button type="submit" class="btn btn-primary">crear</button>
-                </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                </footer>
             </form>
-        </div>
+        </section>
     </div>
 
-    <!-- Modal para Editar Tarea -->
-    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form class="modal-body">
-                    <header class="modal-header">
-                        <h5 class="modal-title" id="editTaskModalLabel">Editar Tarea</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </header>
-                    <div class="mb-3 mt-3">
-                        <label for="editTaskText" class="form-label">Descripción de la tarea</label>
-                        <input type="text" class="form-control" id="editTaskText" name="editTaskText"
-                            placeholder="Editar tarea..." required>
-                    </div>
-                    <button type="submit" class="btn btn-success w-100">Actualizar</button>
-                </form>
-            </div>
-        </div>
+    <!-- Modal Editar -->
+    <div id="ModalEditarProducto" class="modal fade" tabindex="-1" aria-hidden="true"
+        aria-labelledby="ModalEditarProductoLabel">
+        <section class="modal-dialog">
+            <form class="modal-content">
+                <header class="modal-header">
+                    <h5 id="ModalEditarProductoLabel" class="modal-title">editar elemento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </header>
+
+                <section class="modal-body">
+                    <label for="NombreProducto" class="form-label">descripción elemento</label>
+                    <input type="text" id="NombreProducto" name="nombreProducto" class="form-control"
+                        placeholder="ej: nuevo elemento" required>
+                </section>
+
+                <footer class="modal-footer">
+                    <button type="submit" class="btn btn-warning">actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                </footer>
+            </form>
+        </section>
     </div>
 
-    <!-- Modal para Confirmar Eliminación -->
-    <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form class="modal-body p-4">
-                    <h5 class="modal-title mb-3" id="deleteTaskModalLabel">Eliminar Tarea</h5>
+    <!-- Modal Eliminar -->
+    <div id="ModalEliminarProducto" class="modal fade" tabindex="-1" aria-hidden="true"
+        aria-labelledby="ModalEliminarProductoLabel">
+        <section class="modal-dialog">
+            <form class="modal-content">
+                <header class="modal-header">
+                    <h5 id="ModalEliminarProductoLabel" class="modal-title">eliminar elemento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </header>
+
+                <section class="modal-body">
                     <p>¿Estás seguro de que deseas eliminar esta tarea?</p>
                     <p id="TareaElegida"></p>
-                    <div class="d-flex justify-content-end gap-2">
-                        <button class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                </section>
+
+                <footer class="modal-footer">
+                    <button type="submit" class="btn btn-danger">eliminar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                </footer>
+            </form>
+        </section>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="ModalLocalStorage" tabindex="-1" aria-labelledby="ModalLocalStorageLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLocalStorageLabel">Modal title</h5>
+    <!-- Modal Local Storage -->
+    <div id="ModalLocalStorage" class="modal fade" tabindex="-1" aria-hidden="true"
+        aria-labelledby="ModalLocalStorageLabel">
+        <section class="modal-dialog">
+            <form class="modal-content">
+                <header class="modal-header">
+                    <h5 id="ModalLocalStorageLabel" class="modal-title">Opciones Local Storage</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
+                </header>
+
+                <section class="modal-body">
+                    <button id="btnClearLS" class="btn btn-warning">Limpiar Datos LS</button>
+                </section>
+            </form>
+        </section>
     </div>
 </body>
 

@@ -9,3 +9,7 @@
         object-fit: contain;
     }
 }
+
+.dropdown-menu {
+    width: 13em;
+}

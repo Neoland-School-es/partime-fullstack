@@ -1,7 +1,7 @@
 // Local Storage
-import { leerDatoLS } from './../../scripts/localstorage/functions-localstorage.js';
+import { leerDatoLS } from './../../functions-utilities/functions-localstorage.js';
 // Funciones Logicas
-import { imprimirLista } from './../../scripts/scripts-crud/script-crud-logic.js';
+import { imprimirLista } from './functions/functions-crud-logic.js';
 
 export function renderizarLista(lista = []) {
     imprimirLista(lista);
@@ -21,7 +21,7 @@ export default function pageShoppingCartMain() {
     console.log("Saludos desde pageShoppingCartMain")
 
     if (document.querySelector('#PageShoppingCard')) {
-        const listaInicial = leerDatoLS('lista-tareas') || [];
+        const listaInicial = leerDatoLS('lista-carrito-compras') || [];
         renderizarLista(listaInicial);
     }
 }
