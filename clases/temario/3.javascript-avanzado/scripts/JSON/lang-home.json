@@ -1,0 +1,123 @@
+{
+    "modulo": "JavaScript Avanzado",
+    "descripcion": "Este módulo enseña herramientas y conceptos modernos de JavaScript para escribir código más profesional, organizado y fácil de mantener.",
+    "temas": [
+        {
+            "titulo": "Principios SOLID",
+            "contenido": "Conjunto de reglas para escribir código más limpio: una sola responsabilidad, código extensible sin modificar lo que ya funciona, uso correcto de herencia, separación de funciones y bajo acoplamiento."
+        },
+        {
+            "titulo": "Programación Orientada a Objetos",
+            "contenido": "Uso de clases, herencia, encapsulamiento y otros conceptos para organizar mejor el código."
+        },
+        {
+            "titulo": "Patrones de diseño",
+            "contenido": "Soluciones comunes a problemas frecuentes: como Singleton, Factory, Observer o Strategy."
+        },
+        {
+            "titulo": "Arquitectura y capas",
+            "contenido": "Dividir el código en capas (como interfaz, lógica y datos) para hacerlo más claro y fácil de mantener."
+        },
+        {
+            "titulo": "Inyección de dependencias",
+            "contenido": "Técnica para evitar que las partes del código estén demasiado conectadas entre sí, facilitando pruebas y cambios."
+        },
+        {
+            "titulo": "Módulos de JavaScript",
+            "contenido": "Separar el código en archivos y conectarlos con `import` y `export` para tener mejor organización y mantenimiento."
+        },
+        {
+            "titulo": "Conceptos avanzados de JavaScript",
+            "contenido": "Temas importantes del lenguaje como closures, hoisting, this, call, apply, bind, coerción de tipos y contexto de ejecución."
+        },
+        {
+            "titulo": "Delegación de eventos",
+            "contenido": "Uso eficiente de eventos al escucharlos desde un elemento contenedor en lugar de cada elemento individual."
+        },
+        {
+            "titulo": "Memoria y optimización",
+            "contenido": "Cómo funcionan las referencias, el recolector de basura, y cómo optimizar el rendimiento del código."
+        },
+        {
+            "titulo": "Tipado",
+            "contenido": "Uso de JSDoc para documentar funciones, tipos de datos esperados y validar estructuras en tiempo de desarrollo."
+        },
+        {
+            "titulo": "Reactividad",
+            "contenido": "Cómo detectar y responder a cambios de datos en tiempo real usando JavaScript vanilla, sin frameworks."
+        },
+        {
+            "titulo": "Gestión de estado con Redux",
+            "contenido": "Controlar el estado de la app en un solo lugar con Redux, para que sea más fácil de mantener y escalar."
+        },
+        {
+            "titulo": "WebSockets",
+            "contenido": "Comunicación en tiempo real entre el cliente y el servidor, ideal para chats o notificaciones en vivo."
+        },
+        {
+            "titulo": "Testing",
+            "contenido": "Crear pruebas para asegurarse de que el código funciona como se espera, usando herramientas como Jest o Testing Library."
+        },
+        {
+            "titulo": "Progressive Web Apps (PWA)",
+            "contenido": "Mejorar una app web para que funcione sin conexión, se cargue rápido y se pueda instalar como una app nativa."
+        }
+    ],
+    "paradigmas_programacion": [
+        {
+            "titulo": "Programación Imperativa",
+            "contenido": "Escribir instrucciones paso a paso para decirle a la computadora qué hacer. Por ejemplo, usando bucles, condicionales y cambios de variables."
+        },
+        {
+            "titulo": "Programación Declarativa",
+            "contenido": "En lugar de decir cómo hacer algo, describes lo que quieres obtener. Por ejemplo, usar métodos como array.map(), donde se describe el resultado y no el paso a paso."
+        },
+        {
+            "titulo": "Programación Funcional",
+            "contenido": "Se basa en funciones puras (sin efectos secundarios), evita cambiar datos directamente (inmutabilidad) y promueve funciones como map, filter y reduce."
+        },
+        {
+            "titulo": "Programación Orientada a Objetos",
+            "contenido": "Organiza el código usando objetos con propiedades (datos) y métodos (funciones)."
+        },
+        {
+            "titulo": "Programación Reactiva",
+            "contenido": "Se usa para manejar eventos o datos que cambian con el tiempo, como clics o respuestas de APIs."
+        }
+    ],
+    "temas_avanzados": [
+        {
+            "titulo": "Closures",
+            "contenido": "Un closure ocurre cuando una función recuerda el contexto en el que fue creada, incluso después de haber sido ejecutada fuera de ese contexto. Esto es útil para mantener el estado privado."
+        },
+        {
+            "titulo": "Hoisting",
+            "contenido": "El hoisting es el comportamiento de JavaScript que mueve las declaraciones de variables y funciones al inicio de su contexto de ejecución. Las funciones se elevan completamente, mientras que las variables solo se elevan con un valor `undefined`."
+        },
+        {
+            "titulo": "El contexto de `this`",
+            "contenido": "`this` se refiere al objeto al que una función pertenece. Sin embargo, su valor depende de cómo se invoque la función: puede referirse al objeto global, al objeto actual o al contexto de una clase."
+        },
+        {
+            "titulo": "Métodos `call()`, `apply()` y `bind()`",
+            "contenido": "Estos métodos permiten modificar el contexto de `this` en una función. `call()` y `apply()` ejecutan la función inmediatamente con un contexto específico, mientras que `bind()` devuelve una nueva función con un contexto predefinido."
+        },
+        {
+            "titulo": "Coerción de tipos",
+            "contenido": "La coerción de tipos es el proceso automático de convertir valores de un tipo a otro. JavaScript hace esto implícitamente, lo que puede generar comportamientos inesperados si no se tiene cuidado."
+        },
+        {
+            "titulo": "Contexto de ejecución",
+            "contenido": "Cada vez que se ejecuta un código JavaScript, se crea un contexto de ejecución, que es un objeto que mantiene información sobre el código en ejecución, como el valor de las variables, funciones y el `this`."
+        },
+        {
+            "titulo": "Funciones IIFE (Immediately Invoked Function Expression)",
+            "contenido": "Una IIFE es una función que se ejecuta inmediatamente después de ser definida. Se usa comúnmente para crear un ámbito local y evitar la contaminación del espacio de nombres global."
+        },
+        {
+            "titulo": "Manejo de errores y `try...catch`",
+            "contenido": "`try...catch` permite manejar errores de manera controlada. El bloque `try` contiene el código que puede generar un error, y el bloque `catch` captura y maneja el error de manera adecuada."
+        }
+    ]
+
+}
