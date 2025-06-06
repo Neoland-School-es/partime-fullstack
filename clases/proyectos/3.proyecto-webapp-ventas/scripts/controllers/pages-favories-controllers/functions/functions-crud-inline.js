@@ -1,7 +1,7 @@
 // Funciones CRUD Logicas
 import { imprimirLista } from './functions-crud-logic.js';
 // Funciones LocalStorage
-import { crearDatoLS } from './../../functions-utilities/functions-localstorage.js';
+import { crearDatoLS } from './../../utilities/functions-localstorage.js';
 
 export function inlineCrearProducto(lista) {
     console.log("inlineCrearProducto")

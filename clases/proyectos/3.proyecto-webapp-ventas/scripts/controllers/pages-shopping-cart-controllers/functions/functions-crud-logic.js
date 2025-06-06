@@ -1,7 +1,7 @@
 // Funciones CRUD Ventanas Modales
 import { modalCrearProducto, modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal.js';
 // LocalStorage
-import { crearDatoLS } from './../../../functions-utilities/functions-localstorage.js';
+import { crearDatoLS } from './../../../utilities/functions-localstorage.js';
 
 function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');
@@ -22,11 +22,6 @@ function crearItemLista(indice = 0, itemLista = {}) {
                 </button>
 
                 <ul class="dropdown-menu bg-light" open aria-labelledby="dropdownMenuButton1">
-                    <h3 class='h6'>Carrito de compras</h3>
-                    <button id="btnCarritoCompra" class="btn btn-primary" data-id="${itemLista.id}">
-                        Agregar Carrito | ${itemLista.id}
-                    </button>
-                    
                     <button id="btnIncrementar" class="btn disabled" data-id="${itemLista.id}">
                         incrementar | ${itemLista.id}
                     </button>
@@ -52,28 +47,6 @@ function crearItemLista(indice = 0, itemLista = {}) {
                         data-bs-toggle="modal" 
                         data-bs-target="#ModalEliminarProducto">
                         Eliminar Modal | ${itemLista.id}
-                    </button>
-
-                    <h3 class='h6'>Páginas</h3>
-
-                    <a href="./pages/page-update-product.html?id=${itemLista.id}" class="btn btn-warning">
-                        Editar Página | ${itemLista.id}
-                    </a>
-
-                    <a href="./pages/page-remove-product.html?id=${itemLista.id}" class="btn btn-warning">
-                        Eliminar Página | ${itemLista.id}
-                    </a>
-
-                    <h3 class='h6'>Actualizar DOM</h3>
-
-                    <button class="btn btn-success btn-editar-inline"
-                        data-id="${itemLista.id}">
-                        Editar Inline | ${itemLista.id}
-                    </button>
-
-                    <button class="btn btn-success btn-eliminar-inline"
-                        data-id="${itemLista.id}">
-                        Eliminar Inline | ${itemLista.id}
                     </button>
                 </ul>
             </div>
@@ -102,10 +75,6 @@ export function imprimirLista(lista = []) {
     for (let i = 0; i < lista.length; i++) {
         contenedorLista.appendChild(crearItemLista(i, lista[i]));
     }
-
-    inlineCrearProducto(lista);
-    inlineActualizarProducto(lista);
-    inlineEliminarProducto(lista);
 
     modalCrearProducto(lista);
     modalActualizarProducto(lista);

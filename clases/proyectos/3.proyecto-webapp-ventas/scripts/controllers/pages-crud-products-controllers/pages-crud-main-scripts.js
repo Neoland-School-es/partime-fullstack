@@ -1,7 +1,7 @@
 // Funciones Logicas
 import { crearProductoLista, actualizarTarea, eliminarTarea } from "./functions/functions-crud-logic.js";
 // Funciones LocalStorage
-import { crearDatoLS, leerDatoLS } from "./../../functions-utilities/functions-localstorage.js";
+import { crearDatoLS, leerDatoLS } from "./../../utilities/functions-localstorage.js";
 
 export function paginaFormularioCrearProducto() {
     console.log("Saludos desde formularioPaginaCrear")

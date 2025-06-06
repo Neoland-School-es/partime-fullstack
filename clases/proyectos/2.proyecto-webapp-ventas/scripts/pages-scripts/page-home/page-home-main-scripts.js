@@ -1,7 +1,7 @@
 // Base de Datos | Datos Locales | Datos de prueba
 import { DatosLocalesBBDD } from './../../database/data-task.js';
 // Local Storage
-import { crearDatoLS, leerDatoLS } from './../../functions-utilities/functions-localstorage.js';
+import { crearDatoLS, leerDatoLS } from './../../utilities/functions-localstorage.js';
 // Funciones Logicas
 import { imprimirLista } from './functions/functions-crud-logic.js';
 // Funciones CRUD Ventanas Modales

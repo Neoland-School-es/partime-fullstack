@@ -1,8 +1,8 @@
 // Funciones Pagina
-import homeController from './../controllers/controller-home/home.controller.js';
-import pageFavoriteMain from './../controllers/page-favories/page-favories-main-scripts.js';
-import pageShoppingCartMain from './../controllers/page-shopping-cart/page-shopping-cart-main-scripts.js';
-import { paginaFormularioCrearProducto, paginaFormularioEditarProducto, paginaFormularioEliminarProducto } from './../controllers/pages-crud/pages-crud-main-scripts.js';
+import homeController from './../controllers/pages-home-controllers/home.controller.js';
+import pageFavoriteMain from './../controllers/pages-favories-controllers/page-favories-main-scripts.js';
+import pageShoppingCartMain from './../controllers/pages-shopping-cart-controllers/page-shopping-cart-main-scripts.js';
+import { paginaFormularioCrearProducto, paginaFormularioEditarProducto, paginaFormularioEliminarProducto } from './../controllers/pages-crud-products-controllers/pages-crud-main-scripts.js';
 
 const routes = {
     "/": homeController,
@@ -21,6 +21,6 @@ export function enrutador() {
     if (routes[path]) {
         routes[path]()
     } else {
-        window.location.href = "./../"
+        window.location.href = "./"
     }
 }

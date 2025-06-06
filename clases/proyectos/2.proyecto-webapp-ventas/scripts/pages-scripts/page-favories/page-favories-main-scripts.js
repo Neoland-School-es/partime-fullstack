@@ -1,5 +1,5 @@
 // Local Storage
-import { leerDatoLS } from './../../functions-utilities/functions-localstorage.js';
+import { leerDatoLS } from './../../utilities/functions-localstorage.js';
 // Funciones Logicas
 import { imprimirLista } from './functions/functions-crud-logic.js';
 
