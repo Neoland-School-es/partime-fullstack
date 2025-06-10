@@ -1,4 +1,4 @@
-import { login, home } from "./controllers/user.controller.js";
+import { login, home } from "./controllers/user.controller";
 
 function main() {
     if (document.querySelector("#PageLogin")) {

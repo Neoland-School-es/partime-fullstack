@@ -1,12 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.imprimirLista = imprimirLista;
+exports.crearProductoLista = crearProductoLista;
+exports.actualizarTarea = actualizarTarea;
+exports.eliminarTarea = eliminarTarea;
 // Funciones CRUD Ventanas Modales
-import { modalCrearProducto, modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal.js';
+const functions_crud_modal_js_1 = require("./functions-crud-modal.js");
 // LocalStorage
-import { crearDatoLS } from './../../../utilities/functions-localstorage.js';
-
+const functions_localstorage_js_1 = require("./../../../utilities/functions-localstorage.js");
 function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');
     li.className = 'list-group-item d-flex align-items-center';
-    li.id = `item-${indice + 1}`
+    li.id = `item-${indice + 1}`;
     li.innerHTML = `
         <i class="fs-1 bg-primary text-light p-2 rounded-2">${indice + 1}</i>
 
@@ -64,106 +69,77 @@ function crearItemLista(indice = 0, itemLista = {}) {
             <button type="button" class="btn btn-secondary btn-cancelar-eliminacion">Cancelar</button>
         </form>
     `;
-
     return li;
 }
-
-export function imprimirLista(lista = []) {
+function imprimirLista(lista = []) {
     const contenedorLista = document.querySelector('#ContenedorLista .list-group');
     contenedorLista.innerHTML = '';
-
     for (let i = 0; i < lista.length; i++) {
         contenedorLista.appendChild(crearItemLista(i, lista[i]));
     }
-
-    modalCrearProducto(lista);
-    modalActualizarProducto(lista);
-    modalEliminarProducto(lista);
-
-    activarBotonesCantidad(lista)
-
-    activarBotonesCompra(lista)
+    (0, functions_crud_modal_js_1.modalCrearProducto)(lista);
+    (0, functions_crud_modal_js_1.modalActualizarProducto)(lista);
+    (0, functions_crud_modal_js_1.modalEliminarProducto)(lista);
+    activarBotonesCantidad(lista);
+    activarBotonesCompra(lista);
 }
-
-
 function activarBotonesCompra(lista = []) {
-    const listaBtnCompraCarrito = document.querySelectorAll("#btnCarritoCompra")
-
-    let resultado = null
-
+    const listaBtnCompraCarrito = document.querySelectorAll("#btnCarritoCompra");
+    let resultado = null;
     for (let index = 0; index < listaBtnCompraCarrito.length; index++) {
         resultado = lista.find((elemento) => {
             if (elemento.id === parseInt(listaBtnCompraCarrito[index].dataset.id)) {
                 return elemento;
             }
-        })
-
+        });
         listaBtnCompraCarrito[index].addEventListener('click', () => {
-
-            alert("comprando" + listaBtnCompraCarrito[index].dataset.id)
-            console.log(listaBtnCompraCarrito[index])
-            crearDatoLS("lista-carrito-compras", resultado)
-        })
+            alert("comprando" + listaBtnCompraCarrito[index].dataset.id);
+            console.log(listaBtnCompraCarrito[index]);
+            (0, functions_localstorage_js_1.crearDatoLS)("lista-carrito-compras", resultado);
+        });
     }
 }
-
 function activarBotonesCantidad(lista = []) {
-    const listaBtnIncrementar = document.querySelectorAll("#btnIncrementar")
-
-    let resultado = null
-
+    const listaBtnIncrementar = document.querySelectorAll("#btnIncrementar");
+    let resultado = null;
     for (let index = 0; index < listaBtnIncrementar.length; index++) {
         resultado = lista.find((elemento) => {
             if (elemento.id === parseInt(listaBtnIncrementar[index].dataset.id)) {
                 return elemento;
             }
-        })
-
+        });
         listaBtnIncrementar[index].addEventListener('click', () => {
-            const nuevaLista = incrementarProducto(lista, listaBtnIncrementar[index].dataset.id)
-
+            const nuevaLista = incrementarProducto(lista, listaBtnIncrementar[index].dataset.id);
             //LS(nuevaLista)
-            imprimirLista(nuevaLista)
-        })
+            imprimirLista(nuevaLista);
+        });
     }
 }
-
 function incrementarProducto(pLista, pID) {
-    1 + 1
-    if (- condition) {
-
+    1 + 1;
+    if (-condition) {
     }
-
-
     const listaModificada = pLista.map((elemento) => {
         if (elemento.id === parseInt(pID)) {
-            console.log("elemento encontrado")
-            elemento.cantidad = elemento.cantidad + 1
+            console.log("elemento encontrado");
+            elemento.cantidad = elemento.cantidad + 1;
         }
-
         return elemento;
-    })
-
+    });
     return listaModificada;
 }
-
-
-export function crearProductoLista(pLista = [], pNombre = '') {
+function crearProductoLista(pLista = [], pNombre = '') {
     if (pNombre.trim() === '') {
         console.error('El texto no puede estar vacío.');
         return (pLista);
     }
-
     const nuevaTarea = {
         id: new Date().getTime() - 1745507700000,
         name: pNombre.trim()
     };
-
     pLista.push(nuevaTarea);
-
     return (pLista);
 }
-
 // Función para obtener una tarea por ID
 // export function obtenerTarea(listaTareas = [], idTarea = 0) {
 //     const tarea = listaTareas.find(t => t.id === idTarea);
@@ -172,30 +148,23 @@ export function crearProductoLista(pLista = [], pNombre = '') {
 //     }
 //     return tarea;
 // }
-
 // Función para actualizar una tarea
-export function actualizarTarea(lista = [], idTarea = 0, nuevoTexto = '') {
+function actualizarTarea(lista = [], idTarea = 0, nuevoTexto = '') {
     const tarea = lista.find(t => t.id === idTarea);
-
     if (!tarea) {
         console.error('Tarea no encontrada');
         return lista;
     }
-
     if (nuevoTexto.trim() !== '') {
         tarea.name = nuevoTexto.trim();
     }
-
     return lista;
 }
-
 // Función para eliminar una tarea
-export function eliminarTarea(listaTareas = [], idTarea = 0) {
+function eliminarTarea(listaTareas = [], idTarea = 0) {
     const nuevaLista = listaTareas.filter(t => t.id !== idTarea);
-
     if (nuevaLista.length === listaTareas.length) {
         console.error('Tarea no encontrada');
     }
-
     return nuevaLista;
 }

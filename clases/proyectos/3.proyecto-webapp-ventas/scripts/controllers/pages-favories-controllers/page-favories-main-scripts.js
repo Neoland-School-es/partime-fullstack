@@ -1,14 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = pageFavoriteController;
 // Local Storage
-import { leerDatoLS } from './../../utilities/functions-localstorage.js';
+const functions_localstorage_js_1 = require("./../../utilities/functions-localstorage.js");
 // Funciones Logicas
-import { imprimirLista } from './functions/functions-crud-logic.js';
-
-export default function pageFavoriteMain() {
+const functions_crud_logic_js_1 = require("./functions/functions-crud-logic.js");
+function pageFavoriteController() {
     console.log('Saludos desde pageFavoriteMain');
-
     if (document.querySelector('#PageFavorites #ContenedorLista')) {
-        const listaInicial = leerDatoLS('lista-cache-productos-favoritos') || [];
-        
-        imprimirLista(listaInicial);
+        const listaInicial = (0, functions_localstorage_js_1.leerDatoLS)('lista-cache-productos-favoritos') || [];
+        (0, functions_crud_logic_js_1.imprimirLista)(listaInicial);
     }
 }

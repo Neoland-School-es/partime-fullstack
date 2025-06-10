@@ -1,7 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.imprimirLista = imprimirLista;
+exports.crearProductoLista = crearProductoLista;
+exports.actualizarTarea = actualizarTarea;
+exports.eliminarTarea = eliminarTarea;
 function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');
     li.className = 'list-group-item d-flex align-items-center';
-    li.id = `item-${indice + 1}`
+    li.id = `item-${indice + 1}`;
     li.innerHTML = `
         <i class="fs-1 bg-primary text-light p-2 rounded-2">${indice + 1}</i>
 
@@ -13,36 +19,27 @@ function crearItemLista(indice = 0, itemLista = {}) {
             </header>
         </section>
     `;
-
     return li;
 }
-
-export function imprimirLista(lista = []) {
+function imprimirLista(lista = []) {
     const contenedorLista = document.querySelector('#ContenedorLista .list-group');
     contenedorLista.innerHTML = '';
-
     for (let i = 0; i < lista.length; i++) {
         contenedorLista.appendChild(crearItemLista(i, lista[i]));
     }
 }
-
-
-export function crearProductoLista(pLista = [], pNombre = '') {
+function crearProductoLista(pLista = [], pNombre = '') {
     if (pNombre.trim() === '') {
         console.error('El texto no puede estar vacío.');
         return (pLista);
     }
-
     const nuevaTarea = {
         id: new Date().getTime() - 1745507700000,
         name: pNombre.trim()
     };
-
     pLista.push(nuevaTarea);
-
     return (pLista);
 }
-
 // Función para obtener una tarea por ID
 // export function obtenerTarea(listaTareas = [], idTarea = 0) {
 //     const tarea = listaTareas.find(t => t.id === idTarea);
@@ -51,30 +48,23 @@ export function crearProductoLista(pLista = [], pNombre = '') {
 //     }
 //     return tarea;
 // }
-
 // Función para actualizar una tarea
-export function actualizarTarea(lista = [], idTarea = 0, nuevoTexto = '') {
+function actualizarTarea(lista = [], idTarea = 0, nuevoTexto = '') {
     const tarea = lista.find(t => t.id === idTarea);
-
     if (!tarea) {
         console.error('Tarea no encontrada');
         return lista;
     }
-
     if (nuevoTexto.trim() !== '') {
         tarea.name = nuevoTexto.trim();
     }
-
     return lista;
 }
-
 // Función para eliminar una tarea
-export function eliminarTarea(listaTareas = [], idTarea = 0) {
+function eliminarTarea(listaTareas = [], idTarea = 0) {
     const nuevaLista = listaTareas.filter(t => t.id !== idTarea);
-
     if (nuevaLista.length === listaTareas.length) {
         console.error('Tarea no encontrada');
     }
-
     return nuevaLista;
 }

@@ -1,5 +1,5 @@
 // LocalStorage
-import { crearDatoLS, leerDatoLS } from './../../../utilities/functions-localstorage.js';
+import { crearDatoLS, leerDatoLS } from './../../../utilities/functions-localstorage';
 
 export function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');

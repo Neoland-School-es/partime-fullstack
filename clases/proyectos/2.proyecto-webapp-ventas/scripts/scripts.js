@@ -1,8 +1,8 @@
 // Funciones Pagina
-import pageHomeMain from './pages-scripts/page-home/page-home-main-scripts.js';
-import pageFavoriteMain from './pages-scripts/page-favories/page-favories-main-scripts.js';
-import pageShoppingCartMain from './pages-scripts/page-shopping-cart/page-shopping-cart-main-scripts.js';
-import { paginaFormularioCrearProducto, paginaFormularioEditarProducto, paginaFormularioEliminarProducto } from './pages-scripts/pages-crud/pages-crud-main-scripts.js';
+import pageHomeMain from './pages-scripts/page-home/page-home-main-scripts';
+import pageFavoriteMain from './pages-scripts/page-favories/page-favories-main-scripts';
+import pageShoppingCartMain from './pages-scripts/page-shopping-cart/page-shopping-cart-main-scripts';
+import { paginaFormularioCrearProducto, paginaFormularioEditarProducto, paginaFormularioEliminarProducto } from './pages-scripts/pages-crud/pages-crud-main-scripts';
 
 function main() {
     if (document.querySelector('#PageHome')) {

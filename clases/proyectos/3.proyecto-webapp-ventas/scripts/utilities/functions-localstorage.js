@@ -1,25 +1,31 @@
-export function crearDatoLS(clave, valor) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.crearDatoLS = crearDatoLS;
+exports.leerDatoLS = leerDatoLS;
+exports.mostrarTodoLS = mostrarTodoLS;
+exports.eliminarDatoLS = eliminarDatoLS;
+exports.limpiarLocalStorage = limpiarLocalStorage;
+function crearDatoLS(clave, valor) {
     if (clave !== "" && valor !== "") {
         localStorage.setItem(clave, JSON.stringify(valor));
         console.log("Dato guardado en localStorage:", clave);
-    } else {
+    }
+    else {
         console.error("Clave o valor inválido");
     }
 }
-
-export function leerDatoLS(clave) {
+function leerDatoLS(clave) {
     const valor = JSON.parse(localStorage.getItem(clave));
-
     if (valor !== null) {
         console.log("Dato encontrado:", clave, valor);
         return valor;
-    } else {
+    }
+    else {
         console.error("Dato no encontrado en localStorage: " + clave);
         return null;
     }
 }
-
-export function mostrarTodoLS() {
+function mostrarTodoLS() {
     console.log("Contenido actual de localStorage:");
     for (let i = 0; i < localStorage.length; i++) {
         const clave = localStorage.key(i);
@@ -27,17 +33,16 @@ export function mostrarTodoLS() {
         console.log(clave + " = " + valor);
     }
 }
-
-export function eliminarDatoLS(clave) {
+function eliminarDatoLS(clave) {
     if (localStorage.getItem(clave) !== null) {
         localStorage.removeItem(clave);
         console.log("Dato eliminado:", clave);
-    } else {
+    }
+    else {
         console.error("No se puede eliminar, clave no encontrada:", clave);
     }
 }
-
-export function limpiarLocalStorage() {
+function limpiarLocalStorage() {
     localStorage.clear();
     alert("Todos los datos del localStorage fueron eliminados");
 }

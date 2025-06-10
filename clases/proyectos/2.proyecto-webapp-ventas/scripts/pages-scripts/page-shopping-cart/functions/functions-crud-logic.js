@@ -1,7 +1,7 @@
 // Funciones CRUD Ventanas Modales
-import { modalCrearProducto, modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal.js';
+import { modalCrearProducto, modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal';
 // LocalStorage
-import { crearDatoLS } from './../../../utilities/functions-localstorage.js';
+import { crearDatoLS } from './../../../utilities/functions-localstorage';
 
 function crearItemLista(indice = 0, itemLista = {}) {
     const li = document.createElement('li');

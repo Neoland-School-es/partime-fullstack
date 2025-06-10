@@ -1,13 +1,13 @@
 // Base de Datos | Datos Locales | Datos de prueba
-import { DatosLocalesBBDD } from './../../database/data-task.js';
+import { DatosLocalesBBDD } from './../../database/data-task';
 // Local Storage
-import { crearDatoLS, leerDatoLS } from './../../utilities/functions-localstorage.js';
+import { crearDatoLS, leerDatoLS } from './../../utilities/functions-localstorage';
 // Funciones Logicas
-import { imprimirLista } from './functions/functions-crud-logic.js';
+import { imprimirLista } from './functions/functions-crud-logic';
 // Funciones CRUD Ventanas Modales
-import { modalCrearProducto } from './functions/functions-crud-modal.js';
+import { modalCrearProducto } from './functions/functions-crud-modal';
 // Funciones CRUD en linea
-// import { inlineCrearProducto} from './functions/functions-crud-inline.js';
+// import { inlineCrearProducto} from './functions/functions-crud-inline';
 
 export default function pageHomeMain() {
     console.log('Saludos desde pageHomeMain');

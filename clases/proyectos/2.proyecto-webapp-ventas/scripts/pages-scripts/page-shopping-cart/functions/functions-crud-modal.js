@@ -1,9 +1,9 @@
 // Funciones CRUD Logicas
-import { crearProductoLista, imprimirLista, actualizarTarea, eliminarTarea } from './functions-crud-logic.js';
+import { crearProductoLista, imprimirLista, actualizarTarea, eliminarTarea } from './functions-crud-logic';
 // LocalStorage
-import { crearDatoLS } from './../../../utilities/functions-localstorage.js';
+import { crearDatoLS } from './../../../utilities/functions-localstorage';
 // Utilidades
-import { cerrarModal } from './../../../utilities/functions-bootstrap.js';
+import { cerrarModal } from './../../../utilities/functions-bootstrap';
 
 export function modalCrearProducto(pLista = []) {
     const formCrear = document.querySelector('#ModalCrearProducto form');

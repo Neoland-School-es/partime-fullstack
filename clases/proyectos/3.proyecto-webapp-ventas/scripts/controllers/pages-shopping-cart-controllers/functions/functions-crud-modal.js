@@ -1,81 +1,73 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.modalCrearProducto = modalCrearProducto;
+exports.modalActualizarProducto = modalActualizarProducto;
+exports.modalEliminarProducto = modalEliminarProducto;
 // Funciones CRUD Logicas
-import { crearProductoLista, imprimirLista, actualizarTarea, eliminarTarea } from './functions-crud-logic.js';
+const functions_crud_logic_js_1 = require("./functions-crud-logic.js");
 // LocalStorage
-import { crearDatoLS } from './../../../utilities/functions-localstorage.js';
+const functions_localstorage_js_1 = require("./../../../utilities/functions-localstorage.js");
 // Utilidades
-import { cerrarModal } from './../../../utilities/functions-bootstrap.js';
-
-export function modalCrearProducto(pLista = []) {
+const functions_bootstrap_js_1 = require("./../../../utilities/functions-bootstrap.js");
+function modalCrearProducto(pLista = []) {
     const formCrear = document.querySelector('#ModalCrearProducto form');
     if (formCrear) {
-        formCrear.addEventListener('submit',
-            function (event) {
-                event.preventDefault();
-
-                const campoProducto = document.querySelector('#ModalCrearProducto #NombreProducto').value;
-                const nuevaLista = crearProductoLista(pLista, campoProducto);
-                crearDatoLS('lista-tareas', nuevaLista);
-                imprimirLista(nuevaLista);
-                cerrarModal('#ModalCrear');
-            }
-        );
+        formCrear.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const campoProducto = document.querySelector('#ModalCrearProducto #NombreProducto').value;
+            const nuevaLista = (0, functions_crud_logic_js_1.crearProductoLista)(pLista, campoProducto);
+            (0, functions_localstorage_js_1.crearDatoLS)('lista-tareas', nuevaLista);
+            (0, functions_crud_logic_js_1.imprimirLista)(nuevaLista);
+            (0, functions_bootstrap_js_1.cerrarModal)('#ModalCrear');
+        });
     }
 }
-
-export function modalActualizarProducto(pLista = []) {
+function modalActualizarProducto(pLista = []) {
     const listaBtnEditar = document.querySelectorAll('#ContenedorLista .btn-editar') || [];
     if (listaBtnEditar.length) {
         for (let index = 0; index < listaBtnEditar.length; index++) {
             listaBtnEditar[index].addEventListener('click', function () {
                 const idSeleccionado = parseInt(listaBtnEditar[index].dataset.id);
-
                 for (let i = 0; i < pLista.length; i++) {
                     if (pLista[i].id === idSeleccionado) {
                         document.querySelector('#ModalEditarProducto form #NombreProducto').value = pLista[i].name;
                         document.querySelector('#ModalEditarProducto').dataset.id = pLista[i].id;
                     }
                 }
-
                 const formEditar = document.querySelector('#ModalEditarProducto form');
                 formEditar.addEventListener('submit', function (event) {
                     event.preventDefault();
-
                     const textoEditado = document.querySelector('#ModalEditarProducto form #NombreProducto').value;
-                    const listaActualizada = actualizarTarea(pLista, idSeleccionado, textoEditado);
-                    crearDatoLS('lista-tareas', listaActualizada);
-                    cerrarModal('#ModalEditarProducto');
-                    imprimirLista(listaActualizada);
+                    const listaActualizada = (0, functions_crud_logic_js_1.actualizarTarea)(pLista, idSeleccionado, textoEditado);
+                    (0, functions_localstorage_js_1.crearDatoLS)('lista-tareas', listaActualizada);
+                    (0, functions_bootstrap_js_1.cerrarModal)('#ModalEditarProducto');
+                    (0, functions_crud_logic_js_1.imprimirLista)(listaActualizada);
                 });
             });
         }
     }
 }
-
-export function modalEliminarProducto(pLista = []) {
+function modalEliminarProducto(pLista = []) {
     const listaBtnEliminar = document.querySelectorAll('#ContenedorLista .btn-eliminar') || [];
     if (listaBtnEliminar.length) {
         for (let index = 0; index < listaBtnEliminar.length; index++) {
             listaBtnEliminar[index].addEventListener('click', function () {
                 const idSeleccionado = parseInt(listaBtnEliminar[index].dataset.id);
-
                 for (let i = 0; i < pLista.length; i++) {
                     if (pLista[i].id === idSeleccionado) {
                         document.querySelector('#TareaElegida').textContent = pLista[i].name;
                         document.querySelector('#deleteTaskModal').dataset.id = pLista[i].id;
                     }
                 }
-
                 const formEliminar = document.querySelector('#deleteTaskModal form');
                 formEliminar.addEventListener('submit', function (event) {
                     event.preventDefault();
-
-                    const listaFiltrada = eliminarTarea(pLista, idSeleccionado);
-                    crearDatoLS('lista-tareas', listaFiltrada);
-                    cerrarModal('#deleteTaskModal');
-                    imprimirLista(listaFiltrada);
+                    const listaFiltrada = (0, functions_crud_logic_js_1.eliminarTarea)(pLista, idSeleccionado);
+                    (0, functions_localstorage_js_1.crearDatoLS)('lista-tareas', listaFiltrada);
+                    (0, functions_bootstrap_js_1.cerrarModal)('#deleteTaskModal');
+                    (0, functions_crud_logic_js_1.imprimirLista)(listaFiltrada);
                 });
             });
         }
     }
 }
-

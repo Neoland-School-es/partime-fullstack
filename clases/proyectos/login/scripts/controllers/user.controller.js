@@ -1,5 +1,5 @@
-import { obtenerListaUsuarios, validarUsuario } from "./../models/user.model.js";
-import { obtenerListaProductos } from "./../models/products.model.js";
+import { obtenerListaUsuarios, validarUsuario } from "./../models/user.model";
+import { obtenerListaProductos } from "./../models/products.model";
 
 export function login() {
     const formulario = document.querySelector("#formLogin");

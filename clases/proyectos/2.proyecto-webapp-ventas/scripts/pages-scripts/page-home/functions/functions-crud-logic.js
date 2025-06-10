@@ -1,9 +1,9 @@
 // Funciones CRUD en linea
-import { inlineActualizarProducto, inlineEliminarProducto } from './functions-crud-inline.js';
+import { inlineActualizarProducto, inlineEliminarProducto } from './functions-crud-inline';
 // Funciones CRUD Ventanas Modales
-import { modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal.js';
+import { modalActualizarProducto, modalEliminarProducto } from './functions-crud-modal';
 // Funciones eventos botones CRUD
-import { crearItemLista, activarBotonesCompra } from './functions-element-list-scripts.js';
+import { crearItemLista, activarBotonesCompra } from './functions-element-list-scripts';
 
 export function imprimirLista(lista = []) {
     const contenedorLista = document.querySelector('#ContenedorLista .list-group');

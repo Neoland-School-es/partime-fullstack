@@ -1,18 +1,20 @@
-const DatosLocalesBBDD = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.obtenerProductosLocales = obtenerProductosLocales;
+const DatoLocalListaProductos = [
     {
         id: 1,
-        name: "Goku",
+        name: 'Goku',
     },
     {
         id: 2,
-        name: "Vegeta",
+        name: 'Vegeta',
     },
     {
         id: 3,
-        name: "Piccolo",
+        name: 'Piccolo',
     }
-]
-
-export function obtenerProductosLocales() {
-    return (DatosLocalesBBDD);
+];
+function obtenerProductosLocales() {
+    return (DatoLocalListaProductos);
 }

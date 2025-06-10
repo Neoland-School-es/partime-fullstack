@@ -1,12 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.renderizarLista = renderizarLista;
+exports.default = pageShoppingCartMain;
 // Local Storage
-import { leerDatoLS } from './../../utilities/functions-localstorage.js';
+const functions_localstorage_js_1 = require("./../../utilities/functions-localstorage.js");
 // Funciones Logicas
-import { imprimirLista } from './functions/functions-crud-logic.js';
-
-export function renderizarLista(lista = []) {
-    imprimirLista(lista);
+const functions_crud_logic_js_1 = require("./functions/functions-crud-logic.js");
+function renderizarLista(lista = []) {
+    (0, functions_crud_logic_js_1.imprimirLista)(lista);
 }
-
 // function iniciarEventosLista(lista = []) {
 //     const btnClearLS = document.querySelector('#btnClearLS');
 //     if (btnClearLS) {
@@ -16,12 +18,10 @@ export function renderizarLista(lista = []) {
 //         });
 //     }
 // }
-
-export default function pageShoppingCartMain() {
-    console.log("Saludos desde pageShoppingCartMain")
-
+function pageShoppingCartMain() {
+    console.log("Saludos desde pageShoppingCartMain");
     if (document.querySelector('#PageShoppingCard')) {
-        const listaInicial = leerDatoLS('lista-cache-carrito-productos') || [];
+        const listaInicial = (0, functions_localstorage_js_1.leerDatoLS)('lista-cache-carrito-productos') || [];
         renderizarLista(listaInicial);
     }
 }
