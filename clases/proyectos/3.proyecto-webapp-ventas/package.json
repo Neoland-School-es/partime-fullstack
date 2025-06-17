@@ -1,15 +1,35 @@
 {
   "name": "3.proyecto-webapp-ventas",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Aplicacion web de compra/ventas productos, con Vite",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfd-dev/proyecto3-webapp-ventas.git"
+  },
+  "keywords": [
+    "compras",
+    "ventas"
+  ],
+  "author": "Pablo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfd-dev/proyecto3-webapp-ventas/issues"
+  },
+  "homepage": "https://github.com/pfd-dev/proyecto3-webapp-ventas#readme",
   "devDependencies": {
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2"
   }
 }

@@ -1,0 +1,1 @@
+export const LS_LISTA_PRODUCTOS = 'lista-cache-productos';

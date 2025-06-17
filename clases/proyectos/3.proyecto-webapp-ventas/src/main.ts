@@ -1,24 +1,16 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+// Store
+import store from "./store/store";
+import { inicializarCargaProductos } from "./slices/productsSlice";
+import { logout } from "./slices/userSlice";
+// import { crear } from "./slices/userSlice"
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+import { enrutador } from "./routers/routerById";
+// import { enrutador } from "./routers/routerByURL";
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+function main() {
+  // store.dispatch(inicializarCargaProductos());
+  store.dispatch(logout());
+  enrutador();
+}
+
+document.addEventListener('DOMContentLoaded', main);
