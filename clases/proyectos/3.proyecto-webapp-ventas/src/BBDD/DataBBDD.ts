@@ -1,6 +1,6 @@
-import type { Producto, Usuario } from "../types/types";
+import type { IProducto, IUsuario } from "../types/types";
 
-export const datoLocalListaUsuarios: Usuario[] = [
+export const datoLocalListaUsuarios: IUsuario[] = [
     {
         id: 1,
         nombre: 'alfredo',
@@ -21,7 +21,7 @@ export const datoLocalListaUsuarios: Usuario[] = [
     }
 ];
 
-export const datoLocalListaProductos: Producto[] = [
+export const datoLocalListaProductos: IProducto[] = [
     {
         id: 1,
         nombre: 'Goku',

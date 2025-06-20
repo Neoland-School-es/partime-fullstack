@@ -1,6 +1,6 @@
-import { validarUsuario } from '../../models/usuarios.model.js';
+import { validarUsuario } from '../../models/usuario.model';
 import store from '../../store/store.js';
-import { iniciarLogin, loginExitoso, loginFallido } from '../../slices/userSlice.js';
+import { iniciarLogin, loginExitoso, loginFallido } from '../../slices/userSlice';
 
 
 export function formularioLoginController() {
@@ -27,7 +27,7 @@ export function formularioLoginController() {
         if (usuarioEncontrado) {
             store.dispatch(loginExitoso(usuarioEncontrado));
             alert('Login exitoso');
-            window.location.href = `./../pages/page-dashboard.html?id=${usuarioEncontrado.nombre}`;
+            window.location.href = './page-dashboard.html';
         }
         else {
             store.dispatch(loginFallido());

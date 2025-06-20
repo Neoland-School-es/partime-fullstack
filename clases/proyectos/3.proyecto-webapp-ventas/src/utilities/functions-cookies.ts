@@ -2,7 +2,7 @@ export function mostrarCookies() {
     console.log("Cookies actuales:", document.cookie);
 }
 
-export function leerCookie(nombre) {
+export function leerCookie(nombre = "") {
     const nombreConIgual = nombre + "=";
     const partes = document.cookie.split(";");
 
@@ -18,7 +18,7 @@ export function leerCookie(nombre) {
     return null;
 }
 
-export function crearCookie(nombre, valor, dias) {
+export function crearCookie(nombre = "", valor = "", dias = 0) {
     let textoExpiracion = "";
 
     if (dias > 0) {
@@ -32,11 +32,11 @@ export function crearCookie(nombre, valor, dias) {
     document.cookie = cookieFinal;
 }
 
-export function eliminarCookie(nombre) {
+export function eliminarCookie(nombre = "") {
     document.cookie = nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-export function mostrarUnaCookie(nombre) {
+export function mostrarUnaCookie(nombre = "") {
     const valor = leerCookie(nombre);
 
     if (valor !== null) {
@@ -46,7 +46,7 @@ export function mostrarUnaCookie(nombre) {
     }
 }
 
-export function actualizarCookie(nombre, nuevoValor, nuevosDias) {
+export function actualizarCookie(nombre = "", nuevoValor = "", nuevosDias = 0) {
     const valorActual = leerCookie(nombre);
 
     if (valorActual !== null) {

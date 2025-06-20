@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import type { Usuario } from "../types/types";
+import type { IUsuario } from "../types/types";
 
 // Definimos el tipo para el estado del usuario
 interface UsuarioState {
-    usuario: Usuario | null;
+    usuario: IUsuario | null;
     isAuthenticated: boolean;
     isLoading: boolean;
 }
 
 const initialState: UsuarioState = {
-    usuario: null,
-    isAuthenticated: false,
+    usuario: {
+        id: 1,
+        nombre: 'alfredo',
+        contrasenia: '1234',
+        productosID: [1, 3],
+    },
+    isAuthenticated: true,
     isLoading: false
 };
 
@@ -23,7 +28,7 @@ const usuarioSlice = createSlice({
         iniciarLogin(state) {
             state.isLoading = true;
         },
-        loginExitoso(state, action: PayloadAction<Usuario>) {
+        loginExitoso(state, action: PayloadAction<IUsuario>) {
             state.usuario = action.payload;
             state.isAuthenticated = true;
             state.isLoading = false;
@@ -38,7 +43,7 @@ const usuarioSlice = createSlice({
             state.isAuthenticated = false;
             state.isLoading = false;
         },
-        actualizarUsuario(state, action: PayloadAction<Partial<Usuario>>) {
+        actualizarUsuario(state, action: PayloadAction<Partial<IUsuario>>) {
             if (state.usuario) {
                 state.usuario = { ...state.usuario, ...action.payload };
             }

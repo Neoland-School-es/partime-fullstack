@@ -1,5 +1,9 @@
-export function cerrarModal(selector) {
-    const modal = bootstrap.Modal.getInstance(document.querySelector(selector));
+// En el archivo donde usas los modales
+import { Modal } from 'bootstrap';
+
+export function cerrarModal(selector = "") {
+    const elemento = document.querySelector(selector) as HTMLElement;
+    const modal = Modal.getInstance(elemento);
     if (modal) {
         modal.hide();
     }

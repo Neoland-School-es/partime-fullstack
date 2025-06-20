@@ -1,4 +1,4 @@
-export function crearDatoLS(clave, valor) {
+export function crearDatoLS(clave = "", valor: any = "") {
     if (clave !== "" && valor !== "") {
         localStorage.setItem(clave, JSON.stringify(valor));
         console.log("Dato guardado en localStorage:", clave);
@@ -7,8 +7,8 @@ export function crearDatoLS(clave, valor) {
     }
 }
 
-export function leerDatoLS(clave) {
-    const valor = JSON.parse(localStorage.getItem(clave));
+export function leerDatoLS(clave = "") {
+    const valor = JSON.parse(localStorage.getItem(clave) || "");
 
     if (valor !== null) {
         return valor;
@@ -21,12 +21,12 @@ export function mostrarTodoLS() {
     console.log("Contenido actual de localStorage:");
     for (let i = 0; i < localStorage.length; i++) {
         const clave = localStorage.key(i);
-        const valor = localStorage.getItem(clave);
+        const valor = localStorage.getItem(clave || "");
         console.log(clave + " = " + valor);
     }
 }
 
-export function eliminarDatoLS(clave) {
+export function eliminarDatoLS(clave = "") {
     if (localStorage.getItem(clave) !== null) {
         localStorage.removeItem(clave);
         console.log("Dato eliminado:", clave);

@@ -1,48 +1,44 @@
-import { obtenerTodosLosUsuarios } from "./../../models/usuarios.model";
-import { obtenerUsuarioPorID } from "./../../models/usuarios.model";
+import store from "../../store/store"
 
+export function dashboardController() {
+    console.log("saludos desde el dashboard del usuario");
+    
+    const usuario = store.getState().usuario.usuario;
+    const listaProductos = store.getState().productos;
+    
+    if (!usuario) {
+        return
+    }
 
-function validadUsuario() {
-    const params = new URLSearchParams(window.location.search);
-    const idPersona = params.get('id');
-    if (!idPersona) {
-        alert("error URL");
-        window.location.href = "./../index.html";
+    const ContenedorLista = document.querySelector("#ContenedorLista");
+    if (!ContenedorLista) {
         return;
     }
 
-    console.log(obtenerUsuarioPorID(parseInt(idPersona)));
-}
+    ContenedorLista.innerHTML = "";
 
-export function dashboardController() {
-    console.log("saludos desde el dashboard del usuario")
+    const titulo = document.createElement("h2");
+    titulo.textContent = `Hola, ${usuario.nombre}. Estos son tus productos:`;
+    ContenedorLista.appendChild(titulo);
 
+    if (usuario.productosID && usuario.productosID.length > 0) {
+        const productosDelUsuario = listaProductos.filter((producto) => {
+            if (!usuario.productosID) return
 
+            return (usuario.productosID.includes(producto.id))
+        });
 
-    const listaUsuarios = obtenerTodosLosUsuarios();
-    const listaHerramientas = obtenerTodosLosUsuarios();
-    let usuarioEncontrado = null;
-    for (let index = 0; index < listaUsuarios.length; index++) {
-        if (listaUsuarios[index].name === idPersona) {
-            usuarioEncontrado = listaUsuarios[index];
-        }
-    }
-    // for (let index = 0; index < listaUsuarios.length; index++) {
-    //     const item = document.createElement("article")
-    //     item.innerHTML = listaUsuarios[index].name
-    //     contenedor.append(item)
-    // }
-    const contenedorHerramientas = document.querySelector("#ContenedorLista");
-    for (let i = 0; i < listaUsuarios.length; i++) {
-        const item = document.createElement("li");
-        const listaHerramientasUsuario = listaUsuarios[i].products;
-        item.textContent = listaUsuarios[i].name;
-        for (let j = 0; j < listaHerramientasUsuario.length; j++) {
-            const herramienta = listaHerramientas.find((producto) => producto.id === listaHerramientasUsuario[j]);
-            if (herramienta) {
-                item.textContent += " - " + herramienta.name + ", ";
-                contenedorHerramientas.appendChild(item);
-            }
-        }
+        const lista = document.createElement("ul");
+        productosDelUsuario.forEach((producto) => {
+            const item = document.createElement("li");
+            item.textContent = `${producto.nombre} - $${producto.precio}`;
+            lista.appendChild(item);
+        });
+
+        ContenedorLista.appendChild(lista);
+    } else {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "No tenés productos asociados.";
+        ContenedorLista.appendChild(mensaje);
     }
 }

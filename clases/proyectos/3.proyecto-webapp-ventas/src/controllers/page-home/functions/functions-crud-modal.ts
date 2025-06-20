@@ -4,7 +4,7 @@ import { eliminarProducto, actualizarProducto, agregarProducto } from "./../../.
 // Funciones CRUD Lógicas
 // import { crearProductoLista, imprimirLista, actualizarTarea, eliminarTarea } from './functions-crud-logic';
 
-import type { Producto } from '../../../types/types';
+import type { IProducto } from '../../../types/types';
 // Utilidades
 import { cerrarModal } from './../../../utilities/functions-bootstrap';
 
@@ -32,7 +32,7 @@ export function formularioModalCrearProducto(): void {
     });
 }
 
-export function formularioModalActualizarProducto(pLista: Producto[] = []): void {
+export function formularioModalActualizarProducto(pLista: IProducto[] = []): void {
     const listaBtnEditar = document.querySelectorAll<HTMLButtonElement>('#ContenedorLista .btn-editar');
 
     if (!listaBtnEditar.length) return;
@@ -71,7 +71,7 @@ export function formularioModalActualizarProducto(pLista: Producto[] = []): void
     });
 }
 
-export function formularioModalEliminarProducto(pLista: Producto[] = []): void {
+export function formularioModalEliminarProducto(pLista: IProducto[] = []): void {
     const listaBtnEliminar = document.querySelectorAll<HTMLButtonElement>('#ContenedorLista .btn-eliminar');
 
     if (!listaBtnEliminar.length) return;

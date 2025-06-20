@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 // Interfaces
-import type { Producto } from "../types/types";
+import type { IProducto } from "../types/types";
 // Modelo
-import { obtenerTodosLosProductosBBDD, crearProductoBBDD, eliminarProductoBBDD, actualizarProductoBBDD } from "../models/producto.model";
+import { obtenerTodosLosProductosBBDD, crearProductoBBDD, eliminarProductoBBDD, actualizarProductoBBDD } from "../models/productos.model";
 
-const initialState: Producto[] = [];
+const initialState: IProducto[] = [];
 
 const productosSlice = createSlice({
     name: "productos",
@@ -14,10 +14,10 @@ const productosSlice = createSlice({
         inicializarCargaProductos() {
             return obtenerTodosLosProductosBBDD();
         },
-        agregarProducto(state, action: PayloadAction<Producto["nombre"]>) {
+        agregarProducto(state, action: PayloadAction<IProducto["nombre"]>) {
             return crearProductoBBDD(state, action.payload)
         },
-        actualizarProducto(state, action: PayloadAction<Producto>) {
+        actualizarProducto(state, action: PayloadAction<IProducto>) {
             return actualizarProductoBBDD(state, action.payload.id, action.payload.nombre)
         },
         eliminarProducto(state, action: PayloadAction<number>) {

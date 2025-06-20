@@ -1,8 +1,8 @@
 // LocalStorage
-import type { Producto } from '../../../types/types';
+import type { IProducto } from '../../../types/types';
 import { crearDatoLS, leerDatoLS } from './../../../utilities/functions-localstorage';
 
-export function crearItemLista(indice = 0, itemLista = {}) {
+export function crearItemLista(indice = 0, itemLista: IProducto) {
     const li = document.createElement('li');
     li.className = 'list-group-item d-flex align-items-center';
     li.id = `item-${indice + 1}`;
@@ -31,7 +31,7 @@ function crearIconoIndice(indice: number) {
     return i;
 }
 
-function crearInfoPrincipal(item: Producto) {
+function crearInfoPrincipal(item: IProducto) {
     const section = document.createElement('section');
     section.id = 'itemInfo';
     section.className = 'w-100 ps-4 d-flex justify-content-between';
@@ -47,7 +47,7 @@ function crearInfoPrincipal(item: Producto) {
     return section;
 }
 
-function crearDropdownOpciones(item: Producto) {
+function crearDropdownOpciones(item: IProducto) {
     const div = document.createElement('div');
     div.className = 'dropdown';
 
@@ -64,17 +64,17 @@ function crearDropdownOpciones(item: Producto) {
     listaOpciones.setAttribute('aria-labelledby', 'dropdownMenuButton1');
 
     agregarSeccionDropdown(listaOpciones, 'Carrito de compras', [
-        crearBotonDropdown(`btnCarritoCompra-${item.id}`, 'btn btn-primary btn-carrito-compra', item.id, `Agregar Carrito | ${item.id}`),
+        crearBotonDropdown(`btnCarritoCompra-${item.id}`, 'btn btn-primary btn-carrito-compra', item.id.toString(), `Agregar Carrito | ${item.id}`),
     ]);
 
     agregarSeccionDropdown(listaOpciones, 'Actualizar DOM', [
-        crearBotonDropdown('', 'btn btn-success btn-editar-inline', item.id, `Editar Inline | ${item.id}`),
-        crearBotonDropdown('', 'btn btn-success btn-eliminar-inline', item.id, `Eliminar Inline | ${item.id}`),
+        crearBotonDropdown('', 'btn btn-success btn-editar-inline', item.id.toString(), `Editar Inline | ${item.id}`),
+        crearBotonDropdown('', 'btn btn-success btn-eliminar-inline', item.id.toString(), `Eliminar Inline | ${item.id}`),
     ]);
 
     agregarSeccionDropdown(listaOpciones, 'Ventanas Modal', [
-        crearBotonModal(`BtnModalEditar-${item.id}`, 'btn-editar', 'Editar Modal', item.id, '#ModalEditarProducto'),
-        crearBotonModal(`BtnModalEliminar-${item.id}`, 'btn-eliminar', 'Eliminar Modal', item.id, '#ModalEliminarProducto'),
+        crearBotonModal(`BtnModalEditar-${item.id}`, 'btn-editar', 'Editar Modal', item.id.toString(), '#ModalEditarProducto'),
+        crearBotonModal(`BtnModalEliminar-${item.id}`, 'btn-eliminar', 'Eliminar Modal', item.id.toString(), '#ModalEliminarProducto'),
     ]);
     agregarSeccionDropdown(listaOpciones, 'Páginas', [
         crearLinkPagina(`Editar Página | ${item.id}`, `./pages/page-update-product.html?id=${item.id}`),
@@ -87,16 +87,16 @@ function crearDropdownOpciones(item: Producto) {
     return div;
 }
 
-function agregarSeccionDropdown(lista, titulo, botones) {
+function agregarSeccionDropdown(lista: HTMLUListElement, titulo = "", elementos: (HTMLButtonElement | HTMLAnchorElement)[]) {
     const tituloEl = document.createElement('h3');
     tituloEl.className = 'h6';
     tituloEl.textContent = titulo;
     lista.appendChild(tituloEl);
 
-    botones.forEach(boton => lista.appendChild(boton));
+    elementos.forEach(elemento => lista.appendChild(elemento));
 }
 
-function crearBotonDropdown(id, clase, dataId, texto) {
+function crearBotonDropdown(id = "", clase = "", dataId = "", texto = "") {
     const btn = document.createElement('button');
     btn.id = id;
     btn.className = clase;
@@ -106,7 +106,7 @@ function crearBotonDropdown(id, clase, dataId, texto) {
     return btn;
 }
 
-function crearBotonModal(id, clase, texto, dataId, modalId) {
+function crearBotonModal(id = "", clase = "", texto = "", dataId = "", modalId = "") {
     const btn = document.createElement('button');
     btn.id = id;
     btn.className = `btn btn-danger ${clase}`;
@@ -118,7 +118,7 @@ function crearBotonModal(id, clase, texto, dataId, modalId) {
     return btn;
 }
 
-function crearLinkPagina(texto, href) {
+function crearLinkPagina(texto = "", href = "") {
     const link = document.createElement('a');
     link.className = 'btn btn-warning';
     link.href = href;
@@ -126,7 +126,7 @@ function crearLinkPagina(texto, href) {
     return link;
 }
 
-function crearFormularioEditar(item: Producto) {
+function crearFormularioEditar(item: IProducto) {
     const form = document.createElement('form');
     form.className = 'form-editar-inline d-none mt-3';
     form.innerHTML = `
@@ -137,7 +137,7 @@ function crearFormularioEditar(item: Producto) {
     return form;
 }
 
-function crearFormularioEliminar(item: Producto) {
+function crearFormularioEliminar(item: IProducto) {
     const form = document.createElement('form');
     form.className = 'form-eliminar-inline d-none mt-3';
     form.innerHTML = `
@@ -148,27 +148,27 @@ function crearFormularioEliminar(item: Producto) {
     return form;
 }
 
-export function activarBotonesCompra(lista: Producto[] = []) {
-    const listaBtnCompraCarrito = document.querySelectorAll(".btn-carrito-compra");
+export function activarBotonesCompra(lista: IProducto[] = []) {
+    const listaBtnCompraCarrito = document.querySelectorAll(".btn-carrito-compra") as NodeListOf<HTMLElement>;
 
-    let elementoSeleccionado = null;
+    let elementoSeleccionado: IProducto | null = null;
 
     for (let index = 0; index < listaBtnCompraCarrito.length; index++) {
         listaBtnCompraCarrito[index].addEventListener('click', function () {
+            const dataId = listaBtnCompraCarrito[index].dataset.id;
 
             elementoSeleccionado = lista.find((elemento) => {
-                if (elemento.id === parseInt(listaBtnCompraCarrito[index].dataset.id)) {
-                    return elemento
-                }
-            })
+                return elemento.id === parseInt(dataId || '0');
+            }) || null;
 
-            console.log(elementoSeleccionado)
+            if (elementoSeleccionado) {
+                console.log(elementoSeleccionado);
 
-            const listaInicial = leerDatoLS('lista-cache-carrito-productos') || [];
-
-            listaInicial.push(elementoSeleccionado)
-            crearDatoLS('lista-cache-carrito-productos', listaInicial);
-        })
+                const listaInicial = leerDatoLS('lista-cache-carrito-productos') || [];
+                listaInicial.push(elementoSeleccionado);
+                crearDatoLS('lista-cache-carrito-productos', listaInicial);
+            }
+        });
     }
 
     // let resultado = null;

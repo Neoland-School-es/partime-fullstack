@@ -1,8 +1,8 @@
-import type { Producto } from '../../../types/types';
+import type { IProducto } from '../../../types/types';
 // Funciones eventos botones CRUD
 import { crearItemLista, activarBotonesCompra } from './functions-element-list-scripts';
 
-export function imprimirLista(pLista: Producto[] = []) {
+export function imprimirLista(pLista: IProducto[] = []) {
     const contenedorLista = document.querySelector<HTMLUListElement>('#ContenedorLista .list-group');
     if (!contenedorLista) {
         return;

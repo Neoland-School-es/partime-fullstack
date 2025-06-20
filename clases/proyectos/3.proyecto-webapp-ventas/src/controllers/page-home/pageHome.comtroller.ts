@@ -16,13 +16,13 @@ export default function pageHomeController() {
     console.log(store.getState().productos)
     console.log(listaInicial)
 
-    formularioModalCrearProducto(listaInicial);
+    formularioModalCrearProducto();
 
     if (document.querySelector('#PageHome #ContenedorLista')) {
         imprimirLista(listaInicial);
 
-        inlineActualizarProducto(listaInicial);
-        inlineEliminarProducto(listaInicial);
+        inlineActualizarProducto();
+        inlineEliminarProducto();
 
         formularioModalActualizarProducto(listaInicial);
         formularioModalEliminarProducto(listaInicial);

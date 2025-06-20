@@ -1,11 +1,11 @@
-export interface Usuario {
+export interface IUsuario {
     id: number;
     nombre: string;
     contrasenia?: string;
-    productosID?: Producto["id"][];
+    productosID?: IProducto["id"][];
 }
 
-export interface Producto {
+export interface IProducto {
     id: number;
     nombre: string;
     precio: number;

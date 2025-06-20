@@ -85,16 +85,30 @@ En la raíz del proyecto se crea un archivo: jest.config.js
 ```js
 // @ts-check
 /** @type {import('jest').Config} */
-/** @type {import('ts-jest').JestConfigWithTsJest} */
+
 const config = {
-  preset: 'ts-jest',
-  verbose: true,
-  testEnvironment: 'jsdom',
+  preset: 'ts-jest',
+  verbose: true,
+  testEnvironment: 'jsdom',
 }
 export default config
 ```
 
-### 4. Estructura de archivos
+### 4. `tsconfig.json`
+
+En la raíz del proyecto se crea un archivo: jest.config.js
+
+```json
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"verbatimModuleSyntax": false,
+	},
+	"include": [ "src", "__test__" ]
+}
+
+```
+### 5. Estructura de archivos
 
 ```
 /mi-proyecto

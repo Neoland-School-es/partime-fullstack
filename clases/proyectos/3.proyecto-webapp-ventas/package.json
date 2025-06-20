@@ -9,7 +9,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,17 @@
   },
   "homepage": "https://github.com/pfd-dev/proyecto3-webapp-ventas#readme",
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.1",
+    "jest-environment-jsdom": "^30.0.1",
+    "ts-jest": "^29.4.0",
     "typescript": "~5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-pwa": "^1.0.0"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.2"
+    "@reduxjs/toolkit": "^2.8.2",
+    "bootstrap": "^5.3.7"
   }
 }
