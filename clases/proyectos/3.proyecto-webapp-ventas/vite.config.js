@@ -32,6 +32,20 @@ export default defineConfig({
                 display: 'standalone',
                 background_color: '#ffffff',
                 theme_color: '#1d4ed8',
+                screenshots: [
+                    {
+                        "src": "screenshots/screenshot-desktop.png",
+                        "sizes": "1920x1080",
+                        "form_factor": "wide",
+                        "label": "Desktop view showing weekly meal calendar"
+                    },
+                    {
+                        "src": "screenshots/screenshot-mobile.png",
+                        "sizes": "750x1334",
+                        "form_factor": "narrow",
+                        "label": "Mobile view showing weekly meal calendar"
+                    }
+                ],
                 icons: [
                     {
                         src: 'pwa-64x64.png',
