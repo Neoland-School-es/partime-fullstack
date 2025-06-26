@@ -1,4 +1,3 @@
-// En el archivo donde usas los modales
 import { Modal } from 'bootstrap';
 
 export function cerrarModal(selector = "") {

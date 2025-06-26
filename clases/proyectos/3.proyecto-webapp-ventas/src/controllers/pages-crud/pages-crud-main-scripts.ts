@@ -3,22 +3,30 @@
 // Funciones LocalStorage
 // import { crearDatoLS, leerDatoLS } from "./../../utilities/functions-localstorage";
 
+import { agregarProducto } from "../../slices/productosSlice";
+import store from "../../store/store";
+
 export function paginaFormularioCrearProducto() {
     console.log("Saludos desde formularioPaginaCrear")
 
-    // const listaInicial = leerDatoLS('lista-cache-productos') || [];
+    const formCrear = document.querySelector("#addTaskPage form");
+    if (!formCrear) {
+        return
+    }
 
-    // const formCrear = document.querySelector("#addTaskPage form");
-    // formCrear.addEventListener('submit', function (event) {
-    //     event.preventDefault();
+    formCrear.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    //     const nuevaTarea = formCrear.querySelector("[name='taskText']").value;
-    //     const nuevaLista = crearProductoLista(listaInicial, nuevaTarea);
-    //     crearDatoLS("lista-cache-productos", nuevaLista);
+        const campoNombre = formCrear.querySelector<HTMLInputElement>("[name='nombreProducto']");
+        if (!campoNombre) {
+            return
+        }
 
-    //     alert("Elemento creado exitosamente");
-    //     window.location.href = "../index.html";
-    // });
+        store.dispatch(agregarProducto({ nombre: campoNombre.value, precio: 10 }));
+
+        alert("Elemento creado exitosamente");
+        window.location.href = "../index.html";
+    });
 }
 
 export function paginaFormularioEditarProducto() {

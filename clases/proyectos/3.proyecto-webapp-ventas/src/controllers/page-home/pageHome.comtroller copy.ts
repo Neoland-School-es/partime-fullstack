@@ -1,38 +1,30 @@
-// tipos
 import type { IProducto } from '../../types/types';
-// store
-import store from './../../store/store';
-import { agregarProducto, actualizarProducto } from "./../../slices/productosSlice";
-// funciones para este controlador
+
+// Modelo directo (sin Redux)
+import {
+    obtenerTodosLosProductosBBDD,
+    crearProductoBBDD
+} from '../../models/productos.model';
+
 import { crearItemLista } from './fnItemList';
-// Utilidades
 import { cerrarModal } from '../../utilities/functions-bootstrap';
 
-export default function pageHomeController() {
-    // mostrar la lista vacía
-    imprimitContenedorLista(store.getState().productos);
-
-    // pendiente a los cambios de la store
-    store.subscribe(() => {
-        imprimitContenedorLista(store.getState().productos);
-    });
+export default async function pageHomeController() {
+    const productos = await obtenerTodosLosProductosBBDD();
+    imprimitContenedorLista(productos);
 
     formularioModalCrearProducto();
-
-    store.dispatch(actualizarProducto({id: 1750926319120, nombre: "nuevo pj", precio: 14}))
 }
 
 function imprimitContenedorLista(pLista: IProducto[]) {
     const contenedorLista = document.querySelector("#ContenedorLista ul");
-    if (!contenedorLista) {
-        return;
-    }
+    if (!contenedorLista) return;
 
     contenedorLista.innerHTML = '';
 
     if (pLista.length === 0) {
-        const item = document.createElement("li")
-        item.innerHTML = "lista vacía"
+        const item = document.createElement("li");
+        item.textContent = "lista vacía";
         contenedorLista.appendChild(item);
     }
 
@@ -48,7 +40,7 @@ function formularioModalCrearProducto(): void {
         return;
     }
 
-    formulario.addEventListener('submit', (event: Event) => {
+    formulario.addEventListener('submit', async (event: Event) => {
         event.preventDefault();
 
         const campoProducto = document.querySelector<HTMLInputElement>('#ModalCrearProducto #NombreProducto');
@@ -57,8 +49,13 @@ function formularioModalCrearProducto(): void {
             return;
         }
 
-        store.dispatch(agregarProducto({ nombre: campoProducto.value, precio: 100 }));
-        // imprimirLista(nuevaLista);
+        try {
+            await crearProductoBBDD(campoProducto.value, 100);
+            const productosActualizados = await obtenerTodosLosProductosBBDD();
+            imprimitContenedorLista(productosActualizados);
+        } catch (error) {
+            alert("Error al crear producto: " + error);
+        }
 
         campoProducto.value = '';
         cerrarModal('#ModalCrearProducto');

@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"55103e01a02a4cb3","type":"text","text":"ENRUTADOR","x":-640,"y":425,"width":250,"height":50},
+		{"id":"e22aaae9bf4991f6","type":"text","text":"VISTA","x":-1360,"y":220,"width":250,"height":60},
+		{"id":"c26b038005a46261","type":"text","text":"CONTROLADOR","x":-305,"y":340,"width":250,"height":220},
+		{"id":"33b1e5621884c1dc","type":"text","text":"MODELO\n\ndameProductosBBDD","x":340,"y":-120,"width":250,"height":300},
+		{"id":"5f7b855356eaef6c","type":"text","text":"Base de datos | mocks\n\nproductos = [\n{pID: 1, pnombre:\"a\"},\n{pID: 2, pnombre:\"b\"},\n{pID: 3, pnombre:\"C\"},\n]\nusuarios = [\n{id: 1, unombre:\"a\", productos: [pID]},\n{id: 2, unombre:\"b\"},\n]","x":840,"y":-760,"width":360,"height":380},
+		{"id":"56943b19d18c759a","type":"text","text":"SLICES PRODUCTOS\n\n1 cargarProductosBBDD\n\n2 guardarProductosCache\n\n\n","x":-305,"y":-40,"width":250,"height":260},
+		{"id":"786d3c3a59e5c1f7","type":"text","text":"MAIN\n\ncargarProductosBBDD","x":-890,"y":200,"width":250,"height":140},
+		{"id":"4b142ae0d2a7ca2b","type":"text","text":"SLICES USUARIOS","x":-305,"y":-630,"width":250,"height":60},
+		{"id":"140184c7447345bf","type":"text","text":"SLICES CARRITO","x":-305,"y":-540,"width":250,"height":60},
+		{"id":"e81ddf2006cc44c8","type":"text","text":"STORE","x":-380,"y":-400,"width":250,"height":50},
+		{"id":"0fca7c500b819b26","type":"text","text":"productos = [ {pID: 1, pnombre:\"a\"}, {pID: 2, pnombre:\"b\"}, {pID: 3, pnombre:\"C\"}, ]","x":-130,"y":-140,"width":210,"height":150}
+	],
+	"edges":[
+		{"id":"03f288d8bede3468","fromNode":"33b1e5621884c1dc","fromSide":"top","toNode":"5f7b855356eaef6c","toSide":"bottom","fromEnd":"arrow","color":"1","label":"productos = [\n{pID: 1, pnombre:\"a\"},\n{pID: 2, pnombre:\"b\"},\n{pID: 3, pnombre:\"C\"},\n]"},
+		{"id":"6d9ffe46f209b56f","fromNode":"55103e01a02a4cb3","fromSide":"right","toNode":"c26b038005a46261","toSide":"left"},
+		{"id":"44d15ec4adc1cd7d","fromNode":"e22aaae9bf4991f6","fromSide":"right","toNode":"786d3c3a59e5c1f7","toSide":"left"},
+		{"id":"1f1ab30e2a69d3e0","fromNode":"786d3c3a59e5c1f7","fromSide":"bottom","toNode":"55103e01a02a4cb3","toSide":"left"},
+		{"id":"79cea53d6c48a090","fromNode":"e81ddf2006cc44c8","fromSide":"bottom","toNode":"56943b19d18c759a","toSide":"top"},
+		{"id":"b8c5b34f7521b8c2","fromNode":"c26b038005a46261","fromSide":"top","toNode":"56943b19d18c759a","toSide":"bottom"},
+		{"id":"bbdbaf9eb9d1665d","fromNode":"786d3c3a59e5c1f7","fromSide":"top","toNode":"56943b19d18c759a","toSide":"left"},
+		{"id":"45a823deb8fc401f","fromNode":"56943b19d18c759a","fromSide":"right","toNode":"33b1e5621884c1dc","toSide":"left"}
+	]
+}

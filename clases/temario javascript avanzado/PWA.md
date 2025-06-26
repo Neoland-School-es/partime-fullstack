@@ -101,48 +101,6 @@ El navegador usa el `manifest.json` para:
 
 ---
 
-## 🎨 Campos importantes
-
-|Campo|Descripción|
-|---|---|
-|`name`|Nombre completo de la app|
-|`short_name`|Nombre corto que se muestra debajo del ícono|
-|`start_url`|URL de inicio cuando se abre la app|
-|`display`|Cómo se muestra la app (`standalone`, `fullscreen`, `browser`)|
-|`background_color`|Color de fondo cuando se abre la app|
-|`theme_color`|Color del navegador o barra superior|
-|`icons`|Íconos usados para diferentes resoluciones|
-
----
-
-## 🛠️ Verificación en el navegador
-
-Podés verificar si el `manifest.json` está bien cargado:
-
-1. Abrí tu app en el navegador (localhost o deploy).
-    
-2. Abrí las herramientas de desarrollo (F12).
-    
-3. Entrá a la pestaña **"Application"**.
-    
-4. En la sección **"Manifest"**, podés ver cómo lo interpreta el navegador.
-    
-
----
-
-## 📋 Tarea práctica
-
-1. Crear un archivo `manifest.json` en la carpeta `public/`.
-    
-2. Agregar íconos en diferentes tamaños (`192x192` y `512x512`).
-    
-3. Enlazar el `manifest.json` desde el `index.html`.
-    
-4. Verificar que se visualice correctamente en Chrome DevTools.
-    
-
----
-
 ## 🔧 Service Worker y `vite-plugin-pwa`
 
 El **Service Worker** es un archivo JavaScript que se ejecuta en segundo plano en el navegador. Es responsable de funciones avanzadas como:
@@ -238,3 +196,20 @@ const updateSW = registerSW({
 ```
 
 ---
+
+
+## 🛠️ Verificación en el navegador
+
+Podés verificar si el `manifest.json` está bien cargado:
+
+1. Abrí tu app en el navegador (localhost o deploy).
+    
+2. Abrí las herramientas de desarrollo (F12).
+    
+3. Entrá a la pestaña **"Application"**.
+    
+4. En la sección **"Manifest"**, podés ver cómo lo interpreta el navegador.
+    
+
+---
+
