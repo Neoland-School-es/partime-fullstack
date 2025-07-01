@@ -1,6 +1,6 @@
 import type { IProducto, IUsuario } from "../types/types";
 
-export const datoLocalListaUsuarios: IUsuario[] = [
+export const mockListaUsuarios: IUsuario[] = [
     {
         id: 1,
         nombre: 'alfredo',
@@ -21,7 +21,7 @@ export const datoLocalListaUsuarios: IUsuario[] = [
     }
 ];
 
-export const datoLocalListaProductos: IProducto[] = [
+export const mockListaProductos: IProducto[] = [
     {
         id: 1,
         nombre: 'Goku',

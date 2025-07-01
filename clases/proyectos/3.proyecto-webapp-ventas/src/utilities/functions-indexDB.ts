@@ -33,7 +33,6 @@ export function abrirBase(
     });
 }
 
-
 // Eliminar completamente la base de datos
 export function eliminarBase(
     nombreBD: IConfiguracionDB['nombreBD']

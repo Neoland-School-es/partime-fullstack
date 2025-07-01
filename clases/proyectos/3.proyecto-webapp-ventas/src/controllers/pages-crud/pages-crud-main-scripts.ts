@@ -3,8 +3,8 @@
 // Funciones LocalStorage
 // import { crearDatoLS, leerDatoLS } from "./../../utilities/functions-localstorage";
 
-import { agregarProducto } from "../../slices/productosSlice";
-import store from "../../store/store";
+// import { cargarProductos } from "../../slices/productosSlice";
+// import store from "../../store/store";
 
 export function paginaFormularioCrearProducto() {
     console.log("Saludos desde formularioPaginaCrear")
@@ -22,7 +22,7 @@ export function paginaFormularioCrearProducto() {
             return
         }
 
-        store.dispatch(agregarProducto({ nombre: campoNombre.value, precio: 10 }));
+        // store.dispatch(cargarProductos({ nombre: campoNombre.value, precio: 10 }));
 
         alert("Elemento creado exitosamente");
         window.location.href = "../index.html";

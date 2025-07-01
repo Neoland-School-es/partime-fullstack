@@ -1,12 +1,19 @@
 // Datos Locales | Base de Datos | LocalStorage | Cookiess
-import { datoLocalListaUsuarios } from '../BBDD/DataBBDD';
+import { mockListaUsuarios } from '../mocks/DataBBDD';
 // Interfaces
 import type { IUsuario } from '../types/types';
+import { actualizarDato } from '../utilities/functions-indexDB';
 
 export let usuarioLogueado: IUsuario | null = null;
 
+export function inicializarDatosPruebaUsuariosIndexDB() {
+    for (let index = 0; index < mockListaUsuarios.length; index++) {
+        actualizarDato(mockListaUsuarios[index], "MY-BBDD", 1, "USUARIOS");
+    }
+}
+
 export function obtenerTodosLosUsuarios(): IUsuario[] {
-    return datoLocalListaUsuarios;
+    return mockListaUsuarios;
 }
 
 export function obtenerUsuarioPorID(id: number): IUsuario | undefined {

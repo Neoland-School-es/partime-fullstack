@@ -8,8 +8,12 @@ export function crearDatoLS(clave = "", valor: any = "") {
 }
 
 export function leerDatoLS(clave = "") {
-    const valor = JSON.parse(localStorage.getItem(clave) || "");
-
+    const dato = localStorage.getItem(clave)
+    if (!dato) {
+        return null;
+    }
+    
+    const valor = JSON.parse(dato);
     if (valor !== null) {
         return valor;
     } else {
