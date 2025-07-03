@@ -1,6 +1,6 @@
 ##  ¿Qué es Redux ?
 
-Redux es una herramienta moderna para gestionar el estado global de una aplicación web. Está diseñada para facilitar el trabajo con Redux, una librería popular que permite centralizar y controlar el estado de toda la aplicación.
+**Redux Toolkit** es la forma moderna y oficial de usar Redux, una librería para gestionar el estado global de tu aplicación web. Está diseñada para facilitar el trabajo con Redux, una librería popular que permite centralizar y controlar el estado de toda la aplicación.
 
 ---
 
@@ -205,3 +205,102 @@ export default store;
 
 
 ---
+
+## 🔧 Herramientas avanzadas de Redux Toolkit
+### 🧰 Acciones asincrónicas `createAsyncThunk()`:
+
+Un **thunk** es una función que puede hacer tareas asincrónicas antes de "despachar" una acción. 
+En Redux, los **thunks** permiten ejecutar lógica asincrónica (como leer un archivo, llamar a una API o consultar IndexedDB) _antes_ de modificar el estado.
+Por ejemplo: cargar productos desde una base de datos local (como IndexedDB) y luego guardarlos en el estado global.
+
+`createAsyncThunk` crea automáticamente:
+
+- Una acción inicial (`pending`)
+    
+- Una acción cuando la tarea termina bien (`fulfilled`)
+    
+- Una acción cuando hay error (`rejected`)
+    
+
+---
+
+### 🛠️ Ejemplo de uso con `createAsyncThunk`
+
+Supongamos que queremos **cargar productos desde IndexedDB**. Primero creamos el thunk:
+
+```js
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { obtenerProductosDesdeIndexedDB } from '../../db/indexedDB';
+
+export const inicializarProductos = createAsyncThunk(
+  'productos/inicializar', // nombre de la acción
+  async () => {
+    const productos = await obtenerProductosDesdeIndexedDB();
+    return productos;
+  }
+);
+```
+
+Luego, lo usamos dentro del slice:
+
+```js
+const productosSlice = createSlice({
+  name: 'productos',
+  initialState: [],
+  reducers: {
+    agregarProducto: (state, action) => {
+      state.push(action.payload);
+    }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(inicializarProductos.fulfilled, (state, action) => {
+      return action.payload;
+    });
+  }
+});
+```
+
+Y finalmente, lo usamos así en el código principal:
+
+```js
+import { store } from './store/store.js';
+import { inicializarProductos } from './slices/productosSlice.js';
+
+store.dispatch(inicializarProductos());
+```
+
+---
+
+## 📌 Buenas prácticas con `createAsyncThunk`
+
+- Siempre nombra bien tus acciones: `'productos/inicializar'`, `'usuarios/cargar'`, etc.
+    
+- Usa `extraReducers` para manejar los distintos estados: `pending`, `fulfilled`, `rejected`.
+    
+- Podés manejar estados como `loading`, `error`, etc., si tu `initialState` es un objeto más completo:
+    
+
+```js
+initialState: {
+  lista: [],
+  estadoAsync: () => 'saludos!', // 'loading', 'succeeded', 'failed'
+  error: null
+}
+```
+
+---
+## 📦 Herramientas incluidas en Redux Toolkit
+
+| Función / API                              | ¿Qué hace?                                                                                   | Cuándo usarla                                               |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **`createSlice()`**                        | Crea un slice con reducers y acciones automáticamente.                                       | Siempre que quieras manejar una parte del estado.           |
+| **`configureStore()`**                     | Crea el store global con middleware, DevTools y más por defecto.                             | En todos tus proyectos.                                     |
+| **`createAsyncThunk()`**                   | Crea acciones asincrónicas (ej: cargar desde IndexedDB o APIs).                              | Cuando necesitas lógica asíncrona.                          |
+| **`createReducer()`**                      | Crea reducers personalizados (cuando no usás `createSlice`).                                 | Casos avanzados o personalizados.                           |
+| **`createAction()`**                       | Crea acciones individuales sin `createSlice`.                                                | Si querés más control.                                      |
+| **`createSelector()`**                     | Crea selectores memorizados con rendimiento optimizado.                                      | Cuando tu estado es complejo o grande.                      |
+| **`createEntityAdapter()`**                | Provee funciones útiles para manejar colecciones de objetos (agregar, actualizar, eliminar). | Ideal para listas de objetos como productos, usuarios, etc. |
+| **`combineReducers()`**                    | Combina reducers como en Redux clásico.                                                      | Solo si tenés una estructura más personalizada.             |
+| **`createListenerMiddleware()`**           | Permite escuchar acciones y ejecutar efectos secundarios (side effects).                     | Alternativa moderna a `redux-saga`.                         |
+| **`serializableStateInvariantMiddleware`** | Middleware para advertencias si el estado tiene datos no serializables.                      | Se incluye por defecto. Útil en debugging.                  |
+| **`getDefaultMiddleware()`**               | Devuelve los middleware predeterminados para agregar o personalizar los tuyos.               | Si querés agregar middleware propio.                        |

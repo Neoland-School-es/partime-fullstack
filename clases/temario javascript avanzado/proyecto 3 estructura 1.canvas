@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"c998636e6953e628","type":"text","text":"# MAIN.TS | APP.TS | SCRIPTS.TS | INDEX.TS\n\n## Archivo nucleo de todos los scripts","x":120,"y":-85,"width":411,"height":605,"color":"3"},
+		{"id":"a4e82a8134942985","type":"text","text":"# Enrutador | router.ts","x":600,"y":-85,"width":411,"height":605,"color":"3"},
+		{"id":"3c5561c8f1b79768","type":"text","text":"# Controlador Inicio | Home","x":1240,"y":-400,"width":440,"height":100,"color":"6"},
+		{"id":"1c1ce28a74016f82","type":"text","text":"# Controlador carrito | shoppin cart","x":1240,"y":-270,"width":440,"height":100,"color":"6"},
+		{"id":"7a9b6fff9e3c7013","type":"text","text":"# Controlador login | formulario login","x":1240,"y":-85,"width":440,"height":100,"color":"6"},
+		{"id":"a1dea1b880955362","type":"text","text":"# Controlador dashboard | Panel de control","x":1240,"y":90,"width":440,"height":100,"color":"6"},
+		{"id":"ee4db3614bfedd46","type":"text","text":"# Controlador profile | perfil","x":1240,"y":210,"width":440,"height":100,"color":"6"},
+		{"id":"00d871c6d0376367","type":"text","text":"# Modelo Productos","x":2125,"y":-65,"width":355,"height":80,"color":"1"},
+		{"id":"b5b3ba2fd15384af","type":"text","text":"# Modelo Carrito","x":2125,"y":60,"width":355,"height":80,"color":"1"},
+		{"id":"167acacaa68bf4b9","type":"text","text":"# Modelo Usuario","x":2125,"y":-210,"width":355,"height":80,"color":"1"},
+		{"id":"b355ce9bd791ed6f","type":"text","text":"# Storage IndexDB\n# Storage LocalStorage\n# Storage Cookies\n\n","x":3160,"y":-185,"width":440,"height":200,"color":"4"},
+		{"id":"9cfa0cb0016d91a6","type":"text","text":"# HOME | INDEX.HTML","x":-800,"y":-385,"width":440,"height":60,"color":"5"},
+		{"id":"3903bc4bdf574f02","type":"text","text":"# LOGIN | FORM-LOGIN.HTML","x":-800,"y":-110,"width":440,"height":80,"color":"4"},
+		{"id":"6c10205fe395e811","type":"text","text":"# CARRITO | SHOPPIN-CART.HTML","x":-880,"y":-295,"width":520,"height":100,"color":"5"},
+		{"id":"587fb2b2eca170af","type":"text","text":"# PANEL DE CONTROL | DASHBOARD.HTML","x":-800,"y":65,"width":440,"height":100,"color":"1"},
+		{"id":"17b51d230f22353d","type":"text","text":"# PERFIL USUARIO | PROFILE.HTML","x":-800,"y":185,"width":440,"height":100,"color":"1"},
+		{"id":"ff7406350334d2d0","x":698,"y":-1240,"width":393,"height":162,"color":"5","type":"text","text":"# STORE REDUX"},
+		{"id":"8977b94732263f7d","type":"text","text":"# SLICE CARRITO\n\n# cargarProductosComprados\n# finalizarCompra\n## totalProductosComprados\n## cantidadProductos \n## eliminarProductoComprado\n# incrementarProducto\n# decrementarProducto","x":1220,"y":-880,"width":480,"height":372,"color":"5"},
+		{"id":"3a56644baa210fae","type":"text","text":"# SLICE USUARIO","x":680,"y":-880,"width":411,"height":372,"color":"5"},
+		{"id":"beb0fd778b01f08f","type":"text","text":"# SLICE PRODUCTOS\n","x":120,"y":-880,"width":411,"height":372,"color":"5"}
+	],
+	"edges":[]
+}

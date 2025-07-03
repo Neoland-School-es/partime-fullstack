@@ -10,7 +10,8 @@
 		{"id":"4b142ae0d2a7ca2b","type":"text","text":"SLICES USUARIOS","x":-305,"y":-630,"width":250,"height":60},
 		{"id":"140184c7447345bf","type":"text","text":"SLICES CARRITO","x":-305,"y":-540,"width":250,"height":60},
 		{"id":"e81ddf2006cc44c8","type":"text","text":"STORE","x":-380,"y":-400,"width":250,"height":50},
-		{"id":"0fca7c500b819b26","type":"text","text":"productos = [ {pID: 1, pnombre:\"a\"}, {pID: 2, pnombre:\"b\"}, {pID: 3, pnombre:\"C\"}, ]","x":-130,"y":-140,"width":210,"height":150}
+		{"id":"0fca7c500b819b26","type":"text","text":"productos = [ {pID: 1, pnombre:\"a\"}, {pID: 2, pnombre:\"b\"}, {pID: 3, pnombre:\"C\"}, ]","x":-130,"y":-140,"width":210,"height":150},
+		{"id":"6ec6eae8b69032f8","x":-1360,"y":-298,"width":400,"height":418,"type":"text","text":"MIDDLEWARE"}
 	],
 	"edges":[
 		{"id":"03f288d8bede3468","fromNode":"33b1e5621884c1dc","fromSide":"top","toNode":"5f7b855356eaef6c","toSide":"bottom","fromEnd":"arrow","color":"1","label":"productos = [\n{pID: 1, pnombre:\"a\"},\n{pID: 2, pnombre:\"b\"},\n{pID: 3, pnombre:\"C\"},\n]"},
