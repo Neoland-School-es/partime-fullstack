@@ -1,89 +1,93 @@
+import { logout } from '../../slices/userSlice';
 import store from './../../store/store';
-// import store from './../../slices/carritoSlice';
 
-export function navBar() {
-    const usuarioAuth: boolean = true
+export function inicializarBarraNavegacion() {
+    const linksRutas = {
+        rutasDefault: [
+            {
+                nombre: 'inicio',
+                url: '/index.html'
+            },
+            {
+                nombre: 'carrito ' + store.getState().carritoSlice.cantidadCarritoProductos,
+                url: '/pages/page-shopping-cart.html'
+            }
+        ],
+        rutasPublicas: [
+            {
+                nombre: 'login',
+                url: '/pages/page-formulario-login.html'
+            }
+        ],
+        rutasPrivadas: [
+            {
+                nombre: 'panel de control',
+                url: '/pages/page-dashboard.html'
+            },
+            {
+                nombre: 'crear productos',
+                url: '/pages/page-create-product.html'
+            },
+            {
+                nombre: 'eliminar productos',
+                url: '/pages/page-remove-product.html'
+            },
+            {
+                nombre: 'actualizar productos',
+                url: '/pages/page-update-product.html'
+            },
+            {
+                nombre: 'cerrar session',
+                url: '#'
+            },
+        ],
+    };
 
-    const listaLinksDefault = [
-        {
-            name: 'inicio',
-            url: '/index.html'
-        },
-        {
-            name: 'carrito ' + store.getState().carrito.cantidad,
-            url: '/pages/page-shopping-cart.html'
-        }
-    ];
-
-    const listaLinksNoUsuario = [
-        {
-            name: 'login',
-            url: '/pages/page-formulario-login.html'
-        }
-    ];
-
-    const listaLinksUsuario = [
-        {
-            name: 'panel de control',
-            url: '/pages/page-dashboard.html'
-        },
-        {
-            name: 'crear productos',
-            url: '/pages/page-create-product.html'
-        },
-        {
-            name: 'eliminar productos',
-            url: '/pages/page-remove-product.html'
-        },
-        {
-            name: 'actualizar productos',
-            url: '/pages/page-update-product.html'
-        },
-    ];
-
-    const contenedorNavBar = document.querySelector('#navbarNav ul');
-
-    for (let index = 0; index < listaLinksDefault.length; index++) {
-        const itemNavBar = document.createElement('li')
-        itemNavBar.className = 'nav-item'
-
-        const linkNavBar = document.createElement('a')
-        linkNavBar.className = 'nav-link active';
-        linkNavBar.textContent = listaLinksDefault[index].name;
-        linkNavBar.href = listaLinksDefault[index].url;
-
-        itemNavBar.appendChild(linkNavBar)
-
-        contenedorNavBar?.appendChild(itemNavBar)
+    const contenedorLinks = document.querySelector<HTMLElement>('#BarraNavegacion ul');
+    if (!contenedorLinks) {
+        return
+    } else {
+        contenedorLinks.innerHTML = '';
     }
 
-    if (usuarioAuth) {
-        for (let index = 0; index < listaLinksUsuario.length; index++) {
-            const itemNavBar = document.createElement('li')
-            itemNavBar.className = 'nav-item'
+    generarLink(linksRutas.rutasDefault, contenedorLinks);
 
-            const linkNavBar = document.createElement('a')
-            linkNavBar.className = 'nav-link active';
-            linkNavBar.textContent = listaLinksUsuario[index].name;
-            linkNavBar.href = listaLinksUsuario[index].url;
-
-            itemNavBar.appendChild(linkNavBar)
-
-            contenedorNavBar?.appendChild(itemNavBar)
-        }
+    if (!store.getState().usuario.isAuthenticated) {
+        generarLink(linksRutas.rutasPublicas, contenedorLinks);
     } else {
-        for (let index = 0; index < listaLinksNoUsuario.length; index++) {
-            const itemNavBar = document.createElement('li')
-            itemNavBar.className = 'nav-item'
+        generarLink(linksRutas.rutasPrivadas, contenedorLinks);
+    }
+}
 
-            const linkNavBar = document.createElement('a')
-            linkNavBar.className = 'nav-link active';
-            linkNavBar.textContent = listaLinksNoUsuario[index].name;
-            linkNavBar.href = listaLinksNoUsuario[index].url;
+function generarLink(pLista = [{ nombre: "", url: "" }], contenedor: HTMLElement | null = null) {
+    if (!contenedor) {
+        return
+    }
 
-            itemNavBar.appendChild(linkNavBar)
+    for (let index = 0; index < pLista.length; index++) {
+        const itemList = document.createElement('li');
+        itemList.className = 'nav-item';
 
-            contenedorNavBar?.appendChild(itemNavBar)
+        const itemLink = document.createElement('a');
+        itemLink.textContent = pLista[index].nombre;
+        itemLink.href = pLista[index].url;
+
+        if (pLista[index].nombre === "login") {
+            itemLink.className = 'nav-link bg-success btn px-3';
+        } else if (pLista[index].nombre === "cerrar session") {
+            itemLink.className = 'nav-link bg-danger btn px-3';
+            itemLink.addEventListener("click", () => {
+                store.dispatch(logout())
+                window.location.href = '/';
+            })
+        } else if (pLista[index].nombre === 'carrito ' + store.getState().carritoSlice.cantidadCarritoProductos) {
+            itemLink.className = 'nav-link active';
+            itemLink.title = 'total: $' + store.getState().carritoSlice.totalCarritoProductos.toString()
+        } else {
+            itemLink.className = 'nav-link active';
         }
+
+        itemList.appendChild(itemLink);
+        contenedor.appendChild(itemList);
     }
 }

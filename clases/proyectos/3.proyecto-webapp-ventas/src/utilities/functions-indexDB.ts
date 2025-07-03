@@ -40,9 +40,9 @@ export function eliminarBase(
     return new Promise((resolve, reject) => {
         const solicitud = indexedDB.deleteDatabase(nombreBD);
 
-        solicitud.onsuccess = () => resolve();
+        solicitud.onsuccess = () => resolve(console.warn("Todos los datos de IndexDB fueron eliminados."));
         solicitud.onerror = () => reject(solicitud.error);
-        solicitud.onblocked = () => console.warn('🔒 Cierra otras pestañas que usen la base de datos.');
+        solicitud.onblocked = () => console.warn('Cierra otras pestañas que usen la base de datos.');
     });
 }
 

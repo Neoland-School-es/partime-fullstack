@@ -2,67 +2,69 @@
 <html lang="es">
 
 <head>
+    <!-- Metadatos principales de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebApp Ventas</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./../src/styles/style.css">
+    <!-- Iconos y configuración para PWA -->
+    <meta name="theme-color" content="#fff" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="64x64" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#fff" />
 
-    <!-- Scripts -->
-    <script type="module" defer src="./../src/main.ts"></script>
+    <!-- Estilos principales de la página -->
+    <link rel="stylesheet" href="/src/styles/style.css">
+
+    <!-- Script principal en TypeScript (módulo diferido) -->
+    <script type="module" defer src="/src/main.ts"></script>
 </head>
 
 <body id="PageFormLogin">
-    <!-- Contenido Principal -->
-    <div class="container-fluid bg-dark">
-        <div class="row gap-5">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-                <div class="container">
-                    <a class="navbar-brand" href="/index.html">
-                        <header>
-                            <h1 class="h4 mb-0">NEOLAND Z</h1>
-                            <h2 class="h6 mb-0">Aplicación Web Stock Dragon Ball Z</h2>
-                        </header>
-                    </a>
+    <nav id="BarraNavegacion" class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <header>
+                    <h1 class="h4 mb-0">NEOLAND Z</h1>
+                    <h2 class="h6 mb-0">Aplicación Web Stock Dragon Ball Z</h2>
+                </header>
+            </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto gap-1">
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <main class="col d-flex flex-column gap-5">
-                <section class="row justify-content-center">
-                    <div class="col col-md-8 bg-white p-0">
-                        <header class="bg-danger d-flex justify-content-between align-items-center p-2">
-                            <h2 class="text-white">Inicio de sesion</h2>
-                        </header>
-                        <form id="formLogin" class="d-flex flex-column p-4 gap-4">
-                            <input type="text" class="form-control" name="name" id="name" value=""
-                                placeholder="nombre usuario">
-                            <input type="text" class="form-control" name="password" id="password"
-                                placeholder="contraseña">
-
-                            <div>
-                                <button type="submit" class="btn btn-primary">iniciar sesión</button>
-                                <button type="reset" class="btn btn-danger">limpiar</button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-            </main>
-
-            <footer class="bg-danger py-5">
-                <address class="h2 text-white text-center">Pagina de Dragon Ball</address>
-            </footer>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto gap-1">
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+
+    <main class="col d-flex flex-column bg-dark">
+        <div class="row justify-content-center gap-5 p-5 m-0">
+            <section class="col col-md-9 bg-secondary d-flex flex-column gap-4 p-4 rounded">
+                <header class="d-flex justify-content-between align-items-center p-2">
+                    <h2 class="text-white">Inicio de sesion</h2>
+                </header>
+
+                <form id="formLogin" class="d-flex flex-column p-4 gap-4">
+                    <input type="text" class="form-control" name="name" id="name" value="" placeholder="nombre usuario">
+                    <input type="text" class="form-control" name="password" id="password" placeholder="contraseña">
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">iniciar sesión</button>
+                        <button type="reset" class="btn btn-danger">limpiar</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-black py-5">
+        <address class="h2 text-white text-center">Página de Dragon Ball</address>
+    </footer>
 </body>
 
 </html>

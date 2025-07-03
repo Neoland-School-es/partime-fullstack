@@ -1,49 +1,33 @@
+import { IProducto } from "../types/types";
 import { crearDatoLS, leerDatoLS } from "../utilities/functions-localstorage";
+import { obtenerProductosBBDDLS } from "./productosLS.model";
 
 export function obtenerProductoCarritoCache() {
-    return leerDatoLS("lista-cache-carrito-productos") || []
+    const listaIDsProductosCarritoLS = leerDatoLS("CACHE-PRODUCTOS-CARRITO") || []
+    if (listaIDsProductosCarritoLS.length === 0) {
+        return []
+    }
+    const listaProductosBBDDLS = obtenerProductosBBDDLS();
+
+    let listaAuxiliar: IProducto[] = []
+
+    for (let i = 0; i < listaProductosBBDDLS.length; i++) {
+        for (let j = 0; j < listaIDsProductosCarritoLS.length; j++) {
+            if (listaProductosBBDDLS[i].id === listaIDsProductosCarritoLS[j]) {
+                listaAuxiliar.push(listaProductosBBDDLS[i])
+            }
+        }
+    }
+    
+    return (listaAuxiliar || []) as IProducto[];
 }
+
 
 export function moverProductoCarrito(id: number) {
-    const valorActualLS = leerDatoLS("lista-cache-carrito-productos") || []
-
-    crearDatoLS("lista-cache-carrito-productos", [id, ...valorActualLS])
+    const valorActualLS = leerDatoLS("CACHE-PRODUCTOS-CARRITO");
+    crearDatoLS("CACHE-PRODUCTOS-CARRITO", [id, ...valorActualLS]);
 }
 
-
-
-// id: 1,
-// nombre: "",
-// edad: 10,
-// variosDatos: { altura: 170, peso: 70 },
-// cualidades: ["guitarra", "gimnasia"]
-
-// function actualizarDato(
-//     id: 1,
-//     variosDatos: { altura: 170, peso: 70 },
-// ) {
-//     // codigo..:
-// }
-
-// function crearDato(
-//     variosDatos: { altura: 170, peso: 70 },
-// ) {
-//     // codigo..:
-// }
-
-// function eliminarDato(
-//     id: 1,
-// ) {
-//     // codigo..:
-// }
-
-
-// function obtener1Dato(
-//     id: 1, lista: []
-// ) {
-//     // codigo..:
-// }
-
-// function obtenerTodos() {
-//     // codigo..:
-// }
+export function limpiarProductosCarrito() {
+    crearDatoLS("CACHE-PRODUCTOS-CARRITO", []);
+}

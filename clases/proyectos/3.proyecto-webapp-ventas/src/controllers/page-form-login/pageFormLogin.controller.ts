@@ -1,12 +1,13 @@
 import { validarUsuario } from '../../models/usuario.model';
 import store from '../../store/store.js';
-import { iniciarLogin, loginExitoso, loginFallido } from '../../slices/userSlice';
+import { validarDatosLogin } from '../../slices/userSlice';
 
 
 export function formularioLoginController() {
+    console.log('Página: Formulario login (#PageFormLogin)');
     const formulario = document.querySelector<HTMLFormElement>('#formLogin');
     if (!formulario) {
-        alert('No existe el formulario');
+        console.warn('No existe el formulario');
         return;
     }
 
@@ -20,19 +21,17 @@ export function formularioLoginController() {
             return;
         }
 
-        store.dispatch(iniciarLogin())
+        store.dispatch(validarDatosLogin({ nombre: inputNombre.value, contrasenia: inputContrasenia.value }));
 
-        const usuarioEncontrado = validarUsuario(inputNombre.value, inputContrasenia.value);
+        console.log("datos finalizados")
 
-        if (usuarioEncontrado) {
-            store.dispatch(loginExitoso(usuarioEncontrado));
+        if (store.getState().usuario.usuario) {
             alert('Login exitoso');
-            window.location.href = './page-dashboard.html';
+            window.location.href = '/pages/page-dashboard.html';
         }
         else {
-            store.dispatch(loginFallido());
             alert('Usuario no encontrado');
-            window.location.href = './';
+            window.location.href = '/';
         }
     });
 }

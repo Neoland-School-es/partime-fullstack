@@ -34,6 +34,7 @@ export function crearCookie(nombre = "", valor = "", dias = 0) {
 
 export function eliminarCookie(nombre = "") {
     document.cookie = nombre + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    console.warn("Todos los datos de la Cookie fueron eliminados.");
 }
 
 export function mostrarUnaCookie(nombre = "") {

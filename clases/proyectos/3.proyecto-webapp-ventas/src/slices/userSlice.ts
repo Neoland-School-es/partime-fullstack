@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import type { IUsuario } from "../types/types";
+import { cerrarSesion, obtenerUsuarioCookie, validarUsuario } from "../models/usuario.model";
 
-// Definimos el tipo para el estado del usuario
 interface UsuarioState {
     usuario: IUsuario | null;
     isAuthenticated: boolean;
@@ -11,13 +11,8 @@ interface UsuarioState {
 }
 
 const initialState: UsuarioState = {
-    usuario: {
-        id: 1,
-        nombre: 'alfredo',
-        contrasenia: '1234',
-        productosID: [1, 3],
-    },
-    isAuthenticated: true,
+    usuario: null,
+    isAuthenticated: false,
     isLoading: false
 };
 
@@ -25,38 +20,28 @@ const usuarioSlice = createSlice({
     name: "usuario",
     initialState: initialState,
     reducers: {
-        iniciarLogin(state) {
+        cargarUsuarioCookie(state) {
+            state.usuario = obtenerUsuarioCookie()
+            state.isAuthenticated = state.usuario ? true : false
             state.isLoading = true;
         },
-        loginExitoso(state, action: PayloadAction<IUsuario>) {
-            state.usuario = action.payload;
-            state.isAuthenticated = true;
-            state.isLoading = false;
-        },
-        loginFallido(state) {
-            state.usuario = null;
-            state.isAuthenticated = false;
-            state.isLoading = false;
+        validarDatosLogin(state, action: PayloadAction<{ nombre: IUsuario["nombre"]; contrasenia: IUsuario["contrasenia"] }>) {
+            state.usuario = validarUsuario(action.payload.nombre, action.payload.contrasenia)
+            state.isAuthenticated = state.usuario ? true : false
+            state.isLoading = true;
         },
         logout(state) {
+            cerrarSesion()
             state.usuario = null;
             state.isAuthenticated = false;
             state.isLoading = false;
-        },
-        actualizarUsuario(state, action: PayloadAction<Partial<IUsuario>>) {
-            if (state.usuario) {
-                state.usuario = { ...state.usuario, ...action.payload };
-            }
         }
     }
 });
 
-// Exportar las acciones y el reducer
 export const {
-    iniciarLogin,
-    loginExitoso,
-    loginFallido,
-    actualizarUsuario,
+    cargarUsuarioCookie,
+    validarDatosLogin,
     logout
 } = usuarioSlice.actions;
 

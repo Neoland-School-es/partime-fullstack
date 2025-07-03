@@ -3,11 +3,20 @@
 // Funciones LocalStorage
 // import { crearDatoLS, leerDatoLS } from "./../../utilities/functions-localstorage";
 
+import store from "../../store/store";
+
 // import { cargarProductos } from "../../slices/productosSlice";
 // import store from "../../store/store";
 
 export function paginaFormularioCrearProducto() {
     console.log("Saludos desde formularioPaginaCrear")
+    if (!store.getState().usuario.isAuthenticated) {
+        const contenedor = document.querySelector("#PageCreateProduct");
+        if (!contenedor) {
+            return
+        }
+        contenedor.innerHTML = ""
+    }
 
     const formCrear = document.querySelector("#addTaskPage form");
     if (!formCrear) {

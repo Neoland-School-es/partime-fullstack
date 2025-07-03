@@ -15,9 +15,6 @@ interface RoutesConfig {
     [key: string]: PageController;
 }
 
-// O alternativamente usando type:
-// type RoutesConfig = Record<PageId, PageController>;
-
 // Mapeo de IDs a controladores
 const rutas: RoutesConfig = {
     'PageHome': pageHomeController,
@@ -30,55 +27,70 @@ const rutas: RoutesConfig = {
 };
 
 // Rutas públicas (accesibles sin autenticación)
-const rutasPublicas: PageId[] = [
+const rutasDefault: PageId[] = [
     'PageHome',
     'PageShoppingCard',
+];
+const rutasPublicas: PageId[] = [
     'PageFormLogin',
-    'PageCreateProduct',
-    'PageUpdateProduct',
-    'PageRemoveProduct',
 ];
 
 // Rutas privadas (requieren autenticación)
 const rutasPrivadas: PageId[] = [
+    'PageCreateProduct',
     'PageDashboard',
+    'PageUpdateProduct',
+    'PageRemoveProduct',
 ];
 
 export function enrutador(): void {
-    // Buscar qué página está activa por su ID
+    // Buscar página activa por su ID
     let paginaActiva: PageId | null = null;
 
-    for (const idPagina in rutas) {
-        if (document.querySelector(`#${idPagina}`)) {
-            paginaActiva = idPagina as PageId;
+    for (const ruta in rutas) {
+        if (document.querySelector(`#${ruta}`)) {
+            paginaActiva = ruta as PageId;
             break;
         }
     }
 
-    // Si no se encuentra ninguna página, salir
+    // Si no se encuentra ninguna página, mostrar página de error
     if (!paginaActiva) {
+        window.location.href = "/404.html";
         console.warn('No se encontró ninguna página activa');
         return;
     }
 
-    // Verificar si es una ruta pública
+    const usuarioAutenticado = store.getState().usuario.isAuthenticated;
+
     if (rutasPublicas.includes(paginaActiva)) {
-        rutas[paginaActiva]();
+        rutas[paginaActiva](); // Ejecutar página pública
         return;
     }
 
-    // Verificar si es una ruta privada
     if (rutasPrivadas.includes(paginaActiva)) {
-
-        if (!store.getState().usuario.isAuthenticated) {
-            alert("Acceso denegado. Debes iniciar sesión.");
-            return;
+        if (usuarioAutenticado) {
+            rutas[paginaActiva](); // Ejecutar página privada
+        } else {
+            console.warn("Acceso denegado. Debes iniciar sesión.");
+            const contenedor = document.querySelector("main section");
+            if (!contenedor) {
+                return
+            }
+            contenedor.innerHTML = "<p class='text-warning'>acceso denegado</p>"
+            alert("Debes iniciar sesión para acceder a esta página.");
+            // window.location.href = "/login.html"; // o "/PageFormLogin"
         }
-
-        rutas[paginaActiva]();
         return;
     }
 
-    // Si llegamos aquí, la ruta no está configurada
-    console.warn(`Ruta no configurada para el ID: ${paginaActiva}`);
+    // Rutas por defecto (ej: Home o ShoppingCard que no requieren validación)
+    if (rutasDefault.includes(paginaActiva)) {
+        rutas[paginaActiva](); // Ejecutar ruta por defecto
+        return;
+    }
+
+    // Ruta desconocida
+    console.warn(`Ruta no reconocida para el ID: ${paginaActiva}`);
+    window.location.href = "/404.html";
 }

@@ -41,5 +41,5 @@ export function eliminarDatoLS(clave = "") {
 
 export function limpiarLocalStorage() {
     localStorage.clear();
-    alert("Todos los datos del localStorage fueron eliminados");
+    console.warn("Todos los datos del LocalStorage fueron eliminados.");
 }

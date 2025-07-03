@@ -2,59 +2,61 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { IProducto } from "../types/types";
 
 import {
-    obtenerProductosBBDD,
-    crearProductoBBDD,
-    actualizarProductoBBDD,
-    eliminarProductoBBDD
-} from "../models/productos.model";
+    obtenerProductosBBDDIndexDB,
+    crearProductoBBDDIndexDB,
+    actualizarProductoBBDDIndexDB,
+    eliminarProductoBBDDIndexDB
+} from "../models/productosIndexDB.model";
 
 import {
-    obtenerProductosLS,
-    crearProductoLS,
-    actualizarProductoLS,
-    eliminarProductoLS,
-} from "../models/productos.model";
+    obtenerProductosBBDDLS,
+    crearProductoBBDDLS,
+    actualizarProductoBBDDLS,
+    eliminarProductoBBDDLS
+} from "../models/productosLS.model";
 
 type EstadoProductos = {
-    productos: IProducto[];
+    productosBBDDIndexDB: IProducto[];
+    productosBBDDLS: IProducto[];
     cargando: boolean;
     error: string | null;
 };
 
 const estadoInicial: EstadoProductos = {
-    productos: [],
+    productosBBDDIndexDB: [],
+    productosBBDDLS: [],
     cargando: false,
     error: null
 };
 
-const cargarProductos = createAsyncThunk(
-    "productos/cargarProductos",
+const cargarProductosBBDDIndexDB = createAsyncThunk(
+    "productos/cargarProductosBBDDIndexDB",
     async () => {
-        const productos = await obtenerProductosBBDD();
+        const productos = await obtenerProductosBBDDIndexDB();
         return productos;
     }
 );
 
-const agregarProductoBBDD = createAsyncThunk(
-    "productos/agregarProductoBBDD",
+const agregarProductoBBDDIndexDB = createAsyncThunk(
+    "productos/agregarProductoBBDDIndexDB",
     async (datos: { nombre: string; precio: number }) => {
-        const productosActualizados = await crearProductoBBDD(datos.nombre, datos.precio);
+        const productosActualizados = await crearProductoBBDDIndexDB(datos.nombre, datos.precio);
         return productosActualizados;
     }
 );
 
-const editarProductoBBDD = createAsyncThunk(
-    "productos/editarProductoBBDD",
+const editarProductoBBDDIndexDB = createAsyncThunk(
+    "productos/editarProductoBBDDIndexDB",
     async (producto: IProducto) => {
-        const productosActualizados = await actualizarProductoBBDD(producto);
+        const productosActualizados = await actualizarProductoBBDDIndexDB(producto);
         return productosActualizados;
     }
 );
 
-const borrarProductoBBDD = createAsyncThunk(
-    "productos/borrarProductoBBDD",
+const borrarProductoBBDDIndexDB = createAsyncThunk(
+    "productos/borrarProductoBBDDIndexDB",
     async (id: number) => {
-        const productosFiltrados = await eliminarProductoBBDD(id);
+        const productosFiltrados = await eliminarProductoBBDDIndexDB(id);
         return productosFiltrados;
     }
 );
@@ -63,78 +65,76 @@ const productosSlice = createSlice({
     name: "productos",
     initialState: estadoInicial,
     reducers: {
-        cargarProductosLocal: (state) => {
-            const productos = obtenerProductosLS();
-            state.productos = productos;
+        cargarProductosBBDDLocalStorage: (state) => {
+            const productos = obtenerProductosBBDDLS();
+            state.productosBBDDLS = productos;
             state.error = null;
         },
-        agregarProductoLocal: (state, action: PayloadAction<{ nombre: string; precio: number }>) => {
-            const productos = crearProductoLS(action.payload.nombre, action.payload.precio);
-            state.productos = productos;
+        agregarProductoLocalLocalStorage: (state, action: PayloadAction<{ nombre: string; precio: number }>) => {
+            const productos = crearProductoBBDDLS(action.payload.nombre, action.payload.precio);
+            state.productosBBDDLS = productos;
             state.error = null;
         },
-        editarProductoLocal: (state, action: PayloadAction<IProducto>) => {
-            const productos = actualizarProductoLS(action.payload);
-            state.productos = productos;
+        editarProductoLocalBBDDLocalStorage: (state, action: PayloadAction<IProducto>) => {
+            const productos = actualizarProductoBBDDLS(action.payload);
+            state.productosBBDDLS = productos;
             state.error = null;
         },
-        borrarProductoLocal: (state, action: PayloadAction<number>) => {
-            const productos = eliminarProductoLS(action.payload);
-            state.productos = productos;
+        borrarProductoLocalBBDDLocalStorage: (state, action: PayloadAction<number>) => {
+            const productos = eliminarProductoBBDDLS(action.payload);
+            state.productosBBDDLS = productos;
             state.error = null;
         }
     },
-
     extraReducers: (builder) => {
-        builder.addCase(cargarProductos.pending, (state) => {
+        builder.addCase(cargarProductosBBDDIndexDB.pending, (state) => {
             state.cargando = true;
             state.error = null;
         });
-        builder.addCase(cargarProductos.fulfilled, (state, action) => {
+        builder.addCase(cargarProductosBBDDIndexDB.fulfilled, (state, action) => {
             state.cargando = false;
-            state.productos = action.payload;
+            state.productosBBDDIndexDB = action.payload;
         });
-        builder.addCase(cargarProductos.rejected, (state) => {
+        builder.addCase(cargarProductosBBDDIndexDB.rejected, (state) => {
             state.cargando = false;
             state.error = "Error al traer productos de BBDD";
         });
-
-        builder.addCase(agregarProductoBBDD.pending, (state) => {
+        builder.addCase(agregarProductoBBDDIndexDB.pending, (state) => {
             state.cargando = true;
             state.error = null;
         });
-        builder.addCase(agregarProductoBBDD.fulfilled, (state, action) => {
+        builder.addCase(agregarProductoBBDDIndexDB.fulfilled, (state, _action) => {
             state.cargando = false;
-            state.productos = action.payload;
+            // state.productosBBDDIndexDB = action.payload;
         });
-        builder.addCase(agregarProductoBBDD.rejected, (state) => {
+        builder.addCase(agregarProductoBBDDIndexDB.rejected, (state) => {
             state.cargando = false;
             state.error = "Error al agregar producto en BBDD";
         });
-        
-        builder.addCase(editarProductoBBDD.pending, (state) => {
+
+        builder.addCase(editarProductoBBDDIndexDB.pending, (state) => {
             state.cargando = true;
             state.error = null;
         });
-        builder.addCase(editarProductoBBDD.fulfilled, (state, action) => {
+        builder.addCase(editarProductoBBDDIndexDB.fulfilled, (state, _action) => {
             state.cargando = false;
-            state.productos = action.payload;
+            // state.productosBBDDIndexDB = action.payload;
         });
-        builder.addCase(editarProductoBBDD.rejected, (state) => {
+        builder.addCase(editarProductoBBDDIndexDB.rejected, (state) => {
             state.cargando = false;
             state.error = "Error al editar producto en BBDD";
         });
 
-        
-        builder.addCase(borrarProductoBBDD.pending, (state) => {
+
+        builder.addCase(borrarProductoBBDDIndexDB.pending, (state) => {
             state.cargando = true;
             state.error = null;
         });
-        builder.addCase(borrarProductoBBDD.fulfilled, (state, action) => {
+        builder.addCase(borrarProductoBBDDIndexDB.fulfilled, (state, _action) => {
             state.cargando = false;
-            state.productos = action.payload;
+            // state.productos = action.payload;
         });
-        builder.addCase(borrarProductoBBDD.rejected, (state) => {
+        builder.addCase(borrarProductoBBDDIndexDB.rejected, (state) => {
             state.cargando = false;
             state.error = "Error al borrar producto en BBDD";
         });
@@ -145,15 +145,15 @@ const productosSlice = createSlice({
 export default productosSlice.reducer;
 
 export const {
-    cargarProductosLocal,
-    agregarProductoLocal,
-    editarProductoLocal,
-    borrarProductoLocal
+    cargarProductosBBDDLocalStorage,
+    agregarProductoLocalLocalStorage,
+    editarProductoLocalBBDDLocalStorage,
+    borrarProductoLocalBBDDLocalStorage
 } = productosSlice.actions;
 
 export {
-    cargarProductos,
-    agregarProductoBBDD,
-    editarProductoBBDD,
-    borrarProductoBBDD
+    cargarProductosBBDDIndexDB,
+    agregarProductoBBDDIndexDB,
+    editarProductoBBDDIndexDB,
+    borrarProductoBBDDIndexDB
 };
