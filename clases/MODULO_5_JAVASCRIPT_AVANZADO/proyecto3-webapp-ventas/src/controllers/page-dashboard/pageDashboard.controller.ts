@@ -2,7 +2,7 @@ import store from "../../store/store"
 import { imprimirLista } from "./fnImprimirProductos";
 
 export function dashboardController() {
-    console.log('Página: Carrio de compras (#PageDashboard)');
+    console.log('Página: panel de control (#PageDashboard)');
 
     if (!store.getState().usuario.isAuthenticated) {
         return

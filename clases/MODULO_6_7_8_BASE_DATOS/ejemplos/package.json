@@ -10,6 +10,9 @@
     "dev1b": "nodemon src/ejemplo-fileSystem/fs-asincrono.js",
     "dev2": "nodemon src/ejemplo-servidor-http/server.js",
     "dev3": "nodemon src/ejemplo-servidor-express/server.js",
+    "dev4": "nodemon src/ejemplo-servidor-http-metodos/server.js",
+    "dev4b": "nodemon src/ejemplo-servidor-http-metodos2/server.js",
+    "dev5": "nodemon src/ejemplo-servidor-express-metodos/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +23,8 @@
     "nodemon": "^3.1.10"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.2"
   }
 }

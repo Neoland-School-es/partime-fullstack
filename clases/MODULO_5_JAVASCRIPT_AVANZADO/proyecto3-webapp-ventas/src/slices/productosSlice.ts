@@ -39,7 +39,7 @@ const cargarProductosBBDDIndexDB = createAsyncThunk(
 
 const agregarProductoBBDDIndexDB = createAsyncThunk(
     "productos/agregarProductoBBDDIndexDB",
-    async (datos: { nombre: string; precio: number }) => {
+    async (datos: { nombre: IProducto["nombre"]; precio: IProducto["precio"] }) => {
         const productosActualizados = await crearProductoBBDDIndexDB(datos.nombre, datos.precio);
         return productosActualizados;
     }

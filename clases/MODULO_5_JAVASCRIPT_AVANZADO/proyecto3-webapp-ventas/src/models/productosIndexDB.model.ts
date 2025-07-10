@@ -18,7 +18,7 @@ export async function obtenerProductosBBDDIndexDB(): Promise<IProducto[]> {
 
 export async function crearProductoBBDDIndexDB(nombre: IProducto["nombre"], precio: IProducto["precio"] = 1): Promise<void> {
     if (nombre.trim() === '' || precio <= 0 || precio >= 1000) {
-    throw new Error("Error al crear producto.");
+        throw new Error("Error al crear producto.");
     }
 
     const nuevoProducto: IProducto = {
@@ -33,7 +33,7 @@ export async function crearProductoBBDDIndexDB(nombre: IProducto["nombre"], prec
 
 export async function actualizarProductoBBDDIndexDB(producto: IProducto): Promise<void> {
     if (!producto.id || producto.nombre.trim() === '') {
-    throw new Error("Producto inválido.");
+        throw new Error("Producto inválido.");
     }
 
     await abrirBase(NOMBRE_DB, VERSION_DB, [ALMACEN]);

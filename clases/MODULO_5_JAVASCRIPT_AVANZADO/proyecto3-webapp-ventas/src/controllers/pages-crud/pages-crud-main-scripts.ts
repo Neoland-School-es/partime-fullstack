@@ -1,4 +1,4 @@
-import { actualizarProductoLS, eliminarProductoLS, crearProductoLS } from "../../slices/productosSlice";
+import { actualizarProductoLS, eliminarProductoLS, crearProductoLS, agregarProductoBBDDIndexDB } from "../../slices/productosSlice";
 import store from "../../store/store";
 
 export function paginaFormularioCrearProducto() {
@@ -6,8 +6,9 @@ export function paginaFormularioCrearProducto() {
 
     const inpurtNombre = document.querySelector<HTMLInputElement>('#NombreProducto');
     const inputPrecio = document.querySelector<HTMLInputElement>('#PrecioProducto');
+    const formCrear = document.querySelector("#FormularioCrearProducto");
 
-    if (!inpurtNombre || !inputPrecio) {
+    if (!inpurtNombre || !inputPrecio || !formCrear) {
         return
     }
 
@@ -19,13 +20,11 @@ export function paginaFormularioCrearProducto() {
         contenedor.innerHTML = ""
     }
 
-    const formCrear = document.querySelector("#FormularioCrearProducto");
-    if (!formCrear) {
-        return
-    }
 
     formCrear.addEventListener('submit', function (event) {
         event.preventDefault();
+
+        store.dispatch(agregarProductoBBDDIndexDB({ nombre: inpurtNombre.value, precio: parseInt(inputPrecio.value) }))
 
         store.dispatch(crearProductoLS({ nombre: inpurtNombre.value, precio: parseInt(inputPrecio.value) }));
 

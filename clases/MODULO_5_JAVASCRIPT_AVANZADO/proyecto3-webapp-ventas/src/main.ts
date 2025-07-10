@@ -41,22 +41,28 @@ async function main() {
   inicializarCargaDatosUI();
 
 
-  // try {
-  //   const datosJSON = await fetch("http://localhost:3003/")
-
-  //   const datos = await datosJSON.json();
-
-  //   console.log(datos)
-
-
-  // } catch (error) {
-  //   return error
-  // }
   console.log("fin de la aplicación!!!")
 }
 
 document.addEventListener('DOMContentLoaded', main);
 
+
+
+
+
+
+
+// try {
+//   const datosJSON = await fetch("http://localhost:3003/")
+
+//   const datos = await datosJSON.json();
+
+//   console.log(datos)
+
+
+// } catch (error) {
+//   return error
+// }
 // function iniciarDatosPrueba() {
 //   throw new Error('Function not implemented.');
 // }
