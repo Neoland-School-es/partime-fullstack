@@ -1,23 +1,41 @@
 import type { IProducto } from "../types/types";
-import {
-    abrirBase,
-    obtenerTodos,
-    guardarDato,
-    actualizarDato,
-    eliminarPorId
-} from "../utilities/functions-indexDB";
 
 const NOMBRE_DB = "MI-BBDD";
 const VERSION_DB = 1;
 const ALMACEN = "BBDD-PRODUCTOS-STOCK";
-// abrirBase("MI-BBDD", 1, ['BBDD-PRODUCTOS-STOCK', 'BBDD-USUARIOS', 'CACHE-USUARIO', 'CACHE-PRODUCTOS-CARRITO']);
 
-export async function obtenerProductosBBDDIndexDB(): Promise<IProducto[]> {
-    return await obtenerTodos(NOMBRE_DB, VERSION_DB, ALMACEN) as IProducto[];
+async function abrirBase(): Promise<IDBDatabase> {
+    return new Promise((resolve, reject) => {
+        const solicitud = indexedDB.open(NOMBRE_DB, VERSION_DB);
+
+        solicitud.onerror = () => reject(solicitud.error);
+
+        solicitud.onupgradeneeded = (evento) => {
+            const db = (evento.target as IDBOpenDBRequest).result;
+            if (!db.objectStoreNames.contains(ALMACEN)) {
+                db.createObjectStore(ALMACEN, { keyPath: "id", autoIncrement: true });
+            }
+        };
+
+        solicitud.onsuccess = () => resolve(solicitud.result);
+    });
 }
 
-export async function crearProductoBBDDIndexDB(nombre: IProducto["nombre"], precio: IProducto["precio"] = 1): Promise<void> {
-    if (nombre.trim() === '' || precio <= 0 || precio >= 1000) {
+export async function obtenerProductosBBDDIndexDB(): Promise<IProducto[]> {
+    const db = await abrirBase();
+
+    return new Promise((resolve, reject) => {
+        const transaccion = db.transaction([ALMACEN], "readonly");
+        const store = transaccion.objectStore(ALMACEN);
+        const solicitud = store.getAll();
+
+        solicitud.onsuccess = () => resolve(solicitud.result as IProducto[]);
+        solicitud.onerror = () => reject(solicitud.error);
+    });
+}
+
+export async function crearProductoBBDDIndexDB(nombre: string, precio: number = 1): Promise<void> {
+    if (nombre.trim() === "" || precio <= 0 || precio >= 1000) {
         throw new Error("Error al crear producto.");
     }
 
@@ -27,20 +45,70 @@ export async function crearProductoBBDDIndexDB(nombre: IProducto["nombre"], prec
         precio
     };
 
-    await abrirBase(NOMBRE_DB, VERSION_DB, [ALMACEN]);
-    await guardarDato(nuevoProducto, NOMBRE_DB, VERSION_DB, ALMACEN);
+    const db = await abrirBase();
+
+    return new Promise((resolve, reject) => {
+        const transaccion = db.transaction([ALMACEN], "readwrite");
+        const store = transaccion.objectStore(ALMACEN);
+        const solicitud = store.add(nuevoProducto);
+
+        solicitud.onsuccess = () => resolve();
+        solicitud.onerror = () => reject(solicitud.error);
+    });
 }
 
 export async function actualizarProductoBBDDIndexDB(producto: IProducto): Promise<void> {
-    if (!producto.id || producto.nombre.trim() === '') {
+    if (!producto.id || producto.nombre.trim() === "") {
         throw new Error("Producto inválido.");
     }
 
-    await abrirBase(NOMBRE_DB, VERSION_DB, [ALMACEN]);
-    await actualizarDato(producto, NOMBRE_DB, VERSION_DB, ALMACEN);
+    const db = await abrirBase();
+
+    return new Promise((resolve, reject) => {
+        const transaccion = db.transaction([ALMACEN], "readwrite");
+        const store = transaccion.objectStore(ALMACEN);
+        const solicitud = store.put(producto);
+
+        solicitud.onsuccess = () => resolve();
+        solicitud.onerror = () => reject(solicitud.error);
+    });
 }
 
 export async function eliminarProductoBBDDIndexDB(idProducto: number): Promise<void> {
-    await abrirBase(NOMBRE_DB, VERSION_DB, [ALMACEN]);
-    await eliminarPorId(idProducto, NOMBRE_DB, VERSION_DB, ALMACEN);
+    const db = await abrirBase();
+
+    return new Promise((resolve, reject) => {
+        const transaccion = db.transaction([ALMACEN], "readwrite");
+        const store = transaccion.objectStore(ALMACEN);
+        const solicitud = store.delete(idProducto);
+
+        solicitud.onsuccess = () => resolve();
+        solicitud.onerror = () => reject(solicitud.error);
+    });
+}
+
+export function iniciarCreacionBBDD(): void {
+    indexedDB.open(NOMBRE_DB, VERSION_DB).onupgradeneeded = (evento) => {
+        const db = (evento.target as IDBOpenDBRequest).result;
+        const almacenes = [
+            "BBDD-PRODUCTOS-STOCK",
+            // "BBDD-USUARIOS",
+            // "CACHE-USUARIO",
+            "CACHE-PRODUCTOS-CARRITO"
+        ];
+        for (let i = 0; i < almacenes.length; i++) {
+            const nombre = almacenes[i];
+            if (!db.objectStoreNames.contains(nombre)) {
+                db.createObjectStore(nombre, { keyPath: "id", autoIncrement: true });
+            }
+        }
+    };
+}
+
+export function destruirBBDD(): void {
+    const solicitud = indexedDB.deleteDatabase(NOMBRE_DB);
+
+    solicitud.onsuccess = () => console.log("Todos los datos de IndexDB fueron eliminados.");
+    solicitud.onerror = () => console.error("Error al eliminar la base de datos.");
+    solicitud.onblocked = () => console.log("Cierra otras pestañas que usen la base de datos.");
 }

@@ -1,0 +1,31 @@
+{
+  "name": "proyecto3-webapp-stock",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "sistema de stock",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
+  },
+  "author": "YO",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/jest": "^30.0.0",
+    "jest-environment-jsdom": "^30.0.1",
+    "jest": "^30.0.1",
+    "ts-jest": "^29.4.0",
+    "typescript": "~5.8.3",
+    "vite-plugin-pwa": "^1.0.0",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "bootstrap": "^5.3.7"
+  }
+}

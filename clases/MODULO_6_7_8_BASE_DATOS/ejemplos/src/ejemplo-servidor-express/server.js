@@ -1,31 +1,33 @@
-import express from 'express';
-import { registrarVisita } from './server.controller.js';
+// server.js
+import express from "express";
+import morgan from "morgan";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { router } from "./routes/routes.js";
 
-const app = express();
-const PORT = 3000;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.get('/', async (req, res) => {
-    await registrarVisita('inicio');
-    res.send(`
-        <h1>Inicio</h1>
-        <p>Visita registrada correctamente en inicio.</p>
-        <a href="/galeria">Ir a galería</a>
-    `);
-});
+export function ejemploServidorExpress() {
+    const app = express();
 
-app.get('/galeria', async (req, res) => {
-    await registrarVisita('galeria');
-    res.send(`
-        <h1>Galería</h1>
-        <p>Visita registrada correctamente en galería.</p>
-        <a href="/">Ir al inicio</a>
-    `);
-});
+    app.set("port", process.env.PORT || 3000);
+    app.set("views", join(__dirname, "public"));
+    app.set("view engine", "ejs");
 
-app.use((req, res) => {
-    res.status(404).send('<h1>Página no encontrada</h1>');
-});
+    app.use(morgan("dev"));
+    app.use(router);
+    
 
-app.listen(PORT, () => {
-    console.log(`Servidor Express corriendo en http://localhost:${PORT}`);
-});
+    console.log("join(__dirname, 'public')")
+    console.log(join(__dirname, "public"))
+
+    app.use(express.static(join(__dirname, "public")));
+
+    return app;
+}
+
+// const app = createApp();
+
+// app.listen(app.get("port"), () => {
+//     console.log("Servidor Express iniciado en puerto", app.get("port"));
+// });

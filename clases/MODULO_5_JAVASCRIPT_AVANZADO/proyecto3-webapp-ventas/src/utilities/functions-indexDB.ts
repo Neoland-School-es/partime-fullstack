@@ -9,7 +9,6 @@ export interface DatoGenerico {
     [key: string]: any;
 }
 
-// Abrir base de datos con un único almacén
 export function abrirBase(
     nombreBD: IConfiguracionDB['nombreBD'],
     version: IConfiguracionDB['version'],
@@ -33,20 +32,18 @@ export function abrirBase(
     });
 }
 
-// Eliminar completamente la base de datos
 export function eliminarBase(
     nombreBD: IConfiguracionDB['nombreBD']
 ): Promise<void> {
     return new Promise((resolve, reject) => {
         const solicitud = indexedDB.deleteDatabase(nombreBD);
 
-        solicitud.onsuccess = () => resolve(console.warn("Todos los datos de IndexDB fueron eliminados."));
+        solicitud.onsuccess = () => resolve(console.log("Todos los datos de IndexDB fueron eliminados."));
         solicitud.onerror = () => reject(solicitud.error);
-        solicitud.onblocked = () => console.warn('Cierra otras pestañas que usen la base de datos.');
+        solicitud.onblocked = () => console.log('Cierra otras pestañas que usen la base de datos.');
     });
 }
 
-// Obtener todos los datos de un almacén
 export async function obtenerTodos(
     nombreBD: IConfiguracionDB['nombreBD'],
     version: IConfiguracionDB['version'],
@@ -63,7 +60,6 @@ export async function obtenerTodos(
     });
 }
 
-// Guardar un dato nuevo
 export async function guardarDato(
     dato: DatoGenerico,
     nombreBD: IConfiguracionDB['nombreBD'],
@@ -81,7 +77,6 @@ export async function guardarDato(
     });
 }
 
-// Actualizar un dato por su ID
 export async function actualizarDato(
     dato: DatoGenerico,
     nombreBD: IConfiguracionDB['nombreBD'],
@@ -99,7 +94,6 @@ export async function actualizarDato(
     });
 }
 
-// Eliminar un dato por su ID
 export async function eliminarPorId(
     id: number,
     nombreBD: IConfiguracionDB['nombreBD'],

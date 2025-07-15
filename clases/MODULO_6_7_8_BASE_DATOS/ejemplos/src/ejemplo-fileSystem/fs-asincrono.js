@@ -6,11 +6,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 console.log("Directorio del script:", __dirname);
 
-console.log("inicio");
+async function ejemploFyleSystemAsincrono() {
+    console.log("- INICIO EJEMPLO FS ASINCRONO");
 
-try {
     // 1. Crear carpeta-demo
-    const carpetaDemo = path.join(__dirname, 'carpeta-demo');
+    const carpetaDemo = path.join(__dirname, 'carpeta-demo-fs-asincrono');
     await fs.mkdir(carpetaDemo, { recursive: true });
 
     // 2. Crear archivo
@@ -19,7 +19,7 @@ try {
     await fs.writeFile(archivoSaludo, saludoInicial);
 
     // 3. Crear carpeta copia-demo
-    const carpetaCopia = path.join(__dirname, 'copia-demo');
+    const carpetaCopia = path.join(__dirname, 'copia-demo-fs-asincrono');
     await fs.mkdir(carpetaCopia, { recursive: true });
 
     // 4. Leer contenido del archivo original
@@ -36,9 +36,9 @@ try {
     const archivoExtendido = path.join(carpetaCopia, 'saludo-extendido.txt');
     await fs.writeFile(archivoExtendido, contenidoCompleto);
 
-    console.log("\nfin");
-} catch (error) {
-    console.error("Ocurrió un error:", error);
+    console.log("- FIN EJEMPLO FS ASINCRONO\n");
 }
 
-console.log("\nfin")
+export {
+    ejemploFyleSystemAsincrono
+};

@@ -1,0 +1,6 @@
+Hola! Este es un archivo de demostración.
+¡Bienvenidos a Node.js!
+
+        --- Información adicional ---
+        Esta es una copia extendida del archivo original.
+    

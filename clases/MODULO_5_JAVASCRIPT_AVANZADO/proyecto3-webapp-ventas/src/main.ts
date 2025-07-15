@@ -1,7 +1,7 @@
 // Bootstrap JS
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // Modelo
-import { iniciarCreacionBBDD, inicializarDatosPruebaProductosIndexDB, inicializarDatosPruebaProductosLocalStorage, inicializarDatosPruebaUsuariosIndexDB, destruirBBDD, inicializarDatosPruebaUsuariosLocalStorage } from './models/sistema.model';
+import { iniciarCreacionBBDD } from './models/sistema.model';
 // import { iniciarCreacionBBDD } from './models/sistema.model';
 // Store
 import store from './store/store';
@@ -20,12 +20,12 @@ function iniciarCargaDatosBBDD() {
   store.dispatch(inciarEstadoCarrito());
 }
 
-function iniciarDatosPrueba() {
-  inicializarDatosPruebaProductosIndexDB();
-  inicializarDatosPruebaUsuariosIndexDB();
-  inicializarDatosPruebaProductosLocalStorage();
-  inicializarDatosPruebaUsuariosLocalStorage();
-}
+// function iniciarDatosPrueba() {
+//   inicializarDatosPruebaProductosIndexDB();
+//   inicializarDatosPruebaUsuariosIndexDB();
+//   inicializarDatosPruebaProductosLocalStorage();
+//   inicializarDatosPruebaUsuariosLocalStorage();
+// }
 
 function inicializarCargaDatosUI() {
   enrutador();
