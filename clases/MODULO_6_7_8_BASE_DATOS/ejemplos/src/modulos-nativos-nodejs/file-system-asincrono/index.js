@@ -4,9 +4,8 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log("Directorio del script:", __dirname);
 
-async function ejemploFyleSystemAsincrono() {
+async function ejemploFileSystemAsincrono() {
     console.log("- INICIO EJEMPLO FS ASINCRONO");
 
     // 1. Crear carpeta-demo
@@ -40,5 +39,5 @@ async function ejemploFyleSystemAsincrono() {
 }
 
 export {
-    ejemploFyleSystemAsincrono
+    ejemploFileSystemAsincrono
 };

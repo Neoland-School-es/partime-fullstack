@@ -35,7 +35,8 @@ const ejemploServidorHTTP = http.createServer((req, res) => {
             { id: 3, nombre: 'Diego' }
         ];
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(usuarios);
+        console.log(JSON.stringify(usuarios));
+        res.end(JSON.stringify(usuarios));
 
 
     } else if (url === '/api/usuarios' && metodo === 'POST') {
@@ -62,8 +63,12 @@ const ejemploServidorHTTP = http.createServer((req, res) => {
         });
 
     } else if (url.startsWith('/api/usuarios/') && metodo === 'DELETE') {
+        console.log(url)
         const partesUrl = url.split('/');
+        console.log(partesUrl)
         const id = parseInt(partesUrl[3]);
+
+        console.log(id)
 
         if (isNaN(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -72,8 +77,8 @@ const ejemploServidorHTTP = http.createServer((req, res) => {
         }
 
 
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end({ mensaje: `Usuario con ID ${id} eliminado correctamente` });
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ mensaje: `Usuario con ID ${id} eliminado correctamente` }));
 
     } else {
         // Ruta no encontrada

@@ -5,8 +5,7 @@ ejemplo1ServidorExpress.use(express.json()); // Para poder leer JSON en peticion
 
 ejemplo1ServidorExpress.get('/', (req, res) => {
     console.log(req.body)
-    res.send('<h1>Página Principal</h1><p>Bienvenido a mi sitio web</p>');
-
+    res.send('<h1>Página Principal</h1><p>Bienvenido a mi sitio web express</p>');
 });
 
 ejemplo1ServidorExpress.get('/contacto', (req, res) => {
@@ -28,14 +27,15 @@ ejemplo1ServidorExpress.get('/api/usuarios', (req, res) => {
 
 ejemplo1ServidorExpress.post('/api/usuarios', (req, res) => {
     const usuario = req.body;
+    
     res.json({
         mensaje: 'Usuario registrado correctamente',
         usuario: usuario
     });
 });
 
-ejemplo1ServidorExpress.delete('/api/usuarios/:id', (req, res) => {
-    const id = parseInt(req.params.id);
+ejemplo1ServidorExpress.delete('/api/usuarios/:cualquiercosa', (req, res) => {
+    const id = parseInt(req.params.cualquiercosa);
 
     if (isNaN(id)) {
         res.status(400).json({ error: 'ID inválido' });

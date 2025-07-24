@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-const RUTA_ARCHIVO = './src/ejemplo-servidor-http/visitas.json';
+const RUTA_ARCHIVO = './src/modulos-nativos-nodejs/server-http-2-medium/visitas.json';
 
 export async function registrarVisita(ruta) {
     try {

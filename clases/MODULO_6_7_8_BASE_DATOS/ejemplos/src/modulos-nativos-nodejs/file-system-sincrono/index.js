@@ -4,9 +4,8 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log("Directorio del script:", __dirname)
 
-function ejemploFyleSystemSincrono() {
+function ejemploFileSystemSincrono() {
   console.log("- INICIO EJEMPLO FS SINCRONO");
   // 1. Crear carpeta-demo
   const carpetaDemo = path.join(__dirname, 'carpeta-demo-fs-sincrono');
@@ -39,5 +38,5 @@ Esta es una copia extendida del archivo original.
 }
 
 export {
-  ejemploFyleSystemSincrono
+  ejemploFileSystemSincrono
 };

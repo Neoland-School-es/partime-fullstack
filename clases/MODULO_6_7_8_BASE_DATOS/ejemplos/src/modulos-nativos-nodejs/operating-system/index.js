@@ -1,6 +1,11 @@
 import os from 'os';
 
 function ejemploOperatingSystem() {
+    // console.log(os)
+    // console.log("os.cpus")
+    // console.log(os.cpus())
+    // console.log("os.userInfo")
+    // console.log(os.userInfo())
     console.log('Sistema Operativo:', os.platform());
     console.log('Versión:', os.release());
     console.log('CPU:', os.cpus().length + ' núcleos');

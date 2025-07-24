@@ -1,27 +1,7 @@
 import http from 'http';
 import { registrarVisita } from './server.controller.js';
-// import morgan from "morgan";
 
-// const logger = morgan("dev")
-const ejemplo3ServidorHTTP = http.createServer(async (request, response) => {
-    // console.log("2")
-    // logger(request, response, async function () {
-    // console.log("3")
-    // console.log("cabecera:")
-    // console.log(request.headers)
-    // console.log("url:")
-    // console.log(request.url)
-    // console.log("metodo:")
-    // console.log(request.method)
-    // console.log("metodo:")
-    // console.log(request.pipe((back) => {
-    //     console.log("back")
-    //     console.log(back)
-    // }, { end: true }))
-
-    // response.setHeader("Access-Control-Allow-Origin", "*")
-    // response.setHeader("Access-Control-Allow-Methods", "*")
-
+const ejemplo2ServidorHTTP = http.createServer(async (request, response) => {
     if (request.url === '/') {
         await registrarVisita('inicio');
         response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -49,5 +29,5 @@ const ejemplo3ServidorHTTP = http.createServer(async (request, response) => {
 });
 
 export {
-    ejemplo3ServidorHTTP
+    ejemplo2ServidorHTTP
 }

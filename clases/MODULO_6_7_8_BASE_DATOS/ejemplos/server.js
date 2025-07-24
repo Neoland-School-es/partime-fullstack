@@ -1,43 +1,43 @@
 import {
-    ejemploFyleSystemAsincrono,
-    ejemploFyleSystemSincrono,
-    ejemploOperatingSystem,
-    ejemplo1ServidorHTTP,
-    ejemplo3ServidorHTTP,
-    ejemplo1ServidorExpress,
-    ejemplo2ServidorExpress,
-    // ejemploBDMongoDB,
-    // ejemplo1ServidorExpressMongoDB
+    // ejemploFileSystemSincrono,
+    // ejemploFileSystemAsincrono,
+    // ejemploOperatingSystem,
+    // ejemploServidorHTTP,
+    // ejemplo2ServidorHTTP,
+    // ejemplo1ServidorExpress,
+    // ejemplo2ServidorExpress,
+    // ejemplo1ServidorExpressMongoDB,
+    iniciarServidor,
+    // iniciarServidorMongoose
 } from "./src/index.js";
+
+
+
 console.clear();
 console.log("- INICIO SERVER\n");
 
-// ejemploFyleSystemAsincrono();
+// ejemploFileSystemSincrono()
 
-// ejemploFyleSystemSincrono();
+// ejemploFileSystemAsincrono();
 
 // ejemploOperatingSystem();
 
-// ejemplo1ServidorHTTP.listen(3000, () => {
-//     console.log("Servidor iniciado en puerto", 3000);
+// ejemploServidorHTTP.listen(3000, () => {
+//     console.log("conexion server puerto 3000")
 // })
 
 // ejemplo2ServidorHTTP.listen(3000, () => {
-//     console.log("Servidor iniciado en puerto", 3000);
-// })
-
-// ejemplo3ServidorHTTP.listen(3000, () => {
-//     console.log("Servidor iniciado en puerto", 3000);
+//     console.log("conexion server puerto 3000")
 // })
 
 // ejemplo1ServidorExpress.listen(3000, () => {
-//     console.log("Servidor Express iniciado en puerto", 3000);
-// });
+//         console.log("conexion server puerto 3000 con express")
+// })
 
-ejemplo2ServidorExpress.listen(3000, () => {
-    console.log("Servidor Express iniciado en puerto", 3000);
-});
+// ejemplo2ServidorExpress.listen(3000, () => {
+//         console.log("conexion server puerto 3000 con express nuevo")
+// })
 
+iniciarServidor();
 
-
-console.log("- FIN SERVER\n");
+// iniciarServidorMongoose();

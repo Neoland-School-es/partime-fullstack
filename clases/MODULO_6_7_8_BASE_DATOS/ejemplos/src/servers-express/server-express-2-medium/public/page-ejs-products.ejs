@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("head") %>
+        <title>CRUD Productos</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f5f5f5;
+            }
+
+            .container {
+                max-width: 600px;
+                margin: 2rem auto;
+                background: #fff;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 1rem;
+            }
+
+            th,
+            td {
+                padding: 0.5rem;
+                border-bottom: 1px solid #ddd;
+                text-align: left;
+            }
+
+            form {
+                display: inline;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                width: 100px;
+                padding: 0.3rem;
+                margin-right: 0.5rem;
+            }
+
+            button {
+                padding: 0.3rem 0.7rem;
+                margin-right: 0.2rem;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .edit-btn {
+                background: #ffc107;
+                color: #fff;
+            }
+
+            .delete-btn {
+                background: #dc3545;
+                color: #fff;
+            }
+
+            .save-btn {
+                background: #28a745;
+                color: #fff;
+            }
+
+            .add-btn {
+                background: #007bff;
+                color: #fff;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>CRUD de Productos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(producto, idx) { %>
+                    <tr>
+                        <form action="/cud-products/edit/<%= idx %>" method="POST">
+                            <td>
+                                <input type="text" name="nombre" value="<%= producto.nombre %>">
+                            </td>
+                            <td>
+                                <input type="number" name="precio" value="<%= producto.precio %>">
+                            </td>
+                            <td>
+                                <button type="submit" class="save-btn">Guardar</button>
+                            </td>
+                        </form>
+                        <form action="/cud-products/delete/<%= idx %>" method="POST">
+                            <td>
+                                <button type="submit" class="delete-btn">Eliminar</button>
+                            </td>
+                        </form>
+                    </tr>
+                    <% }); %>
+                        <tr>
+                            <form action="/cud-products/add" method="POST">
+                                <td>
+                                    <input type="text" name="nombre" placeholder="Nuevo producto">
+                                </td>
+                                <td>
+                                    <input type="number" name="precio" placeholder="Precio">
+                                </td>
+                                <td colspan="2">
+                                    <button type="submit" class="add-btn">Agregar</button>
+                                </td>
+                            </form>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+    <%- include("menu") %>
+</body>
+
+</html>
