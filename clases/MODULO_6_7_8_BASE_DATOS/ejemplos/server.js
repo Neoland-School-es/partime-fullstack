@@ -7,8 +7,8 @@ import {
     // ejemplo1ServidorExpress,
     // ejemplo2ServidorExpress,
     // ejemplo1ServidorExpressMongoDB,
-    iniciarServidor,
-    // iniciarServidorMongoose
+    // iniciarServidor
+    iniciarServidorMongoose
 } from "./src/index.js";
 
 
@@ -38,6 +38,7 @@ console.log("- INICIO SERVER\n");
 //         console.log("conexion server puerto 3000 con express nuevo")
 // })
 
-iniciarServidor();
+// iniciarServidor();
 
-// iniciarServidorMongoose();
+
+iniciarServidorMongoose()
