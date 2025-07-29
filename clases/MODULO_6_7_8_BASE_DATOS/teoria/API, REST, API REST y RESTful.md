@@ -29,7 +29,7 @@ Es un estilo de arquitectura para diseñar APIs en la web. Fue propuesto por **R
 
 Una **API REST** es una **API que sigue los principios REST**. Utiliza el protocolo HTTP para intercambiar datos entre cliente y servidor.
 
-### Características de una API REST:
+## Características de una API REST:
 
 | Elemento             | Descripción                                                            |
 | -------------------- | ---------------------------------------------------------------------- |

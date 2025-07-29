@@ -4,7 +4,7 @@ Se construye encima del módulo nativo `http` de Node.js. Permite crear rutas, c
 
 ---
 
-## 📦 Express vs `http` puro
+## Express vs `http` puro
 
 Express **automatiza y simplifica** muchas tareas comunes del desarrollo backend.
 
@@ -18,7 +18,7 @@ Express **automatiza y simplifica** muchas tareas comunes del desarrollo backend
 
 ---
 
-## 📦 Instalación
+## Instalación
 
 ```bash
 # En proyectos modernos, recomendamos usar módulos ES (extensión `.mjs` o `"type": "module"` en package.json).
@@ -28,7 +28,7 @@ npm install express     # Instala Express.js
 
 ---
 
-## 🧪 Primer servidor Express básico
+## Primer servidor Express básico
 
 ```js
 // server.js
@@ -48,7 +48,7 @@ app.listen(PORT, () => {
 
 ---
 
-## 📊 Métodos HTTP soportados
+## Métodos HTTP soportados
 
 Cada método define el **tipo de acción** que el servidor acepta.
 
@@ -62,7 +62,7 @@ app.delete('/ruta', handler);  // Eliminar datos
 
 ---
 
-## 📬 Enviar diferentes tipos de respuesta
+## Enviar diferentes tipos de respuesta
 
 |Método|Descripción|
 |---|---|
@@ -84,7 +84,7 @@ res.redirect('/otra-ruta');
 
 ---
 
-## 📥 Leer datos enviados por el cliente
+## Leer datos enviados por el cliente
 
 Express no interpreta datos JSON ni formularios automáticamente. Se usan **middlewares**:
 
@@ -104,7 +104,7 @@ app.post('/contacto', (req, res) => {
 
 ---
 
-## 🔎 Parámetros y queries
+## Parámetros y queries
 
 - **Parámetros de ruta** (`/producto/:id`):
 
@@ -124,7 +124,7 @@ app.get('/buscar', (req, res) => {
 
 ---
 
-## 🛠️ Middlewares
+## Middlewares
 
 Los **middlewares** son funciones que interceptan las solicitudes antes de llegar a las rutas.
 
@@ -155,7 +155,7 @@ app.get('/privado', verificarClave, (req, res) => {
 
 ---
 
-## 🖼️ Servir archivos estáticos
+## Servir archivos estáticos
 
 ```js
 app.use(express.static('public'));
@@ -168,7 +168,7 @@ Ejemplo:
 
 ---
 
-## 📁 Estructura recomendada del proyecto
+## Estructura recomendada del proyecto
 
 ```
 mi-proyecto/
@@ -181,7 +181,7 @@ mi-proyecto/
 
 ---
 
-## ⚠️ Manejo de errores y rutas no encontradas
+## Manejo de errores y rutas no encontradas
 
 Ruta 404:
 
@@ -202,7 +202,7 @@ app.use((err, req, res, next) => {
 
 ---
 
-## ✅ Buenas prácticas
+## Buenas prácticas
 
 - Separar rutas en archivos si el proyecto crece.
     
