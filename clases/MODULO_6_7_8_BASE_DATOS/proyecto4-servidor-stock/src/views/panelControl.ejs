@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title><%= titulo %></title>
+  <%- include("components/head") %>
+</head>
+
+<body id="paginaPanelControl">
+  <%- include("components/menu") %>
+
+  <main>
+    <header>
+      <h1>¡Saludos desde el <%= titulo %>!</h1>
+    </header>
+
+    <section>
+      <% if (estado==="error" ) { %>
+      <p style="color: red;">Error al cargar productos. Intenta nuevamente más tarde.</p>
+      <% } else if (estado==="vacio" ) { %>
+      <p>No hay productos disponibles.</p>
+      <% } else if (estado==="ok" ) { %>
+      <h2>Listado de Productos:</h2>
+
+      <ul>
+        <% productos.forEach(p=> { %>
+        <li>
+          <div id="producto-<%= p._id %>">
+            <header>
+              <p> nombre producto: <%= p.name %></p>
+              <p>Precio: $<%= p.precio %> - Cantidad: <%= p.cantidad %></p>
+            </header>
+            <section>
+              <figure>
+                <img src="/uploads/<%= p.imagen %>" alt="Imagen de <%= p.name %>" width="100">
+              </figure>
+            </section>
+            <section>
+              <h3>mas fotos</h3>
+
+              <% for(let i=0; i < p.imagenes.length; i++) { %>
+              <img src="/uploads/<%= p.imagenes[i] %>" alt="Imagen adicional de <%= p.name %>" width="100">
+              <% } %>
+            </section>
+
+            <div class="botones-producto">
+              <button class="btn-editar" data-id="<%= p._id %>">Editar</button>
+              <button class="btn-eliminar" data-id="<%= p._id %>">Eliminar</button>
+            </div>
+
+            <div id="form-editar-<%= p._id %>" class="formulario-edicion">
+              <h2>Editar producto</h2>
+              <form data-id="<%= p._id %>">
+                <input type="text" id="nombre-<%= p._id %>" value="<%= p.name %>" placeholder="Nombre producto">
+                <input type="number" id="precio-<%= p._id %>" value="<%= p.precio %>" placeholder="Precio">
+                <input type="number" id="cantidad-<%= p._id %>" value="<%= p.cantidad %>" placeholder="Cantidad">
+                <br><br>
+                <button type="submit">Guardar cambios</button>
+                <button type="button" data-id="<%= p._id %>">Cancelar</button>
+              </form>
+            </div>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p>Cargando productos...</p>
+      <% } %>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Crear producto</h2>
+      <form id="form-crear" enctype="multipart/form-data">
+        <input type="text" id="nuevo-nombre" name="name" placeholder="Nombre" required>
+        <input type="number" id="nuevo-precio" name="precio" placeholder="Precio" required>
+        <input type="number" id="nueva-cantidad" name="cantidad" placeholder="Cantidad" required>
+        <input type="file" name="nueva-image" accept="image/*" required />
+        <input type="file" name="nueva-images" accept="image/*" multiple required />
+        <br><br>
+        <button type="submit">Crear producto</button>
+      </form>
+    </section>
+  </main>
+</body>
+
+</html>

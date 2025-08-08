@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title><%= titulo %></title>
+  <%- include("components/head") %>
+</head>
+
+<body>
+  <%- include("components/menu") %>
+
+  <main>
+    <header>
+      <h1><%= titulo %></h1>
+    </header>
+
+    <% if (mensaje) { %>
+    <p style="color: red; text-align: center;"><%= mensaje %></p>
+    <% } %>
+
+    <table border="1" cellspacing="0" cellpadding="8" style="margin: auto;">
+      <thead>
+        <tr>
+          <th>nombre</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% usuarios.forEach(usuario => { %>
+        <tr>
+          <td><%= usuario.nombre %></td>
+          <td><%= usuario.email %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <%= usuarios._ida %>
+  </main>
+
+  <script>
+  </script>
+</body>
+
+</html>
