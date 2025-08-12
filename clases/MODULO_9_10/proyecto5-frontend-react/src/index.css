@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+nav {
+    background-color: #61DAFB;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+a {
+    font-size: 1.3em;
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: .3rem;
+}
