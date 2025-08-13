@@ -30,7 +30,7 @@ function ProductosProvider(props) {
         if (success) {
             console.log("producto creado: ", data)
         } else {
-            setProductos([...productosMock, { _id: Date.now(), ...nuevoProducto }]);
+            setProductos([...productos, { _id: Date.now(), ...nuevoProducto }]);
             console.log("Error en API:", error);
         }
     }

@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-export function configureCookieExpressSession() {
+function configureCookieExpressSession() {
     const nombreSesion = 'nombreTokenSesionUsuario';
     const claveSecreta = process.env.CLAVE_SESSION;
 

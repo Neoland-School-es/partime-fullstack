@@ -8,9 +8,6 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 
-// configuración
-import { configureCookieExpressSession } from './config/cookie-usuario-session.config.js';
-
 // middlewares
 import { middlewareExpressGlobalError } from './middlewares/middlewares-express/middleware-express-global-errors.js';
 import { middlewareExpressHttpError } from './middlewares/middlewares-express/middleware-express-http-errors.js';
@@ -31,9 +28,6 @@ app.use(cors()); // Habilitar CORS
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser()); // Parseo de cookies
-
-// Configura cookie sesion de express-session
-app.use(configureCookieExpressSession());
 
 // configuración de vistas y archivos estáticos
 app.set('view engine', 'ejs');
