@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script defer src="/javascripts/register.page.js"></script>
+  </head>
+  <body>
+    
+    <%- include('components/navbar') %>
+
+    <main class="login-main">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1 class="login-title">Registrate</h1>
+                    <p class="login-subtitle">Rellena los campos para continuar</p>
+                </div>
+                
+                <form id="login-form" class="login-form" action="/auth/login" method="POST">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="login-name" 
+                            name="name" 
+                            placeholder="Nombre" 
+                            class="login-input"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <input 
+                            type="email" 
+                            id="login-email" 
+                            name="email" 
+                            placeholder="Email" 
+                            class="login-input"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="input-group">
+                        <input 
+                            type="password" 
+                            id="login-password" 
+                            name="password" 
+                            placeholder="Contraseña" 
+                            class="login-input"
+                            required
+                        >
+                    </div>
+                    
+                    <button id="btn-register" type="submit" class="login-btn">
+                        <span>CREAR CUENTA</span>
+                    </button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>¿Ya tienes cuenta? <a href="/login" class="register-link">Inicia sesión aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+  </body>
+</html>

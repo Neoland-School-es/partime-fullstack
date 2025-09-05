@@ -1,0 +1,18 @@
+# Node
+node_modules/
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+
+# Builds
+dist/
+.vite/
+
+# Entorno
+.env
+
+# Subidas locales
+backend-express/uploads/
+
+# Editor
+.vscode/

@@ -1,0 +1,127 @@
+### Alfonso
+
+Positivos:
+
+* Buen uso de colores.
+* Agregar mas detalles a la API de ventas.
+* Página de contacto del desarrollador bien lograda.
+
+A mejorar:
+
+* Entrega fuera de término.
+* Rutas del frontend a la API mal definidas (usar `/api/...`).
+* Sin productos por defecto.
+* Necesita recargar para ver cambios.
+* No debe mostrarse el `_id` en la información del producto.
+* La página de detalle queda vacía si falta el parámetro `id`.
+* El footer se rompe con URLs inválidas.
+* Link de GitHub inaccesible.
+* El botón “Agregar al carrito” no da feedback visual.
+* El formulario muestra éxito aunque esté vacío y no indica campos obligatorios.
+* No hay validación en formularios.
+* Modo lista de canciones sin funcionamiento.
+* Carga de imágenes no funciona.
+* Imagen por defecto distinta a la del detalle.
+
+---
+
+### Chirstian
+
+Positivos:
+
+* Producto bien detallado en la API de ventas.
+* Carga correcta de imágenes por URL o archivo.
+* Buena actitud y comentarios positivos.
+
+A mejorar:
+
+* Falta archivo `.env.example`.
+* No existe ruta para obtener ventas.
+* Rutas del frontend dependen del puerto.
+* Productos por defecto cargados en el backend.
+* Link de GitHub inaccesible.
+* Descripción de productos muy pobre.
+* Sin footer ni imagen por defecto.
+* Botón de recarga innecesario.
+* Página de detalle no maneja bien error si falta `id`.
+* Sin validación en formularios.
+* Falta modularización.
+* Sin tema definido.
+* Sin imagen por defecto
+* Mala identación en CSS.
+* Falta semántica en HTML.
+
+---
+
+### Cristian (KORA)
+
+**Positivos:**
+
+* Banner del producto elegido.
+* Redirección si el producto no coincide con el `id`.
+* Producto bien referenciado en la base de datos de ventas.
+* CSS descriptivo.
+* Función de error creativa en `productDetail`.
+* Curriculum descargable.
+
+A mejorar:
+
+* Entrega fuera de término.
+* Sin ruta para obtener ventas.
+* Productos por defecto cargados desde el backend.
+* No hay productos por defecto definidos.
+* Botones de usuario, carrito y explorar sin funcionalidad.
+* Sin validación en formularios.
+* Descripción de productos insuficiente.
+* No mostrar `_id` en la información del producto.
+* Falta imagen por defecto.
+* Si no carga la imagen, el banner queda vacío.
+* Banner sin imagen por defecto correcta.
+* Botón de editar producto sin funcionamiento.
+* Sin footer.
+* Mala identación en CSS.
+* Necesita mayor semántica en HTML.
+
+---
+
+### David (CoffeeShop)
+
+Positivos:
+
+* Buena página de contacto.
+* Buen uso de CSS.
+
+A mejorar:
+
+* No hay CRUD de mocks.
+* Inicio sin mensaje cuando no hay productos.
+* Mezcla de inglés y español en el proyecto.
+* Descripción del producto insuficiente.
+* Sin imágenes.
+* Producto poco detallado en la API de compras.
+* Sin detalles o página de información de producto.
+* No hay validación en formularios.
+* Uso incorrecto de `<main>` dentro del footer.
+
+---
+
+### Ignacio (Nordora)
+
+Positivos:
+
+* Validación de formularios bien implementada.
+* Buen manejo de la página de carrito.
+* Correcta estructura de componentes.
+* Página de detalles completa.
+* Dos contextos implementados.
+
+A mejorar:
+
+* Entrega fuera de término.
+* Sin variables de entorno.
+* No registra ventas en la API.
+* Página de detalle no muestra nada si falta `id` en la URL.
+* No debe mostrarse el `_id` en el producto.
+* Falta semántica en HTML.
+* Exceso de CSS dentro de JSX.
+

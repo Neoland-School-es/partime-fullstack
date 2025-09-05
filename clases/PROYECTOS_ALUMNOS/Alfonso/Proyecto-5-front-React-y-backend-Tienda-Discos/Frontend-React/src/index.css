@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: rgb(226, 226, 226);
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+nav {
+    background-color: #abdaf0;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+    width: 50%;
+    justify-content: space-between;
+}
+
+nav div {
+    display: flex;
+    gap: 1rem;
+}
+
+a {
+    font-size: 1.5em;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+
+a:hover{
+    background-color: #3a6d85;
+    color: whitesmoke;
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: .3rem;
+}
+
+.banner{
+    width: 50%;
+    margin: auto;
+}
+
+.piePagina{
+    padding: 0 5% 0 5%;
+    width: 100%;
+    color: black;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    
+    div{
+        width: 49%;
+        display: inline-block;
+    }
+
+    .contactoPie{
+        
+    }
+
+    .logos{
+        align-items: center;
+        width: 20%;
+        justify-items: center;
+
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    img{
+        width: 2em;
+        display: inline;
+        margin: 0px auto;
+        border-radius: 10px;
+        border: 2px solid white;
+        box-shadow: 0 4px 8px rgb(12, 115, 250);
+    }
+}
+
+#main{
+    padding: 2rem;
+    margin: auto;
+    width: 80%;
+
+    #sectionIndexDestacados{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        width: 100%;
+        margin: auto;
+
+            #listaDiscosIndex{
+                border: 1px solid black;
+                border-radius: 10px;
+                padding: 1rem;
+                
+
+                img{
+                    justify-content: center;
+                }
+            }
+
+            #bntListaDiscosIndex{
+                display: flex;
+                margin: auto;
+                justify-content: space-around;
+
+                button{
+                    background-color: rgb(252, 252, 252);
+                    border-radius: 10px;
+                }
+
+                button:hover{
+                    background-color: #3a6d85;
+                    color: whitesmoke;
+                }
+            }
+        
+    }
+}
+
+form{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    #btnNuevoDisco{
+
+        display: flex;
+        justify-content: space-around;
+
+        button{
+            margin: 1rem auto 1rem auto;
+            width: 30%;
+            height: 3rem;
+            font-size: 1.2rem;
+            background-color: rgb(252, 252, 252);
+            border-radius: 10px;
+        }
+
+        button:hover{
+                    background-color: #3a6d85;
+                    color: whitesmoke;
+                }
+    }
+}
+
+#infoDisco{
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 4rem;
+    
+
+    button{
+            margin: 1rem auto 1rem auto;
+            width: 70%;
+            height: 3rem;
+            font-size: 1.2rem;
+            background-color: rgb(252, 252, 252);
+            border-radius: 10px;
+        }
+
+        button:hover{
+                    background-color: #3a6d85;
+                    color: whitesmoke;
+                }
+}

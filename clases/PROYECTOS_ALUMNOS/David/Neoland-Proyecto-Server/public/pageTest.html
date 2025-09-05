@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheets/style.client.css">
+</head>
+<body>
+    <main>
+        <h2 class="product-list-tittle">Listado de productos</h2>
+        <div id="productsContainer">
+            
+        </div>
+
+    </main>
+
+    <script>
+
+        const container = document.querySelector("#productsContainer")
+
+        function createProductCard(product, index) {
+            return `
+                    <div class="product-card">
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-description">
+                                ${product.description || 'Producto de alta calidad disponible en nuestra tienda.'}
+                            </p>
+                            <div class="product-details">
+                                <span class="product-price">${product.price}</span>
+                                <span class="product-stock"> Cantidad:
+                                    ${product.quantity}
+                                </span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn-add-cart" data-product-id="${product.id || index}">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+        }
+
+        function handlePurchase(product, button) {
+            
+            button.disabled = true
+
+            fetch('http://localhost:4000/api/purchases', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productName: product.name })
+            })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Error: ${res.status}`)
+                }
+
+                alert(`Has comprado el producto ${product.name}`)
+            })
+            .catch(error => {
+                console.error('Error al realizar la compra:', error)
+                alert("Error al realizar la compra. Por favor, intenta nuevamente.")
+                button.disabled = false
+            })
+        }
+
+        function main() {
+            fetch('http://localhost:4000/api/products', { method: 'GET' })
+                .then( res => {
+                    if (!res.ok) {
+                        throw new Error(`Error: ${res.status}`)
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    if (!Array.isArray(data) || data.length === 0) {
+                        container.innerHTML = "<h3>Error al cargar los productos</h3>"
+                        return
+                    }
+
+                    container.innerHTML = data.map((product, index) => createProductCard(product, index)).join('')
+
+                    const buttons = container.querySelectorAll('.btn-add-cart')
+                    buttons.forEach((button, index) => {
+                        if (!button.disabled) {
+                            button.addEventListener('click', () => {
+                                handlePurchase(data[index], button)
+                            })
+                        }
+                    })
+                })
+                .catch(error => {
+                    console.error('Error al cargar productos:', error)
+                    container.innerHTML = '<div class="error-message">Error al cargar los productos. Por favor, recarga la página.</div>'
+                })
+        }
+
+        document.addEventListener("DOMContentLoaded", main)
+    </script>
+</body>
+</html>

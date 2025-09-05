@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    /* Mejorar renderizado de fuente */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 600; /* Inter weight */
+}
+
+nav {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.menu-container{
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    font-size: 1em;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 400;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table,
+td,
+th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: .3rem;
+}
+
+/* Iconos de Google */
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Variaciones de tamaño para iconos */
+.material-icons.small { font-size: 18px; }
+.material-icons.medium { font-size: 24px; }
+.material-icons.large { font-size: 36px; }
+.material-icons.xl { font-size: 48px; }

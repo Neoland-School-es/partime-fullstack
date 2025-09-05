@@ -1,0 +1,607 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/*Variables (tema oscuro) */
+:root {
+  --font-heading: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --bg: #0a0a0a;           /* fondo base */
+  --fg: #ffffff;           /* texto */
+  --muted: #9a9a9a;        /* texto secundario */
+
+  --card: #121212;         /* tarjetas/paneles */
+  --line: #1a1a1a;         /* bordes */
+
+  --accent: #ffffff;       /* acento KŌRA (blanco sobre oscuro) */
+  --accent-cta: #00e5ff;   /* acento alternativo para CTAs si lo quieres */
+
+  --danger: #b00020;
+  --success: #1faa00;
+
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/*Base*/
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.45 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+h1, h2, h3 { margin: 12px 0; font-family: var(--font-heading); letter-spacing: -0.02em; }
+.section { padding: 16px 0; }
+.error { color: #ff6b6b; }
+
+/* Utilidades de truncado */
+.clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* =========================
+   Header
+   ========================= */
+.kora-header {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(6px);
+  background: rgba(10,10,10,.7);
+  border-bottom: 1px solid var(--line);
+}
+.kora-header__content { display:flex; align-items:center; justify-content:space-between; }
+.kora-logo { color: var(--fg); text-decoration:none; font-weight: 900; letter-spacing: 0.2em; }
+.kora-nav a { color: var(--muted); text-decoration:none; margin: 0 12px; }
+.kora-nav a.active, .kora-nav a:hover { color: var(--fg); }
+.kora-actions { display:flex; gap: 8px; }
+.icon-btn {
+  width:36px; height:36px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius: 999px;
+  background: transparent; color: var(--fg); cursor:pointer;
+}
+.icon-btn:hover { background: #151515; }
+
+/* =========================
+   Botones
+   ========================= */
+.btn {
+  padding: 10px 14px; border-radius: 999px;
+  border:1px solid var(--line); background: transparent; color: var(--fg);
+  cursor:pointer; transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+}
+.btn:hover { transform: translateY(-1px); border-color: #222; }
+.btn:disabled { opacity: .6; cursor:not-allowed; }
+
+.btn--primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn--danger  { background: var(--danger); color:#fff; border-color: var(--danger); }
+.btn-sm { padding: 6px 10px; font-size: .9rem; }
+
+/* =========================
+   Banner (portada)
+   ========================= */
+.kora-banner { position: relative; border-bottom: 1px solid var(--line); }
+.kora-banner__img {
+  width:100%;
+  height: 36vh; min-height: 220px; max-height: 420px;
+  background-size: cover; background-position: center;
+  filter: grayscale(100%) contrast(1.08) brightness(.85);
+}
+.kora-banner__overlay { position: absolute; inset:0; display:grid; align-content:center; gap:10px; padding: 0 24px; }
+.kora-banner__title { font-size: clamp(26px, 4vw, 48px); margin:0; }
+.kora-banner__sub { margin:0 0 8px 0; color: var(--muted); }
+
+/* =========================
+   Grid / Cards (Catálogo)
+   ========================= */
+.grid {
+  display:grid; gap: 14px; margin-top: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.kora-card {
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:hidden; background: var(--card);
+  display:flex; flex-direction:column;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.kora-card:hover { transform: translateY(-2px); border-color: #222; }
+
+.kora-card__media {
+  width: 100%;
+  /* tamaño uniforme: CUADRADO */
+  aspect-ratio: 1 / 1;
+  background: #0b0b0b;
+  display:grid; place-items:center;
+}
+.kora-card__media img {
+  width:100%; height:100%;
+  object-fit: cover; /* asegura recorte uniforme sin deformar */
+  filter: grayscale(10%);
+  transition: transform .2s ease;
+}
+.kora-card:hover .kora-card__media img { transform: scale(1.03); }
+
+.kora-card__ph {
+  width: 60%; height: 60%;
+  border:1px dashed var(--line); border-radius: 12px;
+}
+
+.kora-card__body { padding: 12px; display:grid; gap: 10px; }
+.kora-card__title { margin:0; font-weight: 600; font-size: 1rem; }
+.kora-card__title.clamp-2 { /* por si quieres forzar desde JSX */ }
+.kora-card__meta { color: var(--muted); font-size: .92rem; }
+.kora-card__actions { display:flex; gap: 8px; flex-wrap: wrap; }
+
+/* Precio visible en tarjeta y detalle */
+.kora-card__price {
+  margin: 4px 0 8px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Badge de precio en la esquina de la imagen */
+.kora-card__media { position: relative; }
+.kora-card__badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+
+.detail__price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 8px 0 16px;
+}
+
+/* =========================
+   Dashboard (Paneles)
+   ========================= */
+.dashboard__grid {
+  display:grid; grid-template-columns: 420px 1fr; gap: 20px;
+}
+@media (max-width: 1024px) {
+  .dashboard__grid { grid-template-columns: 1fr; }
+}
+
+/* Panel visual */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.panel + .panel { margin-top: 16px; }
+.panel__title { margin: 0 0 12px 0; font-size: 1.1rem; }
+
+/* Tabla */
+.table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.table th, .table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px; text-align: left; vertical-align: middle;
+}
+.table th { color: var(--muted); font-weight: 600; }
+
+/* Miniatura consistente en tabla */
+.product-thumb {
+  width: 56px; height: 56px; object-fit: cover;
+  border-radius: 8px; border:1px solid var(--line);
+}
+
+/* =========================
+   Formularios
+   ========================= */
+.form { display:grid; gap: 12px; }
+.form__field { display:grid; gap: 6px; }
+.form__field > span { color: var(--muted); font-size: .92rem; }
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="file"] {
+  width:100%;
+  background:#0f0f0f;
+  color:var(--fg);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px 12px;
+}
+input[type="file"] { padding: 8px; }
+
+/* Previsualización de imagen en el formulario: tamaño controlado */
+.form__preview {
+  width:100%;
+  max-width: 220px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+}
+.form__preview img {
+  display:block;
+  width:100%; height:160px; /* forzamos altura para uniformidad */
+  object-fit: cover;
+}
+
+/* =========================
+   Detalle de producto
+   ========================= */
+.detail {
+  display:grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;
+}
+.detail__img {
+  width:100%; max-height:420px; object-fit:cover;
+  border:1px solid var(--line); border-radius: var(--radius);
+}
+@media (max-width: 1024px) {
+  .detail { grid-template-columns: 1fr; }
+}
+
+/* =========================
+   Contact — KŌRA
+   ========================= */
+/* ===== Contacto (estilos scoped por prefijo .contact) ===== */
+
+.contact {
+  display: grid;
+  gap: 24px;
+}
+
+/* Hero superior */
+.contact__hero {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.contact__avatar {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid #2a2a2a;
+  background: #151515;
+}
+
+.contact__name {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+}
+
+.contact__title {
+  margin: 0 0 12px;
+  color: #cfcfcf;
+}
+
+.contact__meta {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  color: #dcdcdc;
+}
+
+.contact__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 6px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #bdbdbd;
+}
+.contact__links a { text-decoration: underline; }
+
+/* Grid de bloques inferiores */
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Tarjetas reutilizables */
+.card {
+  background: #151515;
+  border: 1px solid #262626;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.card__title {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.card__text {
+  margin: 0;
+  color: #e6e6e6;
+}
+
+.card__hint {
+  margin-top: 10px;
+  color: #9a9a9a;
+  font-size: 0.9rem;
+}
+
+/* Badges de tecnologías */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #101010;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  color: #ececec;
+  font-size: 0.9rem;
+}
+
+/* Lista de certificaciones */
+.certs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.certs__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  background: #111;
+}
+.certs__info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+.certs__name { color: #f3f3f3; }
+.certs__issuer { color: #bdbdbd; }
+.certs__pending { color: #9a9a9a; font-size: 0.9rem; }
+
+/* Botones base reutilizados */
+.btn {
+  appearance: none;
+  border: 1px solid #3a3a3a;
+  background: #1a1a1a;
+  color: #f0f0f0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .02s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover    { background: #212121; border-color: #4a4a4a; }
+.btn:active   { transform: translateY(1px); }
+
+.btn--primary {
+  background: #f5f5f5;
+  color: #0b0b0b;
+  border-color: #f5f5f5;
+}
+.btn--primary:hover { background: #eaeaea; border-color: #eaeaea; }
+
+.btn--ghost {
+  background: transparent;
+  color: #f0f0f0;
+  border-color: #3a3a3a;
+}
+.btn--ghost:hover { background: #1a1a1a; }
+
+/* Responsive */
+@media (max-width: 880px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+  .contact__hero {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .contact__avatar {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
+/* =========================
+   Utilidades de margen
+   ========================= */
+.mt-0{ margin-top:0 } .mb-0{ margin-bottom:0 }
+.mt-1{ margin-top:8px } .mb-1{ margin-bottom:8px }
+.mt-2{ margin-top:12px } .mb-2{ margin-bottom:12px }
+.mt-3{ margin-top:16px } .mb-3{ margin-bottom:16px }
+
+
+
+/* ---------- Campos base ---------- */
+.kora-form {
+  display: grid;
+  gap: 18px;
+}
+
+.kora-field {
+  display: grid;
+  gap: 8px;
+}
+
+.kora-label {
+  font-size: 0.95rem;
+  color: #e8e8e8;
+}
+
+.kora-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  background: #101010;
+  color: #f5f5f5;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.kora-input:focus-visible {
+  border-color: #444;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+}
+
+/* Eliminar flechas del input number (estética) */
+.kora-input[type="number"]::-webkit-outer-spin-button,
+.kora-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.kora-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Ayuda */
+.kora-help {
+  color: #9a9a9a;
+  font-size: 0.85rem;
+}
+
+/* ---------- Campo de precio con prefijo € ---------- */
+.kora-currency {
+  position: relative;
+  display: grid;
+}
+
+.kora-currency__prefix {
+  position: absolute;
+  inset-inline-start: 12px;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  color: #bdbdbd;
+  pointer-events: none;
+}
+
+.kora-currency__input {
+  padding-inline-start: 30px; /* espacio para el € */
+}
+
+/* ---------- Selector de imagen custom ---------- */
+.kora-visually-hidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap; 
+  border: 0;
+}
+
+.kora-file {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px dashed #2f2f2f;
+  border-radius: 14px;
+  background: #0f0f0f;
+}
+
+.kora-file__trigger {
+  appearance: none;
+  border: 1px solid #3a3a3a;
+  background: #1a1a1a;
+  color: #f0f0f0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .02s;
+}
+
+.kora-file__trigger:hover {
+  background: #212121;
+  border-color: #4a4a4a;
+}
+
+.kora-file__trigger:active {
+  transform: translateY(1px);
+}
+
+.kora-file__name {
+  color: #cccccc;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kora-file__hint {
+  grid-column: 1 / -1;
+  color: #9a9a9a;
+  font-size: 0.85rem;
+}
+
+.kora-file__preview {
+  margin-top: 10px;
+}
+.kora-file__preview img {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  background: #151515;
+}
+
+/* ---------- Acciones ---------- */
+.kora-actions {
+  margin-top: 6px;
+}
+
+/* Botón base por si no lo tienes ya */
+.btn {
+  appearance: none;
+  border: 1px solid #3a3a3a;
+  background: #1a1a1a;
+  color: #f0f0f0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .02s;
+}
+.btn:hover { background: #212121; border-color: #4a4a4a; }
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: #f5f5f5;
+  color: #0b0b0b;
+  border-color: #f5f5f5;
+}
+.btn--primary:hover { background: #eaeaea; border-color: #eaeaea; }

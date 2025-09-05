@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script defer src="/javascripts/dashboard.page.js"></script>
+  </head>
+  <body>
+    
+    <%- include('components/navbar') %>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Sección de bienvenida -->
+            <section class="welcome-section">
+                <h1>¡Saludos desde el dashboard!</h1>
+            </section>
+
+            <!-- Lista de productos -->
+            <section class="products-section">
+                <h2>Listado de Productos</h2>
+                <div class="products-list">
+                    <% if (typeof products !== 'undefined' && products.length > 0) { %>
+                        <% products.forEach(product => { %>
+                            <div class="product-card">
+                                <div class="product-info">
+                                    <h3 class="product-name"><%= product.name %></h3>
+                                    <div class="product-details">
+                                        <span class="product-price">Precio: $<%= product.price %></span>
+                                        <span class="product-quantity">Cantidad: <%= product.quantity %></span>
+                                    </div>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn btn-edit" 
+                                            data-id='<%= product._id %>'
+                                            data-name='<%= product.name %>'
+                                            data-price='<%= product.price %>'
+                                            data-quantity='<%= product.quantity %>'>
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-delete" data-id='<%= product._id %>'>
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="no-products">
+                            <p>No hay productos disponibles</p>
+                        </div>
+                    <% } %>
+                </div>
+            </section>
+
+            <!-- Formulario para crear producto -->
+            <section class="create-product-section">
+                <h2>Crear Producto</h2>
+                <form id="product-form" class="product-form">
+                    <div class="form-group">
+                        <input type="text" id="new-name" name="name" placeholder="Nombre del producto" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="new-price" name="price" placeholder="Precio" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="new-quantity" name="quantity" placeholder="Cantidad" required>
+                    </div>
+                    <button type="submit" class="btn btn-create">Crear Producto</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de edición -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Producto</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <form id="edit-product-form" class="product-form">
+                <input type="hidden" id="edit-id" name="id">
+                <div class="form-group">
+                    <input type="text" id="edit-name" name="name" placeholder="Nombre del producto" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="edit-price" name="price" placeholder="Precio" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="edit-quantity" name="quantity" placeholder="Cantidad" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn btn-update">Actualizar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </body>
+</html>
